@@ -1,0 +1,105 @@
+
+  MODIFICACIONES TRIVAGES [GESTITRV]
+  ==================================
+
+-- Activa xp_cmdshell
+EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell', 1;
+RECONFIGURE;
+
+-- Consulta Estado de xp_cmdshell
+EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell';
+
+-- Crea procedimiento para escritura del archivo .txt al insertar registros en la tabla.
+USE GESTITRV;
+GO
+
+CREATE PROCEDURE WriteToFile @TextToWrite NVARCHAR(MAX)
+AS BEGIN
+  DECLARE @FilePath NVARCHAR(255)
+  DECLARE @cmd SYSNAME
+  SET @FilePath = 'C:\DATOS\PDAnewReg.txt'
+  --SET @cmd = 'echo ' + @TextToWrite + ' > ' + @FilePath;
+  SET @cmd = 'echo ' + @TextToWrite + ' > C:\PDAnewReg.txt';
+  EXEC xp_cmdshell @cmd;
+END
+GO
+
+USE GESTITRV;
+GO
+-- Disparador al INSERTAR datos en la tabla.
+-- Quremos escribir en un archivo.txt
+CREATE TRIGGER [dbo].[trgAfterInsertOnPeticion]
+ON [PETICION]
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @NewRecord NVARCHAR(MAX)
+
+    SELECT @NewRecord = 
+        'Nuevo registro insertado: ' +
+        'PDA=' + CAST([PDA] AS NVARCHAR) + ', ' +
+        'TIPO=' + CAST([TIPO] AS NVARCHAR) + ', ' +  -- Asegúrate de incluir todos los campos necesarios
+        'ESTADO=' + CAST([ESTADO] AS NVARCHAR) + ', ' +
+        'VALOR=' + [VALOR] + ', ' +
+        'CAMPO01=' + [CAMPO01] + ', ' +
+        'CAMPO02=' + [CAMPO02] + ', ' +
+        'CAMPO03=' + [CAMPO03] + ', ' +
+        'CAMPO04=' + [CAMPO04] + ', ' +
+        'CAMPO05=' + [CAMPO05]
+    FROM INSERTED
+    EXEC [dbo].[WriteToFile] @NewRecord
+END
+
+
+ PRUEBAS DIRECTAS DESDE SQL
+ ==========================
+
+ ( Probado Crea el qrchivo! )
+
+DECLARE @TextToWrite NVARCHAR(MAX)
+DECLARE @cmd SYSNAME
+SET @TextToWrite = 'HOLA MUNDO!!!';
+SET @cmd = 'echo ' + @TextToWrite + ' >> C:\DATOS\FromSql.txt';
+EXEC xp_cmdshell @cmd;
+
+==================================================================================================================
+CREATE PROCEDURE WriteToFile
+    @TextToWrite NVARCHAR(MAX)
+AS
+BEGIN
+    DECLARE @FilePath NVARCHAR(255)
+    SET @FilePath = 'C:\Ruta\A\TuArchivo.txt'  -- Cambia esta ruta a la deseada
+
+    EXEC xp_cmdshell 'echo ' + @TextToWrite + ' >> ' + @FilePath
+END
+
+CREATE TRIGGER trgAfterInsertOnPeticion
+ON [PETICION]
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @NewRecord NVARCHAR(MAX)
+
+    SELECT @NewRecord = 
+        'Nuevo registro insertado: ' +
+        'ID=' + CAST(ID AS NVARCHAR) + ', ' +
+        'Campo1=' + Campo1 + ', ' +  -- Asegúrate de incluir todos los campos necesarios
+        'Campo2=' + Campo2
+    FROM INSERTED
+
+    EXEC WriteToFile @NewRecord
+END
+
+EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell';
+
+EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell', 1;
+RECONFIGURE;
+

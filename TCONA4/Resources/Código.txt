@@ -1,0 +1,23 @@
+Private Sub ButtonCal0_MouseDown(sender As Object, e As MouseEventArgs) _
+        Handles ButtonCal0.MouseDown, ButtonCal1.MouseDown,
+                ButtonCal2.MouseDown, ButtonCal3.MouseDown,
+                ButtonCal4.MouseDown, ButtonCal5.MouseDown,
+                ButtonCal6.MouseDown, ButtonCal7.MouseDown,
+                ButtonCal8.MouseDown, ButtonCal9.MouseDown,
+                ButtonCal_A.MouseDown, ButtonCal_B.MouseDown
+        '
+        PulsadoTecla(CType(sender, Button), "D")
+        '
+    End Sub
+
+    Private Sub ButtonCal0_MouseUp(sender As Object, e As MouseEventArgs) _
+        Handles ButtonCal0.MouseUp, ButtonCal1.MouseUp,
+                ButtonCal2.MouseUp, ButtonCal3.MouseUp,
+                ButtonCal4.MouseUp, ButtonCal5.MouseUp,
+                ButtonCal6.MouseUp, ButtonCal7.MouseUp,
+                ButtonCal8.MouseUp, ButtonCal9.MouseUp,
+                ButtonCal_A.MouseUp, ButtonCal_B.MouseUp
+        '
+        PulsadoTecla(CType(sender, Button), "U")
+        '
+    End Sub

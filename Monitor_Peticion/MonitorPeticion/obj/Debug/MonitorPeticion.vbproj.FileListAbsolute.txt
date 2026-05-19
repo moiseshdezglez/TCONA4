@@ -1,0 +1,11 @@
+C:\Users\ZeroemaN\AppData\Local\Temporary Projects\MonitorPeticion\bin\Debug\MonitorPeticion.exe.config
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\bin\Debug\MonitorPeticion.exe.config
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\bin\Debug\MonitorPeticion.exe
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\bin\Debug\MonitorPeticion.pdb
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\bin\Debug\MonitorPeticion.xml
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Debug\MonitorPeticion.Form1.resources
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Debug\MonitorPeticion.Resources.resources
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Debug\MonitorPeticion.vbproj.GenerateResource.Cache
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Debug\MonitorPeticion.exe
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Debug\MonitorPeticion.xml
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Debug\MonitorPeticion.pdb

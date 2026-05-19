@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ProyectosVB\\TCONA4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|d:\\proyectosvb\\tcona4\\tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|solutionrelative:tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|d:\\proyectosvb\\tcona4\\tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|solutionrelative:tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TCONA401.vb",
+              "DocumentMoniker": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb",
+              "RelativeDocumentMoniker": "TCONA4\\TCONA401.vb",
+              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb",
+              "RelativeToolTip": "TCONA4\\TCONA401.vb",
+              "ViewState": "AgIAADABAAAAAAAAAAAwwD4BAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-01-02T13:39:29.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TCONA401.vb [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb",
+              "RelativeDocumentMoniker": "TCONA4\\TCONA401.vb",
+              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb [Dise\u00F1o]",
+              "RelativeToolTip": "TCONA4\\TCONA401.vb [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-01-02T13:38:57.389Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

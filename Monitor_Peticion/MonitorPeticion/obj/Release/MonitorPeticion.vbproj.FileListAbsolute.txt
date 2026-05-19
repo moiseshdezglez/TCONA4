@@ -1,0 +1,10 @@
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\bin\Release\MonitorPeticion.exe.config
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\bin\Release\MonitorPeticion.exe
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\bin\Release\MonitorPeticion.pdb
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\bin\Release\MonitorPeticion.xml
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Release\MonitorPeticion.Form1.resources
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Release\MonitorPeticion.Resources.resources
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Release\MonitorPeticion.vbproj.GenerateResource.Cache
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Release\MonitorPeticion.exe
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Release\MonitorPeticion.xml
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Monitor_Peticion\MonitorPeticion\obj\Release\MonitorPeticion.pdb

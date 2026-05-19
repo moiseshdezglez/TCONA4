@@ -1,0 +1,4026 @@
+USE [GESTITRV]
+GO
+/****** Object:  Table [dbo].[Ven]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Ven](
+	[codigo] [numeric](10, 0) NOT NULL,
+	[nombre] [varchar](50) NULL,
+	[direccion] [varchar](50) NULL,
+	[poblacion] [varchar](50) NULL,
+	[cp] [numeric](10, 0) NULL,
+	[dni] [varchar](50) NULL,
+	[tfno] [varchar](50) NULL,
+	[movil] [varchar](50) NULL,
+	[email] [varchar](250) NULL,
+	[almacen] [numeric](9, 0) NULL,
+	[tarifa] [numeric](3, 0) NULL,
+	[zona] [numeric](10, 0) NULL,
+	[regimen] [varchar](50) NULL,
+	[clave] [varchar](50) NULL,
+	[tarjeta1] [varchar](50) NULL,
+	[tarjeta2] [varchar](50) NULL,
+	[comision1] [numeric](15, 3) NULL,
+	[comision2] [numeric](15, 3) NULL,
+	[comision3] [numeric](15, 3) NULL,
+	[comisionfija] [numeric](15, 3) NULL,
+	[factura] [nvarchar](20) NULL,
+	[imagen] [varchar](max) NULL,
+	[igic] [bit] NULL,
+	[resumenzeta] [bit] NULL,
+	[bloqlm] [bit] NULL,
+	[dobleticket] [bit] NULL,
+	[enero] [numeric](15, 3) NULL,
+	[febrero] [numeric](15, 3) NULL,
+	[marzo] [numeric](15, 3) NULL,
+	[abril] [numeric](15, 3) NULL,
+	[mayo] [numeric](15, 3) NULL,
+	[junio] [numeric](15, 3) NULL,
+	[julio] [numeric](15, 3) NULL,
+	[agosto] [numeric](15, 3) NULL,
+	[septiembre] [numeric](15, 3) NULL,
+	[octubre] [numeric](15, 3) NULL,
+	[noviembre] [numeric](15, 3) NULL,
+	[diciembre] [numeric](15, 3) NULL,
+	[nivelacceso] [numeric](2, 0) NULL,
+	[grupo] [numeric](18, 0) NULL,
+ CONSTRAINT [PK_vendedores] PRIMARY KEY CLUSTERED 
+(
+	[codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OPVIS]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OPVIS](
+	[EMPRESA] [numeric](3, 0) NOT NULL,
+	[CODIGO] [numeric](12, 0) NOT NULL,
+	[FECHA] [date] NULL,
+	[CLIENTE] [numeric](15, 0) NOT NULL,
+	[ESTADO] [numeric](2, 0) NOT NULL,
+	[FECHACON] [nvarchar](15) NULL,
+	[TELEOPERADORA] [numeric](12, 0) NOT NULL,
+	[REPARTIDOR] [numeric](12, 0) NOT NULL,
+	[ENTREGA] [nvarchar](80) NULL,
+	[LUGAR] [nvarchar](80) NULL,
+	[FECHAFIRMA] [nvarchar](15) NULL,
+	[ACEPTA] [numeric](1, 0) NOT NULL,
+	[COINS] [numeric](18, 2) NOT NULL,
+	[OBS] [nvarchar](max) NULL,
+	[NOMBRE] [nvarchar](80) NULL,
+	[APELLIDO1] [nvarchar](80) NULL,
+	[APELLIDO2] [nvarchar](80) NULL,
+	[CIF] [nvarchar](20) NULL,
+	[DIRECCION] [nvarchar](80) NULL,
+	[NUMERO] [numeric](5, 0) NOT NULL,
+	[POBLACION] [nvarchar](80) NULL,
+	[PROVINCIA] [numeric](3, 0) NOT NULL,
+	[DP] [numeric](9, 0) NOT NULL,
+	[TFNO] [nvarchar](20) NULL,
+	[MOVIL] [nvarchar](20) NULL,
+	[PAIS] [nvarchar](40) NULL,
+	[EMAIL] [nvarchar](150) NULL,
+	[FECHANAC] [nvarchar](15) NULL,
+	[EDAD] [numeric](3, 0) NOT NULL,
+	[PATOLOGIA] [nvarchar](200) NULL,
+	[HORAENTREGA] [numeric](4, 0) NOT NULL,
+	[NOMBREOPERADORA] [nvarchar](80) NULL,
+	[NOMBREOPERARIO] [nvarchar](80) NULL,
+	[TABLET] [numeric](4, 0) NULL,
+	[NOMBRE2] [nvarchar](80) NULL,
+	[APELLIDO21] [nvarchar](80) NULL,
+	[APELLIDO22] [nvarchar](80) NULL,
+	[EDAD2] [numeric](3, 0) NULL,
+	[PATOLOGIA2] [nvarchar](200) NULL,
+	[NOMBREPROVINCIA] [nvarchar](80) NULL,
+	[IDESTADO] [numeric](1, 0) NULL,
+	[FECHAASIGNADO] [nvarchar](10) NULL,
+	[FECHASISTEMA] [date] NULL,
+	[ENCUESTADORA] [numeric](3, 0) NULL,
+	[HASTAHORA] [nvarchar](5) NULL,
+	[ZONA] [nvarchar](20) NULL,
+	[CAMPO1] [nvarchar](50) NULL,
+	[CAMPO2] [nvarchar](50) NULL,
+	[CAMPO3] [nvarchar](50) NULL,
+	[CAMPO4] [nvarchar](50) NULL,
+	[CAMPO5] [nvarchar](50) NULL,
+	[CAMPO6] [nvarchar](50) NULL,
+	[CAMPO7] [nvarchar](50) NULL,
+	[CAMPO8] [nvarchar](50) NULL,
+	[CAMPO9] [nvarchar](50) NULL,
+	[CAMPO10] [nvarchar](50) NULL,
+    [ASESORJEFE] [numeric](9, 0) NULL,
+ CONSTRAINT [PK_OPVIS] PRIMARY KEY CLUSTERED 
+(
+	[EMPRESA] ASC,
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+/****** Object:  Table [dbo].[OPCON]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OPCON](
+	[Numero] [int] NOT NULL,
+	[Visita] [int] NULL,
+	[Fecha] [text] NULL,
+	[CodigoFF] [text] NULL,
+	[CodClientePrincipal] [int] NULL,
+	[NomClientePrincipal] [text] NULL,
+	[Apellido1ClientePrincipal] [text] NULL,
+	[Apellido2ClientePrincipal] [text] NULL,
+	[DNIClientePrincipal] [text] NULL,
+	[FechaNacimientoPrincipal] [text] NULL,
+	[PaisPrincipal] [text] NULL,
+	[NacionalidadPrincipal] [text] NULL,
+	[EstadoCivilPrincipal] [int] NULL,
+	[HijosPrincipal] [text] NULL,
+	[Direccion1Principal] [text] NULL,
+	[Direccion2Principal] [text] NULL,
+	[CPPrincipal] [text] NULL,
+	[LocalidadPrincipal] [text] NULL,
+	[ProvinciaPrincipal] [text] NULL,
+	[MovilPrincipal] [text] NULL,
+	[TelefonoPrincipal] [text] NULL,
+	[ViviendaPrincipal] [text] NULL,
+	[PropiedadPrincipal] [text] NULL,
+	[AlquilarPrincipal] [text] NULL,
+	[ConPadresPrincipal] [text] NULL,
+	[EmailPrincipal] [text] NULL,
+	[OtrosPrincipal] [text] NULL,
+	[TotalContrato] [numeric](15, 2) NULL,
+	[EntregaCuenta] [numeric](15, 6) NULL,
+	[CobroEnDomicilio] [numeric](15, 6) NULL,
+	[ImporteAFinanciar] [numeric](15, 6) NULL,
+	[Plazos] [int] NULL,
+	[ImporteMensual] [numeric](15, 6) NULL,
+	[Vencimiento] [text] NULL,
+	[Profesion] [text] NULL,
+	[Antiguedad] [int] NULL,
+	[IngresosMensuales] [numeric](15, 6) NULL,
+	[TipoContrato] [int] NULL,
+	[NombreEmpresa] [text] NULL,
+	[DireccionEmpresa] [text] NULL,
+	[CodigoPostalEmpresa] [text] NULL,
+	[LocalidadEmpresa] [text] NULL,
+	[ProvinciaEmpresa] [text] NULL,
+	[TelefonoEmpresa] [text] NULL,
+	[DatosBanco01] [text] NULL,
+	[DatosBanco02] [text] NULL,
+	[DatosBanco03] [text] NULL,
+	[DatosBanco04] [text] NULL,
+	[DatosBanco05] [text] NULL,
+	[DatosBanco06] [text] NULL,
+	[Concentimiento] [int] NULL,
+	[Comunicaciones] [int] NULL,
+	[CodClienteSecundario] [int] NULL,
+	[NomClienteSecundario] [text] NULL,
+	[Apellido1ClienteSecundario] [text] NULL,
+	[Apellido2ClienteSecundario] [text] NULL,
+	[DNIClienteSecundario] [text] NULL,
+	[FechaNacimientoSecundario] [text] NULL,
+	[PaisSecundario] [text] NULL,
+	[NacionalidadSecundario] [text] NULL,
+	[EstadoCivilSecundario] [int] NULL,
+	[HijosSecundario] [text] NULL,
+	[Direccion1Secundario] [text] NULL,
+	[Direccion2Secundario] [text] NULL,
+	[CPSecundario] [text] NULL,
+	[LocalidadSecundario] [text] NULL,
+	[ProvinciaSecundario] [text] NULL,
+	[MovilSecundario] [text] NULL,
+	[TelefonoSecundario] [text] NULL,
+	[ViviendaSecundario] [text] NULL,
+	[PropiedadSecundario] [text] NULL,
+	[AlquilarSecundario] [text] NULL,
+	[ConPadresSecundario] [text] NULL,
+	[EmailSecundario] [text] NULL,
+	[OtrosSecundario] [text] NULL,
+	[CodigoAsesor] [int] NULL,
+	[TipoContratoSecundario] [int] NULL,
+	[ProfesionSecundario] [text] NULL,
+	[AntiguedadSecundario] [int] NULL,
+	[ActividadEmpresaPrincipal] [text] NULL,
+	[NombreEmpresaSecundario] [text] NULL,
+	[ActividadEmpresaSecundario] [text] NULL,
+	[DireccionEmpresaSecundario] [text] NULL,
+	[CodigoPostalEmpresaSecundario] [text] NULL,
+	[LocalidadEmpresaSecundario] [text] NULL,
+	[ProvinciaEmpresaSecundario] [text] NULL,
+	[TelefonoEmpresaSecundario] [text] NULL,
+	[IngresosMensualesSecundario] [numeric](15, 6) NULL,
+	[FormaPago] [int] NULL,
+	[TipoPago] [int] NULL,
+	[LugarFirma] [text] NULL,
+	[Enviado] [int] NULL,
+	[CodEmpresa] [int] NOT NULL,
+	[SegundoAsesor] [int] NULL,
+	[TotalDto] [numeric](15, 2) NULL,
+  CONSTRAINT [PK_OPCON] PRIMARY KEY CLUSTERED (
+	[CodEmpresa] ASC,
+	[Numero] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[TeleoperadoraVisita]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[TeleoperadoraVisita]
+AS
+SELECT   dbo.OPVIS.FECHA, dbo.OPVIS.CODIGO, dbo.OPVIS.NOMBRE, dbo.OPVIS.APELLIDO1, dbo.OPVIS.APELLIDO2, dbo.Ven.nombre AS Teleoperadora, dbo.OPVIS.OBS, 
+                         dbo.OPCON.Fecha AS FechaContrato, dbo.OPCON.Numero
+FROM         dbo.Ven RIGHT OUTER JOIN
+                         dbo.OPVIS ON dbo.Ven.codigo = dbo.OPVIS.TELEOPERADORA LEFT OUTER JOIN
+                         dbo.OPCON ON dbo.OPVIS.CODIGO = dbo.OPCON.Visita
+WHERE     (dbo.OPVIS.FECHA BETWEEN N'12/01/2023' AND N'12/01/2023')
+GO
+/****** Object:  Table [dbo].[ACT]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ACT](
+	[ACTIVIDAD] [numeric](12, 0) NULL,
+	[NOMBRE] [varchar](80) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ALM]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ALM](
+	[ALMACEN] [numeric](9, 0) NOT NULL,
+	[CODIGO] [varchar](20) NOT NULL,
+	[STOCK] [numeric](15, 5) NULL,
+	[UCOMPRA] [numeric](15, 5) NULL,
+	[UVENTA] [numeric](15, 5) NULL,
+	[BULTOSENTRAN] [numeric](15, 5) NULL,
+	[BULTOSSALEN] [numeric](15, 5) NULL,
+	[BULTOSSTOCK] [numeric](15, 5) NULL,
+	[PREMEDIO] [numeric](15, 5) NULL,
+	[VALOREXIS] [numeric](15, 5) NULL,
+	[PREPVP] [numeric](15, 5) NULL,
+	[PRECOSTO] [numeric](15, 5) NULL,
+	[SITUACION] [varchar](40) NULL,
+	[UINVE] [numeric](16, 6) NULL,
+	[TRAENT] [numeric](16, 6) NULL,
+	[TRASAL] [numeric](16, 6) NULL,
+	[FECHAULTINVEN] [date] NULL,
+	[MAXIMO] [numeric](15, 5) NULL,
+	[MINIMO] [numeric](15, 5) NULL,
+	[BLOQUEOSTOCK] [numeric](15, 5) NULL,
+	[STOCKANTE] [numeric](15, 5) NULL,
+	[STOCKACTU] [numeric](15, 5) NULL,
+	[STOCKFIJO] [numeric](15, 5) NULL,
+	[UNIESCANDALLO] [numeric](15, 5) NULL,
+	[NOCONTROLLOTE] [bit] NULL,
+	[CLASIFICA] [varchar](2) NULL,
+	[PEDIDOPLAN] [varchar](5) NULL,
+ CONSTRAINT [PK_ALM] PRIMARY KEY CLUSTERED 
+(
+	[ALMACEN] ASC,
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ALMC]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ALMC](
+	[ALMACEN] [numeric](9, 0) NOT NULL,
+	[CODIGO] [varchar](20) NOT NULL,
+	[LOTE] [varchar](20) NOT NULL,
+	[FECHACADU] [date] NOT NULL,
+	[STOCK] [numeric](15, 5) NULL,
+	[UCOMPRA] [numeric](15, 5) NULL,
+	[UVENTA] [numeric](15, 5) NULL,
+	[LOTEORIGEN] [varchar](20) NULL,
+	[BULTOS] [numeric](15, 5) NULL,
+	[PCOSTO] [numeric](15, 5) NULL,
+	[EMPRESA] [numeric](9, 0) NULL,
+	[PROVEEDOR] [numeric](15, 0) NULL,
+	[FECHAENT] [date] NULL,
+	[FACTURAENT] [varchar](20) NULL,
+	[PESOCAJA] [numeric](15, 5) NULL,
+	[BLOQUEO] [bit] NULL,
+	[BULCOMPRA] [numeric](15, 5) NULL,
+ CONSTRAINT [PK_ALMC] PRIMARY KEY CLUSTERED 
+(
+	[ALMACEN] ASC,
+	[CODIGO] ASC,
+	[LOTE] ASC,
+	[FECHACADU] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AREAS]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AREAS](
+	[NUMCAJA] [numeric](8, 0) NOT NULL,
+	[AREA] [numeric](9, 0) NOT NULL,
+	[DESCRIPCION] [varchar](40) NULL,
+	[PUERTOIMPRE] [varchar](80) NULL,
+	[AREA2] [numeric](9, 0) NULL,
+	[AREA3] [numeric](9, 0) NULL,
+	[AREA4] [numeric](9, 0) NULL,
+	[REPLICAR] [varchar](15) NULL,
+	[TIPOIMPRESION] [bit] NULL,
+	[MODELOIMPRE] [varchar](50) NULL,
+ CONSTRAINT [PK_AREAS] PRIMARY KEY CLUSTERED 
+(
+	[NUMCAJA] ASC,
+	[AREA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BARRA]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BARRA](
+	[CODIGO] [varchar](20) NOT NULL,
+	[NARTICULO] [varchar](20) NOT NULL,
+	[PVPPACK] [numeric](18, 6) NULL,
+	[UNIPACK] [numeric](15, 5) NULL,
+	[PVPUPACK] [numeric](18, 6) NULL,
+	[TALLA] [varchar](10) NULL,
+	[COLOR] [varchar](10) NULL,
+ CONSTRAINT [PK_BARRA] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[borrar]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[borrar](
+	[Empresa] [numeric](18, 0) NOT NULL,
+	[Codigo] [nchar](10) NOT NULL,
+	[Nombre] [nchar](10) NULL,
+ CONSTRAINT [PK_borrar] PRIMARY KEY CLUSTERED 
+(
+	[Empresa] ASC,
+	[Codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CANT]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CANT](
+	[ARTICULO] [varchar](20) NOT NULL,
+	[INDALM] [numeric](9, 0) NOT NULL,
+	[DESDE] [numeric](12, 3) NULL,
+	[HASTA] [numeric](12, 3) NULL,
+	[PRECIO] [numeric](18, 6) NULL,
+	[DTO] [numeric](7, 3) NULL,
+	[REDONDEO] [numeric](15, 6) NULL,
+ CONSTRAINT [PK_CANT] PRIMARY KEY CLUSTERED 
+(
+	[ARTICULO] ASC,
+	[INDALM] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CLAVES]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CLAVES](
+	[NIVELACCESO] [numeric](2, 0) NOT NULL,
+	[DESCRIPCION] [varchar](30) NOT NULL,
+	[CLAVE] [varchar](20) NULL,
+	[ACCESOX] [bit] NULL,
+	[ACCESOZ] [bit] NULL,
+	[ACCESOAPPS] [bit] NULL,
+	[ACCESOREFGEN] [varchar](100) NULL,
+	[BOTONMENOS] [bit] NULL,
+	[BOTONPRECIO] [bit] NULL,
+	[BOTONTARIFA] [bit] NULL,
+ CONSTRAINT [PK_CLAVES] PRIMARY KEY CLUSTERED 
+(
+	[NIVELACCESO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CLICONTA]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CLICONTA](
+	[NIFCIF] [varchar](20) NOT NULL,
+	[NOMBRE] [varchar](40) NULL,
+	[DIRECCION] [varchar](40) NULL,
+	[POBLACION] [varchar](40) NULL,
+	[CODPOSTAL] [numeric](7, 0) NULL,
+	[TELEFONOS] [varchar](30) NULL,
+	[DTO] [numeric](7, 3) NULL,
+ CONSTRAINT [PK_CLICONTA] PRIMARY KEY CLUSTERED 
+(
+	[NIFCIF] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CODF]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CODF](
+	[CODIGO] [varchar](20) NOT NULL,
+	[NOMBRE] [varchar](80) NULL,
+	[CASILLA00] [varchar](10) NULL,
+	[CASILLA01] [varchar](10) NULL,
+	[CASILLA02] [varchar](10) NULL,
+	[CASILLA03] [varchar](10) NULL,
+	[CASILLA04] [varchar](10) NULL,
+	[CASILLA05] [varchar](10) NULL,
+	[CASILLA06] [varchar](10) NULL,
+	[CASILLA07] [varchar](10) NULL,
+	[CASILLA08] [varchar](10) NULL,
+	[CASILLA09] [varchar](10) NULL,
+	[CASILLA10] [varchar](10) NULL,
+	[CASILLA11] [varchar](10) NULL,
+	[CASILLA12] [varchar](10) NULL,
+	[CASILLA13] [varchar](10) NULL,
+	[CASILLA14] [varchar](10) NULL,
+	[CASILLA15] [varchar](10) NULL,
+	[CASILLA16] [varchar](10) NULL,
+	[CASILLA17] [varchar](10) NULL,
+	[CASILLA18] [varchar](10) NULL,
+	[CASILLA19] [varchar](10) NULL,
+	[CASILLA20] [varchar](10) NULL,
+	[CASILLA21] [varchar](10) NULL,
+	[CASILLA22] [varchar](10) NULL,
+	[CASILLA23] [varchar](10) NULL,
+	[CASILLA24] [varchar](10) NULL,
+	[CASILLA25] [varchar](10) NULL,
+ CONSTRAINT [PK_CODF] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[COSP]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[COSP](
+	[PARTE] [varchar](20) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[LINEAPARTE] [numeric](9, 0) NOT NULL,
+	[MATRICULA] [varchar](15) NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[EMPRESA] [numeric](15, 0) NULL,
+	[PROVEEDOR] [numeric](15, 0) NULL,
+	[FECHAFAC] [numeric](8, 0) NULL,
+	[FACTURA] [varchar](20) NULL,
+	[LINEAFACTURA] [numeric](12, 0) NULL,
+	[ALBFACT] [varchar](2) NULL,
+	[TOTALFAC] [numeric](12, 2) NULL,
+	[OBS1] [varchar](80) NULL,
+	[OBS2] [varchar](80) NULL,
+	[BASE1] [numeric](10, 2) NULL,
+	[BASE2] [numeric](15, 2) NOT NULL,
+	[BASE3] [numeric](15, 2) NULL,
+	[BASE4] [numeric](15, 2) NULL,
+	[BASE5] [numeric](15, 2) NULL,
+	[BASE6] [numeric](15, 2) NULL,
+	[BASE7] [numeric](15, 2) NULL,
+	[BASE8] [numeric](15, 2) NULL,
+	[BASE9] [numeric](15, 2) NULL,
+	[BASE10] [numeric](15, 2) NULL,
+	[BASE11] [numeric](15, 2) NULL,
+	[BASE12] [numeric](15, 2) NULL,
+	[BASE13] [numeric](15, 2) NULL,
+	[BASE14] [numeric](15, 2) NULL,
+	[BASE15] [numeric](15, 2) NULL,
+	[PORCE1] [numeric](10, 2) NULL,
+	[PORCE2] [numeric](10, 3) NULL,
+	[PORCE3] [numeric](10, 3) NULL,
+	[PORCE4] [numeric](10, 3) NULL,
+	[PORCE5] [numeric](10, 3) NULL,
+	[PORCE6] [numeric](10, 3) NULL,
+	[PORCE7] [numeric](10, 3) NULL,
+	[PORCE8] [numeric](10, 3) NULL,
+	[PORCE9] [numeric](10, 3) NULL,
+	[PORCE10] [numeric](10, 3) NULL,
+	[PORCE11] [numeric](10, 3) NULL,
+	[PORCE12] [numeric](10, 3) NULL,
+	[PORCE13] [numeric](10, 3) NULL,
+	[PORCE14] [numeric](10, 3) NULL,
+	[PORCE15] [numeric](10, 3) NULL,
+	[IGIC1] [numeric](15, 3) NULL,
+	[IGIC2] [numeric](15, 3) NULL,
+	[IGIC3] [numeric](15, 3) NULL,
+	[IGIC4] [numeric](15, 3) NULL,
+	[IGIC5] [numeric](15, 3) NULL,
+	[IGIC6] [numeric](15, 3) NULL,
+	[IGIC7] [numeric](15, 3) NULL,
+	[IGIC8] [numeric](15, 3) NULL,
+	[IGIC9] [numeric](15, 3) NULL,
+	[IGIC10] [numeric](15, 3) NULL,
+	[IGIC11] [numeric](15, 3) NULL,
+	[IGIC12] [numeric](15, 3) NULL,
+	[IGIC13] [numeric](15, 3) NULL,
+	[IGIC14] [numeric](15, 3) NULL,
+	[IGIC15] [numeric](15, 3) NULL,
+	[GRABADOPARTE] [varchar](2) NULL,
+	[CODIGO] [varchar](15) NULL,
+	[UNID] [numeric](15, 6) NULL,
+	[PRECIO] [numeric](15, 6) NULL,
+	[DTO] [numeric](5, 2) NULL,
+	[CUENTAGAS] [numeric](15, 0) NULL,
+	[CUENTAIGIC] [numeric](15, 0) NULL,
+	[ALMA] [numeric](9, 0) NULL,
+	[BORRARCOMPRA] [varchar](1) NULL,
+ CONSTRAINT [PK_COSP] PRIMARY KEY CLUSTERED 
+(
+	[PARTE] ASC,
+	[FECHA] ASC,
+	[LINEAPARTE] ASC,
+	[MATRICULA] ASC,
+	[LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DEMAR]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DEMAR](
+	[CODIGOART] [varchar](20) NOT NULL,
+	[CODIGODERI] [varchar](20) NOT NULL,
+	[TIPO] [numeric](3, 0) NULL,
+	[UNIDADES] [numeric](15, 5) NULL,
+ CONSTRAINT [PK_DEMAR] PRIMARY KEY CLUSTERED 
+(
+	[CODIGOART] ASC,
+	[CODIGODERI] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DEPTO]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DEPTO](
+	[DEPTO] [numeric](9, 0) NOT NULL,
+	[NOMBRE] [varchar](80) NULL,
+	[FECHA] [date] NULL,
+	[CLAVE] [varchar](10) NULL,
+	[PRECIO] [numeric](2, 0) NULL,
+	[ALMDEPTO] [varchar](15) NULL,
+	[ALMCLI] [numeric](15, 0) NULL,
+ CONSTRAINT [PK_DEPTO] PRIMARY KEY CLUSTERED 
+(
+	[DEPTO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ENCUESTAS]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ENCUESTAS](
+	[EMPRESA] [numeric](3, 0) NOT NULL,
+	[CODIGO] [numeric](18, 0) NOT NULL,
+	[CAMPO] [nvarchar](50) NOT NULL,
+	[VALOR] [nvarchar](200) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ESC]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ESC](
+	[CODIGO] [varchar](15) NOT NULL,
+	[EMPRESA] [numeric](9, 0) NOT NULL,
+	[PROVEEDOR] [numeric](15, 0) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[NFAC] [varchar](20) NOT NULL,
+	[LIN] [numeric](12, 0) NOT NULL,
+	[ALMA] [numeric](9, 0) NULL,
+	[UNI] [numeric](16, 6) NULL,
+	[PCOMPRA] [numeric](16, 6) NULL,
+	[IND] [varchar](2) NULL,
+	[UNIDBON] [numeric](16, 6) NULL,
+	[PEDIDO] [numeric](12, 0) NULL,
+	[REFERENCIA] [numeric](12, 0) NULL,
+	[PORGAS] [numeric](7, 3) NULL,
+	[PCOMP] [numeric](16, 6) NULL,
+	[IGIC] [numeric](15, 3) NULL,
+	[BULTOS] [numeric](16, 6) NULL,
+	[PCOMPRA2] [numeric](16, 6) NULL,
+	[PCOMP2] [numeric](16, 6) NULL,
+	[IMPGASF] [numeric](16, 6) NULL,
+	[IMPDTO2] [numeric](16, 6) NULL,
+	[UNID2] [numeric](16, 6) NULL,
+	[FECHACADU] [varchar](10) NULL,
+	[ACTUMARG] [varchar](1) NULL,
+	[LOTECADU] [varchar](20) NULL,
+	[PCOMPRAG] [numeric](16, 6) NULL,
+	[IPEDFECHA] [date] NULL,
+	[IPEDLINEA] [numeric](12, 0) NULL,
+	[IMPDIVISA] [numeric](16, 6) NULL,
+	[DTO1] [numeric](7, 2) NULL,
+	[DTO2] [numeric](7, 2) NULL,
+	[DTO3] [numeric](7, 2) NULL,
+	[DTO4] [numeric](7, 2) NULL,
+	[DTO5] [numeric](7, 2) NULL,
+	[DTO6] [numeric](7, 2) NULL,
+	[DTO7] [numeric](7, 2) NULL,
+	[DTOIMP] [numeric](14, 3) NULL,
+	[IMPGAS] [numeric](14, 3) NULL,
+	[GAS] [numeric](7, 2) NULL,
+	[GAS2] [numeric](7, 2) NULL,
+	[GASP] [numeric](7, 2) NULL,
+	[DTOP] [numeric](7, 2) NULL,
+	[PBASE] [numeric](16, 6) NULL,
+	[FECHAACT] [date] NULL,
+	[IMPAPIC] [numeric](15, 4) NULL,
+	[IMPGASCUBI] [numeric](15, 4) NULL,
+	[BULBON] [numeric](16, 6) NULL,
+	[CANON] [numeric](14, 4) NULL,
+	[PRECIOREA] [numeric](16, 6) NULL,
+	[PVERDE] [numeric](16, 6) NULL,
+	[PARTE] [varchar](20) NULL,
+	[FECHAPARTE] [date] NULL,
+	[LINEAPARTE] [numeric](12, 0) NULL,
+	[LINEAPARTE1] [numeric](12, 0) NULL,
+	[EXPEDIENTE] [varchar](20) NULL,
+	[PALET] [numeric](14, 3) NULL,
+	[PARTIDA] [numeric](12, 0) NULL,
+	[LOTEORIGEN] [varchar](20) NULL,
+	[FECHADOCU] [date] NULL,
+	[COMISIONF] [varchar](1) NULL,
+	[EMPPROVEEDOR] [numeric](15, 0) NULL,
+ CONSTRAINT [PK_ESC] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC,
+	[EMPRESA] ASC,
+	[PROVEEDOR] ASC,
+	[FECHA] ASC,
+	[NFAC] ASC,
+	[LIN] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ESCP]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ESCP](
+	[EMPRESA] [numeric](9, 0) NOT NULL,
+	[PROVEEDOR] [numeric](15, 0) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[NUMFACTURA] [varchar](20) NOT NULL,
+	[IMPORTE] [numeric](18, 3) NULL,
+	[PORDTO1] [numeric](7, 3) NULL,
+	[IMPDTO1] [numeric](18, 3) NULL,
+	[PORGASTO] [numeric](7, 3) NULL,
+	[IMPGASTO] [numeric](18, 3) NULL,
+	[IMPIGIC] [numeric](18, 3) NULL,
+	[ALMACEN] [numeric](9, 0) NULL,
+	[ALBFAC] [numeric](3, 0) NULL,
+	[PORRETENCION] [numeric](7, 3) NULL,
+	[IMPRETEN] [numeric](18, 3) NULL,
+	[CODGAS01] [varchar](15) NULL,
+	[IMPGAS01] [numeric](18, 5) NULL,
+	[NUMGAS01] [varchar](15) NULL,
+ CONSTRAINT [PK_ESCP] PRIMARY KEY CLUSTERED 
+(
+	[EMPRESA] ASC,
+	[PROVEEDOR] ASC,
+	[FECHA] ASC,
+	[NUMFACTURA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ESV1]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ESV1](
+	[CODIGO] [varchar](15) NOT NULL,
+	[EMPRESA] [numeric](9, 0) NOT NULL,
+	[CLIENTE] [numeric](15, 0) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[NFAC] [varchar](20) NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[ALMA] [numeric](12, 0) NULL,
+	[UNI] [numeric](15, 6) NULL,
+	[PVENTA] [numeric](15, 6) NULL,
+	[UNIDBON] [numeric](15, 6) NULL,
+	[VENDEDOR] [numeric](12, 0) NULL,
+	[IGIC] [numeric](7, 2) NULL,
+	[COMISION] [numeric](7, 2) NULL,
+	[COSTO] [numeric](15, 6) NULL,
+	[DTO] [numeric](7, 2) NULL,
+	[DTO1] [numeric](7, 2) NULL,
+	[DTO2] [numeric](7, 2) NULL,
+	[DTO3] [numeric](7, 2) NULL,
+	[DTO4] [numeric](7, 2) NULL,
+	[DTO5] [numeric](7, 2) NULL,
+	[DTOI] [numeric](7, 2) NULL,
+	[TIPODEVO] [numeric](3, 0) NULL,
+	[ACUMULADO] [numeric](15, 2) NULL,
+	[TOTALFAC] [numeric](15, 2) NULL,
+	[BULTOS] [numeric](15, 2) NULL,
+	[FECHACADU] [varchar](10) NULL,
+	[LOTECADU] [varchar](20) NULL,
+	[ALBARAN] [varchar](20) NULL,
+	[TIPOPVP] [numeric](5, 0) NULL,
+	[OBRA] [numeric](12, 0) NULL,
+	[HORA] [time](7) NULL,
+	[MEDIO] [numeric](15, 6) NULL,
+	[SUCURSAL] [numeric](12, 0) NULL,
+	[TIPO] [numeric](2, 0) NULL,
+	[USUARIO] [varchar](20) NULL,
+	[PROMOCION] [varchar](1) NULL,
+	[TRASPASO] [varchar](1) NULL,
+	[REPARTIDOR] [numeric](12, 0) NULL,
+	[DEPOSITO] [numeric](1, 0) NULL,
+	[ECOTASA] [numeric](7, 3) NULL,
+	[CODECO] [numeric](3, 0) NULL,
+	[PLANCHA] [numeric](7, 2) NULL,
+	[UNICAJ] [varchar](5) NULL,
+	[MODPRE] [numeric](1, 0) NULL,
+	[TFAC] [numeric](2, 0) NULL,
+	[TARA] [numeric](7, 3) NULL,
+	[CAPITULO] [varchar](5) NULL,
+	[COMISIONF] [varchar](1) NULL,
+	[FECHAACT] [date] NULL,
+	[PRECIONETO] [numeric](15, 6) NULL,
+	[EMPCLIENTE] [numeric](15, 0) NULL,
+	[DESCRIPCION] [varchar](50) NULL,
+	[CAMPO1] [varchar](50) NULL,
+	[CAMPO2] [varchar](50) NULL,
+	[CAMPO3] [varchar](50) NULL,
+	[CAMPO4] [varchar](50) NULL,
+	[CAMPO5] [varchar](50) NULL,
+ CONSTRAINT [PK_ESV1] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC,
+	[EMPRESA] ASC,
+	[CLIENTE] ASC,
+	[FECHA] ASC,
+	[NFAC] ASC,
+	[LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FABO1]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FABO1](
+       [Grupo] [numeric](9, 0) NOT NULL,
+       [Articulo] [varchar](20) NOT NULL,
+       [precio] [numeric](18, 6) NULL,
+       [Orden] [numeric](5, 0) NULL,
+       [Descripcion] [varchar](80) NOT NULL,
+CONSTRAINT [PK_FABO1] PRIMARY KEY CLUSTERED 
+(
+       [Grupo] ASC,
+       [Articulo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FABO2]    Script Date: 21/03/2023 9:56:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FABO2](
+       [GRUPO] [numeric](9) NOT NULL,
+       [FAMILIA] [numeric](9) NOT NULL,
+       [NOMBRE] [varchar](40) NULL,
+CONSTRAINT [PK_FABO2] PRIMARY KEY CLUSTERED 
+(
+       [GRUPO] ASC,
+       [FAMILIA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FABO3]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FABO3](
+	[TIPO] [varchar](15) NOT NULL,
+	[ARTICULO] [varchar](20) NOT NULL,
+ CONSTRAINT [PK_FAVORITOS] PRIMARY KEY CLUSTERED 
+(
+	[TIPO] ASC,
+	[ARTICULO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FABRI]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FABRI](
+	[CODIGO] [numeric](12, 0) NOT NULL,
+	[NOMBRE] [nvarchar](80) NULL,
+ CONSTRAINT [PK_FABRI] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FAM]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FAM](
+	[CODIGO] [varchar](15) NOT NULL,
+	[NOMBRE] [varchar](80) NULL,
+	[MANODEOBRA] [bit] NULL,
+	[OBSFAC] [bit] NULL,
+	[TPV] [bit] NULL,
+	[GRUPO] [varchar](9) NULL,
+	[BLOQUEO] [bit] NULL,
+	[ACTIVIDAD] [numeric](12, 0) NULL,
+	[ORDEN] [numeric](9, 0) NULL,
+ CONSTRAINT [PK_FAM] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FAM1]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FAM1](
+	[CODIGO] [numeric](12, 0) NOT NULL,
+	[NOMBRE] [varchar](80) NULL,
+	[TIPO] [numeric](1, 0) NULL,
+ CONSTRAINT [PK_FAM1] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[GVEN]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[GVEN](
+	[CODIGO] [numeric](18, 0) NULL,
+	[NOMBRE] [varchar](80) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HFAC]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HFAC](
+	[EMPRESA] [numeric](9, 0) NOT NULL,
+	[CLIENTE] [numeric](15, 0) NOT NULL,
+	[FACTURA] [varchar](20) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[IMPORTE] [numeric](15, 3) NULL,
+	[BASE1] [numeric](15, 3) NULL,
+	[BASE2] [numeric](15, 3) NULL,
+	[BASE3] [numeric](15, 3) NULL,
+	[BASE4] [numeric](15, 3) NULL,
+	[BASE5] [numeric](15, 3) NULL,
+	[BASE6] [numeric](15, 3) NULL,
+	[BASE7] [numeric](15, 3) NULL,
+	[BASE8] [numeric](15, 3) NULL,
+	[BASE9] [numeric](15, 3) NULL,
+	[IGIC1] [numeric](15, 3) NULL,
+	[IGIC2] [numeric](15, 3) NULL,
+	[IGIC3] [numeric](15, 3) NULL,
+	[IGIC4] [numeric](15, 3) NULL,
+	[IGIC5] [numeric](15, 3) NULL,
+	[IGIC6] [numeric](15, 3) NULL,
+	[IGIC7] [numeric](15, 3) NULL,
+	[IGIC8] [numeric](15, 3) NULL,
+	[IGIC9] [numeric](15, 3) NULL,
+	[PORCE1] [numeric](9, 3) NULL,
+	[PORCE2] [numeric](9, 3) NULL,
+	[PORCE3] [numeric](9, 3) NULL,
+	[PORCE4] [numeric](9, 3) NULL,
+	[PORCE5] [numeric](9, 3) NULL,
+	[PORCE6] [numeric](9, 3) NULL,
+	[PORCE7] [numeric](9, 3) NULL,
+	[PORCE8] [numeric](9, 3) NULL,
+	[PORCE9] [numeric](9, 3) NULL,
+	[VENDEDOR] [numeric](12, 0) NULL,
+	[ALMA] [numeric](12, 0) NULL,
+	[OBRA] [numeric](12, 0) NULL,
+	[DTO1] [numeric](9, 3) NULL,
+	[DTO2] [numeric](9, 3) NULL,
+	[DTO3] [numeric](9, 3) NULL,
+	[DTOP] [numeric](16, 6) NULL,
+	[DTOL] [numeric](10, 3) NULL,
+	[TIPO] [numeric](1, 0) NULL,
+	[CONE] [numeric](1, 0) NULL,
+	[FPAGO] [numeric](6, 0) NULL,
+	[ALBARAN] [varchar](20) NULL,
+	[EMP] [numeric](9, 0) NULL,
+	[ASTO] [numeric](12, 0) NULL,
+	[DAPTE] [numeric](12, 0) NULL,
+	[HAPTE] [numeric](12, 0) NULL,
+	[EJERCICIO] [numeric](4, 0) NULL,
+	[FACTURA_R] [varchar](20) NULL,
+	[FECHAFACR] [date] NULL,
+	[MATRICULA] [varchar](15) NULL,
+	[ECOTASA] [numeric](9, 3) NULL,
+	[IMPRESA] [numeric](1, 0) NULL,
+	[REPARTO] [numeric](2, 0) NULL,
+	[TURNO] [numeric](2, 0) NULL,
+	[NUMFACTURA] [varchar](20) NULL,
+	[FECFACTURA] [datetime] NULL,
+	[FACTURAR] [varchar](1) NULL,
+	[VECESIMPRESA] [numeric](3, 0) NULL,
+	[HORA] [time](7) NULL,
+	[EMPCLIENTE] [numeric](15, 0) NULL,
+ CONSTRAINT [PK_HFAC] PRIMARY KEY CLUSTERED 
+(
+	[EMPRESA] ASC,
+	[CLIENTE] ASC,
+	[FACTURA] ASC,
+	[FECHA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HIST1]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HIST1](
+	[NFAC] [varchar](20) NOT NULL,
+	[MATRICULA] [varchar](15) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[FECHAVTO] [date] NULL,
+	[EMPRESA] [numeric](9, 0) NULL,
+	[CODCLTE] [numeric](15, 0) NULL,
+	[NUMALBARAN] [varchar](20) NULL,
+	[EMPRESAFAC] [numeric](9, 0) NULL,
+	[CLIENTEFAC] [numeric](15, 0) NULL,
+	[KILOMETROS] [numeric](12, 0) NULL,
+	[CODIGO] [varchar](15) NULL,
+	[ALMA] [numeric](9, 0) NULL,
+	[UNI] [numeric](16, 6) NULL,
+	[PRECIO] [numeric](16, 6) NULL,
+	[OPERARIO] [numeric](12, 0) NULL,
+	[DESCUENTOT] [numeric](5, 2) NULL,
+	[DESCUENTOI] [numeric](15, 6) NULL,
+	[VENDEDOR] [numeric](12, 0) NULL,
+	[FECHAFAC] [date] NULL,
+	[VCODIGO] [varchar](15) NULL,
+	[ACUMULADO] [numeric](12, 2) NULL,
+	[TOTALFAC] [numeric](12, 2) NULL,
+	[ECOTASA] [numeric](13, 3) NULL,
+	[CODECO] [numeric](5, 0) NULL,
+	[LITROS] [numeric](16, 6) NULL,
+	[IGICECO] [numeric](5, 2) NULL,
+	[CODESTADO] [varchar](10) NULL,
+	[OBRA] [numeric](12, 0) NULL,
+	[IGIC] [numeric](5, 2) NULL,
+	[COSTO] [numeric](16, 6) NULL,
+	[MEDIO] [numeric](16, 6) NULL,
+	[FACTURAPROVE] [varchar](20) NULL,
+	[FECHAPROVE] [date] NULL,
+	[EMPRESAPROVE] [numeric](9, 0) NULL,
+	[PROVEEDOR] [numeric](15, 0) NULL,
+ CONSTRAINT [PK_HIST1] PRIMARY KEY CLUSTERED 
+(
+	[NFAC] ASC,
+	[MATRICULA] ASC,
+	[FECHA] ASC,
+	[LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HPAR]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HPAR](
+	[NFAC] [varchar](20) NOT NULL,
+	[MATRICULA] [varchar](15) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[EMPRESA] [numeric](9, 0) NOT NULL,
+	[CODCLTE] [numeric](15, 0) NOT NULL,
+	[NUMALBARAN] [varchar](20) NULL,
+	[EMPRESAFAC] [numeric](9, 0) NULL,
+	[CLIENTEFAC] [numeric](15, 0) NULL,
+	[FECHAPAR] [date] NULL,
+	[KILOMETROS] [numeric](12, 0) NULL,
+	[ALMA] [numeric](9, 0) NULL,
+	[IMPORTE] [numeric](15, 3) NULL,
+	[OPERARIO] [numeric](12, 0) NULL,
+	[DESCUENTOT] [numeric](5, 2) NULL,
+	[DESCUENTOI] [numeric](15, 6) NULL,
+	[VENDEDOR] [numeric](12, 0) NULL,
+	[FPAGO] [numeric](5, 0) NULL,
+ CONSTRAINT [PK_HPAR] PRIMARY KEY CLUSTERED 
+(
+	[NFAC] ASC,
+	[MATRICULA] ASC,
+	[FECHA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[IMPRESORAS]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[IMPRESORAS](
+	[IMPRESORA] [varchar](50) NOT NULL,
+	[CORTE] [char](15) NULL,
+	[ABRECAJON] [char](15) NULL,
+	[DIEZCPP] [char](15) NULL,
+	[DOBLEALTO] [char](15) NULL,
+	[DOBLEALTO12CPP] [char](15) NULL,
+	[DOBLEANCHO] [char](15) NULL,
+	[AVAZALINEA] [char](15) NULL,
+	[AVAZAnLINEAS] [char](15) NULL,
+	[ATRASnLINEAS] [char](15) NULL,
+	[DOCECPP] [char](15) NULL,
+	[PROPORCIONAL] [char](15) NULL,
+	[COMPRIMIDO] [char](15) NULL,
+	[NEGRITA] [char](15) NULL,
+	[CURSIVA] [char](15) NULL,
+ CONSTRAINT [PK_IMPRESORAS] PRIMARY KEY CLUSTERED 
+(
+	[IMPRESORA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[INV]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[INV](
+	[ALMA] [numeric](9, 0) NOT NULL,
+	[CODIGO] [varchar](15) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[UNI] [numeric](16, 6) NULL,
+	[PCOMPRA] [numeric](16, 6) NULL,
+	[STOCKANTE] [numeric](16, 6) NULL,
+	[UNIR] [numeric](16, 6) NULL,
+	[FECHACADU] [date] NULL,
+	[LOTECADU] [varchar](50) NULL,
+	[BULTOS] [numeric](12, 2) NULL,
+	[SITUACION] [varchar](50) NULL,
+	[TIPO] [varchar](2) NULL,
+	[FECHAACT] [date] NULL,
+ CONSTRAINT [PK_INV] PRIMARY KEY CLUSTERED 
+(
+	[ALMA] ASC,
+	[CODIGO] ASC,
+	[FECHA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LMTM]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LMTM](
+	[CODIGO] [varchar](15) NOT NULL,
+	[NFAC] [varchar](20) NOT NULL,
+	[MATRICULA] [varchar](15) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[TEXTO1] [varchar](100) NULL,
+	[TEXTO2] [varchar](100) NULL,
+	[TEXTO3] [varchar](100) NULL,
+	[TEXTO4] [varchar](100) NULL,
+	[TEXTO5] [varchar](100) NULL,
+	[TEXTO6] [varchar](100) NULL,
+	[TEXTO7] [varchar](100) NULL,
+	[TEXTO8] [varchar](100) NULL,
+	[TEXTO9] [varchar](100) NULL,
+	[TEXTO10] [varchar](100) NULL,
+	[TEXTO11] [varchar](100) NULL,
+	[TEXTO12] [varchar](100) NULL,
+	[TEXTO13] [varchar](100) NULL,
+	[TEXTO14] [varchar](100) NULL,
+	[TEXTO15] [varchar](100) NULL,
+	[TEXTO16] [varchar](100) NULL,
+	[TEXTO17] [varchar](100) NULL,
+	[TEXTO18] [varchar](100) NULL,
+	[TEXTO19] [varchar](100) NULL,
+	[TEXTO20] [varchar](100) NULL,
+	[TEXTO21] [varchar](100) NULL,
+	[TEXTO22] [varchar](100) NULL,
+	[TEXTO23] [varchar](100) NULL,
+	[TEXTO24] [varchar](100) NULL,
+	[TEXTO25] [varchar](100) NULL,
+ CONSTRAINT [PK_LMTM] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC,
+	[NFAC] ASC,
+	[MATRICULA] ASC,
+	[FECHA] ASC,
+	[LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LOCD]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LOCD](
+	[CodigoLocal] [numeric](18, 0) NULL,
+	[CodigoDpto] [numeric](18, 0) NULL,
+	[Nombre] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LOCL]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[LOCL](
+       [CodigoLocal] [numeric](18, 0) NULL,
+       [Nombre] [nvarchar](50) NULL,
+       [IP] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MAR]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[MAR](
+       [NARTICULO] [varchar](20) NOT NULL,
+       [DESCRIPCION] [varchar](80) NULL,
+       [FAMILIA] [varchar](15) NULL,
+       [SUBFAMILIA] [varchar](15) NULL,
+       [NUPROV] [numeric](15, 0) NULL,
+       [EMPRESA] [numeric](5, 0) NULL,
+       [FABRICANTE] [numeric](15, 0) NULL,
+       [PRECOSTO] [numeric](15, 6) NULL,
+       [PREORIGEN] [numeric](15, 6) NULL,
+       [PREMEDIO] [numeric](15, 6) NULL,
+       [PREPVP1] [numeric](15, 6) NULL,
+       [PREPVP2] [numeric](15, 6) NULL,
+       [PREPVP3] [numeric](15, 6) NULL,
+       [PREPVP4] [numeric](15, 6) NULL,
+       [PREPVP5] [numeric](15, 6) NULL,
+       [PREPVP6] [numeric](15, 6) NULL,
+       [PREPVP7] [numeric](15, 6) NULL,
+       [PREPVP8] [numeric](15, 6) NULL,
+       [PREPVP9] [numeric](15, 6) NULL,
+       [MARGENPVP1] [numeric](7, 3) NULL,
+       [MARGENPVP2] [numeric](7, 3) NULL,
+       [MARGENPVP3] [numeric](7, 3) NULL,
+       [MARGENPVP4] [numeric](7, 3) NULL,
+       [MARGENPVP5] [numeric](7, 3) NULL,
+       [MARGENPVP6] [numeric](7, 3) NULL,
+       [MARGENPVP7] [numeric](7, 3) NULL,
+       [MARGENPVP8] [numeric](7, 3) NULL,
+       [MARGENPVP9] [numeric](7, 3) NULL,
+       [DTO1] [numeric](7, 3) NULL,
+       [DTO2] [numeric](7, 3) NULL,
+       [DTO3] [numeric](7, 3) NULL,
+       [DTO4] [numeric](7, 3) NULL,
+       [DTO5] [numeric](7, 3) NULL,
+       [DTO6] [numeric](7, 3) NULL,
+       [IMPDTO1] [numeric](15, 6) NULL,
+       [IMPDTO2] [numeric](15, 6) NULL,
+       [PORGAS1] [numeric](7, 3) NULL,
+       [PORGAS2] [numeric](7, 3) NULL,
+       [IMPGAS1] [numeric](15, 6) NULL,
+       [IMPGAS2] [numeric](15, 6) NULL,
+       [REFERENCIA] [varchar](50) NULL,
+       [VALOREXIS] [numeric](15, 6) NULL,
+       [STOCKGENERAL] [numeric](15, 6) NULL,
+       [STOCKMINIMO] [numeric](15, 6) NULL,
+       [STOCKMAXIMO] [numeric](15, 6) NULL,
+       [EXTRACTABLE] [numeric](3, 0) NULL,
+       [COMISION] [numeric](7, 3) NULL,
+       [TIPOARTI] [numeric](3, 0) NULL,
+       [CODIVA] [varchar](10) NULL,
+       [IVACOMPRA] [numeric](7, 3) NULL,
+       [IVAVENTA] [numeric](7, 3) NULL,
+       [UNIDBULTO] [numeric](15, 6) NULL,
+       [TIPOMARGEN] [bit] NULL,
+       [COMBINADO] [varchar](10) NULL,
+       [PUNTOVERDE] [numeric](15, 6) NULL,
+       [PREBASE] [numeric](15, 6) NULL,
+       [IMAGEN] [varchar](190) NULL,
+       [ETIQUETA] [bit] NULL,
+       [PESO] [numeric](15, 6) NULL,
+       [CUBICAJE] [numeric](15, 6) NULL,
+       [APIC] [numeric](9, 3) NULL,
+       [GRUPOALMACEN] [varchar](20) NULL,
+       [UNIDPALE] [numeric](15, 5) NULL,
+       [TARIFA] [numeric](5, 0) NULL,
+       [DESCRICORTA] [varchar](50) NULL,
+       [MARGAIEM] [numeric](15, 5) NULL,
+       [BLOQUEO] [bit] NULL,
+       [CADUCIDAD] [bit] NULL,
+       [DTOMAXI] [numeric](9, 3) NULL,
+       [ECOTASA] [numeric](15, 6) NULL,
+       [LITROS] [numeric](15, 6) NULL,
+       [BLOQUEOPVP] [bit] NULL,
+       [BLOQUEOCOSTO] [bit] NULL,
+       [NODTO] [bit] NULL,
+       [CODIGOREA] [varchar](20) NULL,
+       [PRECIOREA] [numeric](15, 6) NULL,
+       [FECHACREACION] [date] NULL,
+       [TEMPORADA] [varchar](20) NULL,
+       [CODTALLA] [varchar](15) NULL,
+       [FAMILIA2] [varchar](15) NULL,
+       [MARGENMINIMO] [numeric](7, 3) NULL,
+       [VARIEDAD] [varchar](40) NULL,
+       [ORIGEN] [varchar](40) NULL,
+       [CATEGORIA] [varchar](40) NULL,
+       [CALIBRE] [varchar](40) NULL,
+       [PARTIDA] [varchar](40) NULL,
+       [PESONETO] [numeric](15, 5) NULL,
+       [CAPASCAJA] [numeric](9, 3) NULL,
+       [ALTURASCAJA] [numeric](9, 3) NULL,
+       [ALTOCAJA] [numeric](9, 3) NULL,
+       [ANCHOCAJA] [numeric](9, 3) NULL,
+       [LARGOCAJA] [numeric](9, 3) NULL,
+       [DTOETIQUETA] [numeric](7, 3) NULL,
+       [GRUPOALMACEN2] [varchar](20) NULL,
+       [GRUPOALMACEN3] [varchar](20) NULL,
+       [ASOCIADO] [varchar](20) NULL,
+       [PORINFORMES] [numeric](7, 3) NULL,
+       [UNIFIJAFACTURA] [numeric](7, 3) NULL,
+       [AREA] [numeric](9, 0) NULL,
+       [CODINTERNO] [varchar](20) NULL,
+       [MANODEOBRA] [bit] NULL,
+       [GRUPOCOMBI] [numeric](9, 0) NULL,
+       [GRAMOS] [numeric](2, 0) NULL,
+       [ORDEN] [numeric](9, 0) NULL,
+       [WEB] [bit] NULL,
+       [MARCA] [numeric](9, 0) NULL,
+       [CATEGORIA3] [varchar](15) NULL,
+       [SUBCATEGORIA] [varchar](15) NULL,
+CONSTRAINT [PK_MAR] PRIMARY KEY CLUSTERED 
+(
+       [NARTICULO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+/****** Object:  Table [dbo].[MARCA]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MARCA](
+	[COD] [varchar](10) NOT NULL,
+	[DESCRIP] [varchar](80) NULL,
+ CONSTRAINT [PK_MARCA] PRIMARY KEY CLUSTERED 
+(
+	[COD] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MARO]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MARO](
+	[NARTICULO] [varchar](20) NOT NULL,
+	[OBSERVACIONES] [varchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MCO]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MCO](
+	[EMPRESA] [numeric](15, 0) NOT NULL,
+	[CUENTA] [numeric](15, 0) NOT NULL,
+	[DESARROLLO] [numeric](1, 0) NULL,
+	[GRADO] [numeric](1, 0) NULL,
+	[NOMBRE] [varchar](80) NULL,
+	[TIPO] [numeric](2, 0) NULL,
+	[NCOS] [numeric](5, 0) NULL,
+	[CIF] [varchar](20) NULL,
+	[DIRECCION] [varchar](80) NULL,
+	[POBLACION] [varchar](80) NULL,
+	[PROVINCIA] [numeric](3, 0) NULL,
+	[DP] [numeric](9, 0) NULL,
+	[TFNO] [varchar](20) NULL,
+	[TFNO2] [varchar](20) NULL,
+	[MOVIL] [varchar](20) NULL,
+	[FAX] [varchar](20) NULL,
+	[DTO] [numeric](7, 4) NULL,
+	[DTO0] [numeric](7, 4) NULL,
+	[DTO1] [numeric](7, 4) NULL,
+	[BANCO] [numeric](20, 0) NULL,
+	[NUMBANCO] [varchar](20) NULL,
+	[FACTURADO] [numeric](11, 2) NULL,
+	[BENEFICIO] [numeric](11, 2) NULL,
+	[FRASPDTES] [numeric](11, 2) NULL,
+	[RIESGO] [numeric](11, 2) NULL,
+	[FECULTCOM] [date] NULL,
+	[MAXIEFEC] [numeric](11, 2) NULL,
+	[IEFECTOS] [numeric](11, 2) NULL,
+	[DENOMINACION] [varchar](80) NULL,
+	[CONDIPAGO] [varchar](22) NULL,
+	[DIASPAGO] [varchar](5) NULL,
+	[TIPOPAGO] [numeric](6, 0) NULL,
+	[DTOSE] [numeric](2, 0) NULL,
+	[TARIFA] [numeric](2, 0) NULL,
+	[TIPOMCD] [numeric](2, 0) NULL,
+	[TIPOFAC] [numeric](2, 0) NULL,
+	[EMP] [numeric](2, 0) NULL,
+	[TIGIC] [numeric](2, 0) NULL,
+	[ACTIVIDAD] [numeric](5, 0) NULL,
+	[FECALTA] [date] NULL,
+	[VENDEDOR] [numeric](9, 0) NULL,
+	[CONTAC] [varchar](70) NULL,
+	[NOMCONTAC] [varchar](70) NULL,
+	[OBRA] [numeric](1, 0) NULL,
+	[FECHA] [date] NULL,
+	[REFEFAC] [numeric](1, 0) NULL,
+	[FACALB] [numeric](2, 0) NULL,
+	[RAP1] [numeric](6, 3) NULL,
+	[RAP2] [numeric](6, 3) NULL,
+	[RAP3] [numeric](6, 3) NULL,
+	[RAP4] [numeric](6, 3) NULL,
+	[CTACONTABLE] [numeric](15, 0) NULL,
+	[COBRADOR] [numeric](6, 0) NULL,
+	[TIPORELA] [numeric](2, 0) NULL,
+	[REFPROVE] [varchar](70) NULL,
+	[NROCOPIAS] [numeric](2, 0) NULL,
+	[VENDEDOR1] [numeric](5, 0) NULL,
+	[VENDEDOR2] [numeric](5, 0) NULL,
+	[MONEDA] [numeric](6, 0) NULL,
+	[PORETI] [numeric](5, 2) NULL,
+	[DIAMES] [numeric](2, 0) NULL,
+	[DTOMAXI] [numeric](6, 3) NULL,
+	[DIASFIJO] [varchar](4) NULL,
+	[PRECERO] [numeric](1, 0) NULL,
+	[SEGURO] [numeric](5, 0) NULL,
+	[IMPSEGU] [numeric](13, 2) NULL,
+	[CONDISEG] [varchar](50) NULL,
+	[PORCE] [numeric](5, 2) NULL,
+	[SUPLE] [varchar](15) NULL,
+	[BLOQPAGO] [numeric](1, 0) NULL,
+	[DTOARTI] [numeric](2, 0) NULL,
+	[FACALBMCD] [numeric](2, 0) NULL,
+	[IMPAGADO] [numeric](15, 0) NULL,
+	[DIA] [numeric](2, 0) NULL,
+	[MES] [numeric](2, 0) NULL,
+	[ANIO] [numeric](4, 0) NULL,
+	[CARTA] [numeric](2, 0) NULL,
+	[CADENA] [numeric](9, 0) NULL,
+	[SUBCADENA] [numeric](9, 0) NULL,
+	[MESQUINCE] [numeric](1, 0) NULL,
+	[EMAIL] [varchar](150) NULL,
+	[ENVIOMOVIL] [varchar](1) NULL,
+	[ENVIOEMAIL] [varchar](1) NULL,
+	[RETENCION] [numeric](5, 2) NULL,
+	[CPAIS] [varchar](5) NULL,
+	[CUENCLIIMPA] [numeric](15, 0) NULL,
+	[MAILNOMBRE] [varchar](80) NULL,
+	[MAILDIRECCION] [varchar](80) NULL,
+	[MAILPOBLACION] [varchar](80) NULL,
+	[MAILDP] [numeric](9, 0) NULL,
+	[CLAVEWEB] [varchar](6) NULL,
+	[IMPRAPPEL] [numeric](11, 2) NULL,
+	[SEXO] [varchar](1) NULL,
+	[DIAS] [numeric](6, 0) NULL,
+	[DPNUMERO] [numeric](5, 0) NULL,
+	[LOCALIDAD] [varchar](50) NULL,
+	[FAMBLOQ] [numeric](1, 0) NULL,
+	[REPRE] [varchar](80) NULL,
+	[TFREP] [numeric](9, 0) NULL,
+	[DIREC2] [varchar](80) NULL,
+	[TIPOPAGOPROVE] [numeric](5, 0) NULL,
+	[CONDPAGO] [numeric](5, 0) NULL,
+	[DIASPROVE] [numeric](3, 0) NULL,
+	[NUMERO] [numeric](1, 0) NULL,
+	[CUENCONTRA] [numeric](12, 0) NULL,
+	[NBANCO] [numeric](9, 0) NULL,
+	[DNI] [varchar](20) NULL,
+	[ALQUILER] [numeric](1, 0) NULL,
+	[DEPOSITO] [numeric](1, 0) NULL,
+	[ALBOBLIGATORIO] [numeric](1, 0) NULL,
+	[IBAN] [varchar](10) NULL,
+	[FACTURABLE] [numeric](1, 0) NULL,
+	[SERIEFAC] [varchar](5) NULL,
+	[SINPROMO] [numeric](1, 0) NULL,
+	[DATOSCONTADO] [numeric](1, 0) NULL,
+	[PAIS] [varchar](40) NULL,
+	[PLANTILLADTO] [numeric](5, 0) NULL,
+	[CLAVESTOCK] [varchar](6) NULL,
+	[FACE] [numeric](1, 0) NULL,
+	[NOMBRE1] [varchar](80) NULL,
+	[DIASVTOFAC] [numeric](3, 0) NULL,
+	[LATITUD] [numeric](18, 15) NULL,
+	[LONGITUD] [numeric](18, 15) NULL,
+	[FORMATOIMPRESION] [varchar](15) NULL,
+	[DTOIMPFAC] [numeric](1, 0) NULL,
+	[SINECOTASA] [numeric](1, 0) NULL,
+	[CAF] [varchar](20) NULL,
+	[DTOCAF] [numeric](5, 2) NULL,
+	[CTATRASPASO] [numeric](15, 0) NULL,
+	[GRUPO] [numeric](5, 0) NULL,
+	[ENVIOWEB] [numeric](1, 0) NULL,
+	[EMPCUENTA] [numeric](12, 0) NULL,
+	[CLIPROV] [varchar](5) NULL,
+	[NOMBRE2] [varchar](50) NULL,
+	[APELLIDO1] [varchar](50) NULL,
+	[APELLIDO2] [varchar](50) NULL,
+	[ZONA] [numeric](9) NULL,
+	[RUTA] [numeric](9) NULL,
+ CONSTRAINT [PK_MCO] PRIMARY KEY CLUSTERED 
+(
+	[CUENTA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MESA]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MESA](
+	[NUMCAJA] [numeric](8, 0) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[SALA] [varchar](15) NOT NULL,
+	[MESA] [varchar](15) NOT NULL,
+	[FACTURA] [numeric](15, 0) NOT NULL,
+	[ARTI] [varchar](20) NOT NULL,
+	[COMBINA] [varchar](100) NOT NULL,
+	[MEDIAPRECIO] [varchar](15) NOT NULL,
+	[UNID] [numeric](15, 6) NULL,
+	[IMPORTE] [numeric](18, 5) NULL,
+	[PDTO] [numeric](9, 3) NULL,
+	[IMPDTO] [numeric](15, 5) NULL,
+	[VENDEDOR] [numeric](10, 0) NULL,
+	[HORA] [time](7) NULL,
+	[COSTO] [numeric](15, 6) NULL,
+	[ALMACEN] [varchar](15) NULL,
+	[IGIC] [numeric](7, 3) NULL,
+	[NOZETA] [bit] NULL,
+	[NUMZETA] [numeric](18, 0) NULL,
+	[ORDENPLATO] [numeric](3, 0) NULL,
+	[DESCRIPCION] [varchar](100) NULL,
+    [PDA] [numeric](6, 0) NULL,
+    [PAX] [numeric](6, 0) NULL,
+    [ORDEN] [numeric](6, 0) NULL,
+ CONSTRAINT [PK_MESA] PRIMARY KEY CLUSTERED 
+(
+	[NUMCAJA] ASC,
+	[FECHA] ASC,
+	[SALA] ASC,
+	[MESA] ASC,
+	[FACTURA] ASC,
+	[ARTI] ASC,
+	[COMBINA] ASC,
+	[MEDIAPRECIO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MESABORLIN]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MESABORLIN](
+	[ID] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[NUMCAJA] [numeric](8, 0) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[HORA] [time](7) NOT NULL,
+	[SALA] [varchar](15) NOT NULL,
+	[MESA] [varchar](15) NOT NULL,
+	[FACTURA] [numeric](15, 0) NOT NULL,
+	[ARTI] [varchar](20) NOT NULL,
+	[COMBINA] [varchar](100) NOT NULL,
+	[MEDIAPRECIO] [varchar](15) NOT NULL,
+	[UNIDANUL] [numeric](15, 6) NULL,
+	[UNIDEX] [numeric](15, 6) NULL,
+	[IMPORTE] [numeric](18, 5) NULL,
+	[PDTO] [numeric](9, 3) NULL,
+	[IMPDTO] [numeric](15, 5) NULL,
+	[VENDEDOR] [numeric](10, 0) NULL,
+	[COSTO] [numeric](15, 6) NULL,
+	[ALMACEN] [varchar](15) NULL,
+	[IGIC] [numeric](7, 3) NULL,
+	[NOZETA] [bit] NULL,
+	[NUMZETA] [numeric](18, 0) NULL,
+	[ORDENPLATO] [numeric](3, 0) NULL,
+ CONSTRAINT [PK_MESABORLIN_1] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC,
+	[NUMCAJA] ASC,
+	[FECHA] ASC,
+	[HORA] ASC,
+	[SALA] ASC,
+	[MESA] ASC,
+	[FACTURA] ASC,
+	[ARTI] ASC,
+	[COMBINA] ASC,
+	[MEDIAPRECIO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MESAC]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MESAC](
+	[NUMCAJA] [numeric](8, 0) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[SALA] [varchar](15) NOT NULL,
+	[MESA] [varchar](15) NOT NULL,
+	[FACTURA] [numeric](15, 0) NOT NULL,
+	[EMPRESA] [numeric](9, 0) NULL,
+	[CLIENTE] [numeric](15, 0) NULL,
+	[VENDEDOR] [numeric](10, 0) NULL,
+	[PIGIC] [numeric](7, 3) NULL,
+	[PDTO] [numeric](7, 3) NULL,
+	[IMPDTO] [numeric](15, 5) NULL,
+	[IMPORTE] [numeric](18, 5) NULL,
+	[ENTREGA] [numeric](18, 5) NULL,
+	[TARJETA] [numeric](18, 5) NULL,
+	[VALEDTO] [numeric](18, 5) NULL,
+	[CHEQUES] [numeric](18, 5) NULL,
+	[OTROS] [numeric](18, 5) NULL,
+	[EFECTIVO] [numeric](18, 5) NULL,
+	[IMPIGIC] [numeric](18, 5) NULL,
+	[TKFACIMPRESO] [bit] NULL,
+	[NUMZETA] [numeric](18, 0) NULL,
+	[HORAAPAERTURA] [time](7) NULL,
+	[FECHACOBRO] [date] NULL,
+	[HORACOBRO] [time](7) NULL,
+	[TLFPEDIDOS] [varchar](20) NULL,
+ CONSTRAINT [PK_MESAC] PRIMARY KEY CLUSTERED 
+(
+	[NUMCAJA] ASC,
+	[FECHA] ASC,
+	[SALA] ASC,
+	[MESA] ASC,
+	[FACTURA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MESACH]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MESACH](
+	[NUMCAJA] [numeric](8, 0) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[SALA] [varchar](15) NOT NULL,
+	[MESA] [varchar](15) NOT NULL,
+	[FACTURA] [numeric](15, 0) NOT NULL,
+	[EMPRESA] [numeric](9, 0) NULL,
+	[CLIENTE] [numeric](15, 0) NULL,
+	[VENDEDOR] [numeric](10, 0) NULL,
+	[PIGIC] [numeric](7, 3) NULL,
+	[PDTO] [numeric](7, 3) NULL,
+	[IMPDTO] [numeric](15, 5) NULL,
+	[IMPORTE] [numeric](18, 5) NULL,
+	[ENTREGA] [numeric](18, 5) NULL,
+	[TARJETA] [numeric](18, 5) NULL,
+	[VALEDTO] [numeric](18, 5) NULL,
+	[CHEQUES] [numeric](18, 5) NULL,
+	[OTROS] [numeric](18, 5) NULL,
+	[EFECTIVO] [numeric](18, 5) NULL,
+	[IMPIGIC] [numeric](18, 5) NULL,
+	[TKFACIMPRESO] [bit] NULL,
+	[NUMZETA] [numeric](18, 0) NULL,
+	[HORAAPAERTURA] [time](7) NULL,
+	[FECHACOBRO] [date] NULL,
+	[HORACOBRO] [time](7) NULL,
+	[TLFPEDIDOS] [varchar](20) NULL,
+ CONSTRAINT [PK_MESACH] PRIMARY KEY CLUSTERED 
+(
+	[NUMCAJA] ASC,
+	[FECHA] ASC,
+	[SALA] ASC,
+	[MESA] ASC,
+	[FACTURA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MESAH]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MESAH](
+	[NUMCAJA] [numeric](8, 0) NOT NULL,
+	[FECHA] [date] NOT NULL,
+	[SALA] [varchar](15) NOT NULL,
+	[MESA] [varchar](15) NOT NULL,
+	[FACTURA] [numeric](15, 0) NOT NULL,
+	[ARTI] [varchar](20) NOT NULL,
+	[COMBINA] [varchar](100) NOT NULL,
+	[MEDIAPRECIO] [varchar](15) NOT NULL,
+	[UNID] [numeric](15, 6) NULL,
+	[IMPORTE] [numeric](18, 5) NULL,
+	[PDTO] [numeric](9, 3) NULL,
+	[IMPDTO] [numeric](15, 5) NULL,
+	[VENDEDOR] [numeric](10, 0) NULL,
+	[HORA] [time](7) NULL,
+	[COSTO] [numeric](15, 6) NULL,
+	[ALMACEN] [varchar](15) NULL,
+	[IGIC] [numeric](7, 3) NULL,
+	[NOZETA] [bit] NULL,
+	[NUMZETA] [numeric](18, 0) NULL,
+	[ORDENPLATO] [numeric](3, 0) NULL,
+ CONSTRAINT [PK_MESAH] PRIMARY KEY CLUSTERED 
+(
+	[NUMCAJA] ASC,
+	[FECHA] ASC,
+	[SALA] ASC,
+	[MESA] ASC,
+	[FACTURA] ASC,
+	[ARTI] ASC,
+	[COMBINA] ASC,
+	[MEDIAPRECIO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[NFU]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[NFU](
+	[CODIGO] [varchar](20) NOT NULL,
+	[NOMBRE] [nchar](80) NULL,
+	[PRECIO] [numeric](18, 6) NULL,
+	[CATEGORIA] [varchar](25) NULL,
+	[CODIVA] [varchar](10) NULL,
+	[IVAVENTA] [numeric](7, 3) NULL,
+ CONSTRAINT [PK_NFU] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OFER]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OFER](
+	[Almacen] [numeric](9, 0) NOT NULL,
+	[Articulo] [varchar](20) NOT NULL,
+	[HastaFecha] [date] NOT NULL,
+	[DedeFecha] [date] NULL,
+	[DTO] [numeric](7, 3) NULL,
+	[PRECIO] [numeric](18, 6) NULL,
+	[UNIDADES] [numeric](15, 5) NULL,
+	[TIPO] [varchar](10) NULL,
+ CONSTRAINT [PK_OFER] PRIMARY KEY CLUSTERED 
+(
+	[Almacen] ASC,
+	[Articulo] ASC,
+	[HastaFecha] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OPCOL]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OPCOL](
+	[Numero] [numeric](9, 0) NOT NULL,
+	[Codigo] [nvarchar](20) NOT NULL,
+	[Descripcion] [nvarchar](80) NULL,
+	[Unidad] [numeric](9, 2) NULL,
+	[Precio] [numeric](9, 2) NULL,
+	[Total] [numeric](9, 2) NULL,
+	[CodigoEL] [nvarchar](10) NULL,
+	[CodEmpresa] [numeric](9, 0) NOT NULL,
+	[Color] [nvarchar](100) NULL,
+  CONSTRAINT [PK_OPCOL] PRIMARY KEY CLUSTERED (
+	[CodEmpresa] ASC,
+	[Numero] ASC,
+	[Codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OPENC]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OPENC](
+       [Codigo] [int] NOT NULL,
+       [Nombre] [text] NULL,
+       [Apellidos] [text] NULL,
+       [Movil] [int] NULL,
+       [Convivientes] [int] NULL,
+       [Ninos] [int] NULL,
+       [Habitos] [text] NULL,
+       [Grifo] [int] NULL,
+       [Botella] [int] NULL,
+       [Otros] [int] NULL,
+       [Encuestador] [text] NULL,
+       [Fecha] [text] NULL,
+       [opcBeber] [int] NULL,
+       [opcConsume] [int] NULL,
+       [opcCocina] [int] NULL,
+       [opcPersonal] [int] NULL,
+       [opcCambios] [int] NULL,
+       [opcCondiciones] [int] NULL,
+       [Nacimiento] [text] NULL,
+       [Firmado] [int] NULL,
+       [Empresa] [int],
+CONSTRAINT [PK_OPENC] PRIMARY KEY CLUSTERED 
+(
+       [Codigo] ASC,
+       [Empresa] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OPER]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OPER](
+	[CODIGO] [numeric](3, 0) NOT NULL,
+	[NOMBRE] [nvarchar](50) NULL,
+	[SITUACION] [nvarchar](30) NULL,
+	[PRECIO] [numeric](2, 0) NOT NULL,
+	[GRUPO] [nvarchar](20) NULL,
+	[CLAVE] [nvarchar](20) NULL,
+	[ALMACEN] [numeric](5, 0) NOT NULL,
+	[HORAS] [numeric](5, 0) NOT NULL,
+	[BAJA] [numeric](1, 0) NOT NULL,
+	[SITU] [numeric](3, 0) NOT NULL,
+	[FIRMA] [numeric](1, 0) NOT NULL,
+ CONSTRAINT [PK_OPER] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OPEST]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OPEST](
+       [CODIGO] [numeric](9, 0) NOT NULL,
+       [LINEA] [numeric](9, 0) NOT NULL,
+       [NOMBRE] [nvarchar](50) NULL,
+       [DIAS] [numeric](2, 0) NULL,
+CONSTRAINT [PK_OPEST] PRIMARY KEY CLUSTERED 
+(
+       [CODIGO] ASC,
+       [LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OPQUI]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OPQUI](
+	[ASESOR] [numeric](18, 0) NOT NULL,
+	[LINEA] [numeric](18, 0) NOT NULL,
+	[EMPRESA] [numeric](18, 0) NOT NULL,
+	[VISITA] [numeric](18, 0) NOT NULL,
+	[FECHA] [nvarchar](15) NOT NULL,
+	[NOMASESOR] [nvarchar](max) NOT NULL,
+	[NOMEMPRESA] [nvarchar](max) NOT NULL,
+	[NOMCLIENTE] [nvarchar](max) NOT NULL,
+	[ESTADO] [numeric](18, 0) NOT NULL,
+ CONSTRAINT [PK_OPQUI] PRIMARY KEY CLUSTERED 
+(
+	[VISITA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OPVIL]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OPVIL](
+	[EMPRESA] [numeric](3, 0) NOT NULL,
+	[CODIGO] [numeric](12, 0) NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[NARTICULO] [nvarchar](20) NOT NULL,
+	[IMPORTE] [numeric](12, 2) NOT NULL,
+	[DESCRIPCION] [nvarchar](80) NOT NULL,
+	[REPARTIDOR] [numeric](12, 0) NOT NULL,
+ CONSTRAINT [PK_OPVIL] PRIMARY KEY CLUSTERED 
+(
+	[EMPRESA] ASC,
+	[CODIGO] ASC,
+	[LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OPVILTemp]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OPVILTemp](
+	[EMPRESA] [numeric](3, 0) NOT NULL,
+	[CODIGO] [numeric](12, 0) NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[NARTICULO] [nvarchar](20) NOT NULL,
+	[IMPORTE] [numeric](12, 2) NOT NULL,
+	[DESCRIPCION] [nvarchar](80) NOT NULL,
+	[REPARTIDOR] [numeric](12, 0) NOT NULL,
+ CONSTRAINT [PK_OPVILTemp] PRIMARY KEY CLUSTERED 
+(
+	[EMPRESA] ASC,
+	[CODIGO] ASC,
+	[LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OPVISHist]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OPVISHist](
+	[EMPRESA] [numeric](3, 0) NOT NULL,
+	[CODIGO] [numeric](12, 0) NOT NULL,
+	[FECHA] [date] NULL,
+	[CLIENTE] [numeric](15, 0) NOT NULL,
+	[ESTADO] [numeric](2, 0) NOT NULL,
+	[FECHACON] [nvarchar](15) NULL,
+	[TELEOPERADORA] [numeric](12, 0) NOT NULL,
+	[REPARTIDOR] [numeric](12, 0) NOT NULL,
+	[ENTREGA] [nvarchar](80) NULL,
+	[LUGAR] [nvarchar](80) NULL,
+	[FECHAFIRMA] [nvarchar](15) NULL,
+	[ACEPTA] [numeric](1, 0) NOT NULL,
+	[COINS] [numeric](18, 2) NOT NULL,
+	[OBS] [nvarchar](max) NULL,
+	[NOMBRE] [nvarchar](80) NULL,
+	[APELLIDO1] [nvarchar](80) NULL,
+	[APELLIDO2] [nvarchar](80) NULL,
+	[CIF] [nvarchar](20) NULL,
+	[DIRECCION] [nvarchar](80) NULL,
+	[NUMERO] [numeric](5, 0) NOT NULL,
+	[POBLACION] [nvarchar](80) NULL,
+	[PROVINCIA] [numeric](3, 0) NOT NULL,
+	[DP] [numeric](9, 0) NOT NULL,
+	[TFNO] [nvarchar](20) NULL,
+	[MOVIL] [nvarchar](20) NULL,
+	[PAIS] [nvarchar](40) NULL,
+	[EMAIL] [nvarchar](150) NULL,
+	[FECHANAC] [nvarchar](15) NULL,
+	[EDAD] [numeric](3, 0) NOT NULL,
+	[PATOLOGIA] [nvarchar](200) NULL,
+	[HORAENTREGA] [numeric](4, 0) NOT NULL,
+	[NOMBREOPERADORA] [nvarchar](80) NULL,
+	[NOMBREOPERARIO] [nvarchar](80) NULL,
+	[TABLET] [numeric](4, 0) NULL,
+	[NOMBRE2] [nvarchar](80) NULL,
+	[APELLIDO21] [nvarchar](80) NULL,
+	[APELLIDO22] [nvarchar](80) NULL,
+	[EDAD2] [numeric](3, 0) NULL,
+	[PATOLOGIA2] [nvarchar](200) NULL,
+	[NOMBREPROVINCIA] [nvarchar](80) NULL,
+	[IDESTADO] [numeric](1, 0) NULL,
+	[FECHAASIGNADO] [nvarchar](10) NULL,
+	[FECHASISTEMA] [date] NULL,
+	[ENCUESTADORA] [numeric](3, 0) NULL,
+	[HASTAHORA] [nvarchar](5) NULL,
+	[ZONA] [nvarchar](20) NULL,
+	[CAMPO1] [nvarchar](50) NULL,
+	[CAMPO2] [nvarchar](50) NULL,
+	[CAMPO3] [nvarchar](50) NULL,
+	[CAMPO4] [nvarchar](50) NULL,
+	[CAMPO5] [nvarchar](50) NULL,
+	[CAMPO6] [nvarchar](50) NULL,
+	[CAMPO7] [nvarchar](50) NULL,
+	[CAMPO8] [nvarchar](50) NULL,
+	[CAMPO9] [nvarchar](50) NULL,
+	[CAMPO10] [nvarchar](50) NULL,
+ CONSTRAINT [PK_OPVISHist] PRIMARY KEY CLUSTERED 
+(
+	[EMPRESA] ASC,
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OPVISTemp](
+	[EMPRESA] [numeric](3, 0) NOT NULL,
+	[CODIGO] [numeric](12, 0) NOT NULL,
+	[FECHA] [date] NULL,
+	[CLIENTE] [numeric](15, 0) NOT NULL,
+	[ESTADO] [numeric](2, 0) NOT NULL,
+	[FECHACON] [nvarchar](15) NULL,
+	[TELEOPERADORA] [numeric](12, 0) NOT NULL,
+	[REPARTIDOR] [numeric](12, 0) NOT NULL,
+	[ENTREGA] [nvarchar](80) NULL,
+	[LUGAR] [nvarchar](80) NULL,
+	[FECHAFIRMA] [nvarchar](15) NULL,
+	[ACEPTA] [numeric](1, 0) NOT NULL,
+	[COINS] [numeric](18, 2) NOT NULL,
+	[OBS] [nvarchar](max) NULL,
+	[NOMBRE] [nvarchar](80) NULL,
+	[APELLIDO1] [nvarchar](80) NULL,
+	[APELLIDO2] [nvarchar](80) NULL,
+	[CIF] [nvarchar](20) NULL,
+	[DIRECCION] [nvarchar](80) NULL,
+	[NUMERO] [numeric](5, 0) NOT NULL,
+	[POBLACION] [nvarchar](80) NULL,
+	[PROVINCIA] [numeric](3, 0) NOT NULL,
+	[DP] [numeric](9, 0) NOT NULL,
+	[TFNO] [nvarchar](20) NULL,
+	[MOVIL] [nvarchar](20) NULL,
+	[PAIS] [nvarchar](40) NULL,
+	[EMAIL] [nvarchar](150) NULL,
+	[FECHANAC] [nvarchar](15) NULL,
+	[EDAD] [numeric](3, 0) NOT NULL,
+	[PATOLOGIA] [nvarchar](200) NULL,
+	[HORAENTREGA] [numeric](4, 0) NOT NULL,
+	[NOMBREOPERADORA] [nvarchar](80) NULL,
+	[NOMBREOPERARIO] [nvarchar](80) NULL,
+	[TABLET] [numeric](4, 0) NULL,
+	[NOMBRE2] [nvarchar](80) NULL,
+	[APELLIDO21] [nvarchar](80) NULL,
+	[APELLIDO22] [nvarchar](80) NULL,
+	[EDAD2] [numeric](3, 0) NULL,
+	[PATOLOGIA2] [nvarchar](200) NULL,
+	[NOMBREPROVINCIA] [nvarchar](80) NULL,
+	[IDESTADO] [numeric](1, 0) NULL,
+	[FECHAASIGNADO] [nvarchar](10) NULL,
+	[FECHASISTEMA] [date] NULL,
+	[ENCUESTADORA] [numeric](3, 0) NULL,
+	[HASTAHORA] [nvarchar](5) NULL,
+ 	[ZONA] [nvarchar](20) NULL,
+	[CAMPO1] [nvarchar](50) NULL,
+	[CAMPO2] [nvarchar](50) NULL,
+	[CAMPO3] [nvarchar](50) NULL,
+	[CAMPO4] [nvarchar](50) NULL,
+	[CAMPO5] [nvarchar](50) NULL,
+	[CAMPO6] [nvarchar](50) NULL,
+	[CAMPO7] [nvarchar](50) NULL,
+	[CAMPO8] [nvarchar](50) NULL,
+	[CAMPO9] [nvarchar](50) NULL,
+	[CAMPO10] [nvarchar](50) NULL,
+ CONSTRAINT [PK_OPVISTemp] PRIMARY KEY CLUSTERED 
+(
+	[EMPRESA] ASC,
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PEDCLIE]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PEDCLIE](
+	[TELEFONO] [varchar](20) NOT NULL,
+	[NOMBRE] [varchar](100) NULL,
+	[DIRECCION] [varchar](100) NULL,
+	[POBLACION] [varchar](100) NULL,
+	[EMAIL] [varchar](100) NULL,
+	[CODPOSTAL] [numeric](7, 0) NULL,
+	[EMAILSN] [bit] NULL,
+	[SMSSN] [bit] NULL,
+	[OBSER] [varchar](max) NULL,
+ CONSTRAINT [PK_PEDCLIE] PRIMARY KEY CLUSTERED 
+(
+	[TELEFONO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[REPA]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[REPA](
+	[CODIGO] [numeric](9, 0) NOT NULL,
+	[NOMBRE] [nvarchar](30) NULL,
+	[DOMICILIO] [nvarchar](30) NULL,
+	[POBLACION] [nvarchar](30) NULL,
+	[TELEFONO] [nvarchar](20) NULL,
+	[DNI] [nvarchar](20) NULL,
+	[REGIMEN] [nvarchar](10) NULL,
+	[COMISION1] [numeric](2, 0) NULL,
+	[COMISION2] [numeric](2, 0) NULL,
+	[COMISION3] [numeric](2, 0) NULL,
+	[REPATASMENSUAL] [numeric](8, 0) NULL,
+	[REPATASANUAL] [numeric](8, 0) NULL,
+	[REPATASANO1] [numeric](8, 0) NULL,
+	[REPATASANO2] [numeric](8, 0) NULL,
+	[COMISCOBRADA] [numeric](8, 0) NULL,
+	[COMISPDTECOBRAR] [numeric](8, 0) NULL,
+	[ZONAS] [nvarchar](20) NULL,
+	[TIPOPRECIO] [numeric](2, 0) NULL,
+	[TIPOIGIC] [numeric](1, 0) NULL,
+	[COMISION4] [numeric](2, 2) NULL,
+	[COMISION5] [numeric](2, 2) NULL,
+	[ALMACEN] [numeric](2, 0) NULL,
+	[DNI1] [nvarchar](15) NULL,
+	[TELEFONO1] [nvarchar](10) NULL,
+	[CLAVE] [nvarchar](5) NULL,
+	[NOCLAVEPRESU] [numeric](2, 0) NULL,
+    [ASESORJEFE] [numeric](9, 0) NULL,
+    [ASESORASIGNADO] [numeric](9, 0) NULL
+ CONSTRAINT [PK_REPA] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SALA]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SALA](
+	[CAJA] [numeric](5, 0) NOT NULL,
+	[CODIGO] [varchar](15) NOT NULL,
+	[NOMBRE] [varchar](80) NOT NULL,
+	[COLORFONDO] [numeric](9, 0) NULL,
+	[COLORTEXTO] [numeric](9, 0) NULL,
+	[LOGO] [varchar](100) NULL,
+	[NOZETA] [bit] NULL,
+	[NUMFAC] [numeric](9, 0) NULL,
+	[COPIAFAC] [bit] NULL,
+	[REPARTO] [bit] NULL,
+	[PVP] [numeric](2, 0) NULL,
+	[CLAVENOZETA] [varchar](10) NULL,
+ CONSTRAINT [PK_SALA_1] PRIMARY KEY CLUSTERED 
+(
+	[CAJA] ASC,
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SALA1]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SALA1](
+	[CAJA] [numeric](5, 0) NOT NULL,
+	[CODIGO] [varchar](15) NOT NULL,
+	[MESA] [varchar](15) NOT NULL,
+	[MESA1] [varchar](15) NULL,
+	[DESCMESA] [varchar](80) NULL,
+	[PVP] [numeric](9, 6) NULL,
+	[PIDEPAX] [bit] NULL,
+	[LOGO] [varchar](180) NULL,
+	[VISIBLE] [bit] NULL,
+	[FACTURA] [numeric](15, 0) NULL,
+	[FECAPERTURA] [date] NULL,
+	[VENDEDOR] [numeric](10, 0) NULL,
+	[PAX] [numeric](2, 0) NULL,
+	[HORAAPAERTURA] [time](7) NULL,
+	[IMPFACTU] [bit] NULL,
+	[ORDEN] [numeric](9, 0) NULL,
+ CONSTRAINT [PK_SALA1_1] PRIMARY KEY CLUSTERED 
+(
+	[CAJA] ASC,
+	[CODIGO] ASC,
+	[MESA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SUBFAM]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SUBFAM](
+	[CODIGO] [nchar](15) NOT NULL,
+	[NOMBRE] [varchar](80) NULL,
+	[FAMILIA] [varchar](15) NULL,
+ CONSTRAINT [PK_SUBFAM] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TACO]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TACO](
+	[TIPO] [numeric](9, 0) NOT NULL,
+	[CODIGO] [varchar](15) NOT NULL,
+	[DESCRIPCION] [varchar](30) NULL,
+	[PVP] [numeric](3, 0) NULL,
+ CONSTRAINT [PK_TACO] PRIMARY KEY CLUSTERED 
+(
+	[TIPO] ASC,
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TART]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TART](
+	[ARTICULO] [varchar](20) NOT NULL,
+	[OBSERV] [varchar](4500) NULL,
+ CONSTRAINT [PK_TART] PRIMARY KEY CLUSTERED 
+(
+	[ARTICULO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TCONA4]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TCONA4](
+	[CAJA] [numeric](9, 0) NOT NULL,
+	[NOMBRECAJA] [varchar](30) NULL,
+	[COLORFTCONA401] [numeric](9, 0) NULL,
+	[COLORFTCONA402] [numeric](9, 0) NULL,
+	[COLORFF] [numeric](9, 0) NULL,
+	[COLORLF] [numeric](9, 0) NULL,
+	[COLORFA] [numeric](9, 0) NULL,
+	[COLORLA] [numeric](9, 0) NULL,
+	[EMPRESA] [numeric](9, 0) NULL,
+	[IGIC] [numeric](5, 2) NULL,
+	[FACTURA] [numeric](15, 0) NULL,
+	[ALMACEN] [numeric](9, 0) NULL,
+	[ORDENFAM] [bit] NULL,
+	[ORDENART] [bit] NULL,
+	[FORMINICIAL] [numeric](2, 0) NULL,
+	[TKFACLOGO] [bit] NULL,
+	[TKFCABLIN1] [varchar](50) NULL,
+	[TKFCABLIN2] [varchar](50) NULL,
+	[TKFCABLIN3] [varchar](50) NULL,
+	[TKFCABLIN4] [varchar](50) NULL,
+	[TKFCABLIN5] [varchar](50) NULL,
+	[TKFCABLIN6] [varchar](50) NULL,
+	[TKFCABLIN7] [varchar](50) NULL,
+	[TKFCABLIN8] [varchar](50) NULL,
+	[TKFCABLIN9] [varchar](50) NULL,
+	[TKFCABLIN10] [varchar](50) NULL,
+	[TKFPIELIN1] [varchar](50) NULL,
+	[TKFPIELIN2] [varchar](50) NULL,
+	[TKFPIELIN3] [varchar](50) NULL,
+	[TKFPIELIN4] [varchar](50) NULL,
+	[TKFPIELIN5] [varchar](50) NULL,
+	[TKFPIELIN6] [varchar](50) NULL,
+	[TKFPIELIN7] [varchar](50) NULL,
+	[TKFPIELIN8] [varchar](50) NULL,
+	[TKFPIELIN9] [varchar](50) NULL,
+	[TKFPIELIN10] [varchar](50) NULL,
+	[TKFPIELIN11] [varchar](50) NULL,
+	[TKFPIELIN12] [varchar](50) NULL,
+	[TKFPIELIN13] [varchar](50) NULL,
+	[TKFPIELIN14] [varchar](50) NULL,
+	[TKFPIELIN15] [varchar](50) NULL,
+	[TKFPIELIN16] [varchar](50) NULL,
+	[TKFPIELIN17] [varchar](50) NULL,
+	[TKFPIELIN18] [varchar](50) NULL,
+	[TKFPIELIN19] [varchar](50) NULL,
+	[TKFPIELIN20] [varchar](50) NULL,
+	[TKFACIGIC] [numeric](7, 3) NULL,
+	[PIDEVENDEDOR] [bit] NULL,
+	[SEPARARACIONES] [bit] NULL,
+	[VARIOSFAM1] [varchar](15) NULL,
+	[VARIOSFAM2] [varchar](15) NULL,
+	[VARIOSFAM3] [varchar](15) NULL,
+	[NUMX] [numeric](15, 0) NULL,
+	[NUMZ] [numeric](15, 0) NULL,
+	[REFRESCABOTONES] [bit] NULL,
+	[TIPOPVPARTI] [numeric](3, 0) NULL,
+	[FECHAZ] [date] NULL,
+	[FECHADIASESION] [date] NULL,
+	[ZETAMESASOCU] [bit] NULL,
+	[TKZETALOGO] [bit] NULL,
+	[SPLASHSCREEN] [bit] NULL,
+	[SPLASHRETARDO] [numeric](5, 0) NULL,
+	[PIDEPAX] [bit] NULL,
+	[CARGAFAVORITOS] [bit] NULL,
+	[BOTONFAVORITO] [varchar](15) NULL,
+	[NOMTARIPVP1] [varchar](15) NULL,
+	[NOMTARIPVP2] [varchar](15) NULL,
+	[NOMTARIPVP5] [varchar](15) NULL,
+	[NOMTARIPVP6] [varchar](15) NULL,
+	[NOMTARIPVP7] [varchar](15) NULL,
+	[NOMTARIPVP8] [varchar](15) NULL,
+	[NOMTARIPVP9] [varchar](15) NULL,
+	[COBVIEWPDSN] [bit] NULL,
+	[MODIMPREFIJO] [varchar](200) NULL,
+	[IMPRIMETKFAC] [bit] NULL,
+	[IMPOMINIMPRE] [numeric](6, 2) NULL,
+	[SALTOLINPIETK] [numeric](2, 0) NULL,
+	[TKFACABRECAJON] [bit] NULL,
+	[TKFACPUERTO] [varchar](10) NULL,
+	[TKFACIMPDETCOMBI] [bit] NULL,
+	[COMPRUIMPREINI] [bit] NULL,
+	[TECLADOFAV1] [varchar](40) NULL,
+	[TECLADOFAV2] [varchar](40) NULL,
+	[TECLADOFAV3] [varchar](40) NULL,
+	[TECLADOFAV4] [varchar](40) NULL,
+	[TECLADOFAV5] [varchar](40) NULL,
+	[TKFDETLIN1] [varchar](50) NULL,
+	[TKFDETLIN2] [varchar](50) NULL,
+	[TKFDETLIN3] [varchar](50) NULL,
+	[TKXZDETLIN1] [varchar](50) NULL,
+	[TKXZDETLIN2] [varchar](50) NULL,
+	[TKXZDETLIN3] [varchar](50) NULL,
+	[ORDENPRODUCTOS] [bit] NULL,
+	[PIDECAJAINICIO] [bit] NULL,
+	[TKFACDIRWIN] [bit] NULL,
+	[BORLINCUENTA] [bit] NULL,
+	[CREACLICREDITO] [bit] NULL,
+	[FADEOUTSALIR] [bit] NULL,
+ CONSTRAINT [PK__TCONA4__A8D3F7D02FB6AABF] PRIMARY KEY CLUSTERED 
+(
+	[CAJA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TG]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TG](
+	[Gupo] [varchar](10) NOT NULL,
+	[Nombre] [varchar](50) NULL,
+ CONSTRAINT [PK_TG] PRIMARY KEY CLUSTERED 
+(
+	[Gupo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TKFAVORITOS]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TKFAVORITOS](
+	[ID] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[TEXTO1] [varchar](40) NULL,
+	[TEXTO2] [varchar](40) NULL,
+	[TEXTO3] [varchar](40) NULL,
+	[TEXTO4] [varchar](40) NULL,
+ CONSTRAINT [PK_TKFAVORITOS] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRAS1]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRAS1](
+	[FECHA] [date] NOT NULL,
+	[PARTE] [numeric](12, 0) NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[ART] [varchar](15) NULL,
+	[EMPRESA] [numeric](9, 0) NULL,
+	[CLIENTE] [numeric](15, 0) NULL,
+	[ALMENT] [numeric](12, 0) NULL,
+	[ALMSAL] [numeric](12, 0) NULL,
+	[UNID] [numeric](16, 6) NULL,
+	[VALMOVTO] [numeric](12, 2) NULL,
+	[TACOL] [varchar](10) NULL,
+	[DEVOLU] [numeric](12, 0) NULL,
+	[PRECIO] [numeric](3, 0) NULL,
+	[BULTOS] [numeric](16, 6) NULL,
+	[VENDE] [numeric](12, 0) NULL,
+	[FECHACADU] [date] NULL,
+	[LOTECADU] [varchar](20) NULL,
+	[PRE] [numeric](16, 6) NULL,
+	[PVP1] [numeric](15, 6) NULL,
+	[REPARTIDOR] [numeric](9, 0) NULL,
+	[FECHAACT] [date] NULL,
+ CONSTRAINT [PK_TRAS1] PRIMARY KEY CLUSTERED 
+(
+	[FECHA] ASC,
+	[PARTE] ASC,
+	[LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRV_PedidosCliente]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRV_PedidosCliente](
+	[Numero] [numeric](9, 0) NULL,
+	[Fecha] [nvarchar](10) NULL,
+	[FechaEntrega] [nvarchar](10) NULL,
+	[Local] [numeric](4, 0) NULL,
+	[NombreLocal] [nvarchar](80) NULL,
+	[Dpto] [numeric](4, 0) NULL,
+	[NombreDpto] [nvarchar](80) NULL,
+	[Nombre] [nvarchar](80) NULL,
+	[Direccion] [nvarchar](80) NULL,
+	[CodPostal] [nvarchar](10) NULL,
+	[Localidad] [nvarchar](80) NULL,
+	[Descripcion] [nvarchar](max) NULL,
+	[Movil] [nvarchar](20) NULL,
+	[DNI] [nvarchar](20) NULL,
+	[Total] [numeric](9, 3) NULL,
+	[Estado] [numeric](1, 0) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRV_PedidosCombinados]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRV_PedidosCombinados](
+	[Pedido] [int] NULL,
+	[Linea] [int] NULL,
+	[CodArticulo] [text] NULL,
+	[NomArticulo] [text] NULL,
+	[Cantidad] [int] NULL,
+	[Devolver] [int] NULL,
+	[Grupo] [text] NULL,
+	[Articulo] [text] NULL,
+	[NomCombinado] [text] NULL,
+	[Fecha] [text] NULL,
+	[Local] [int] NULL,
+	[Dpto] [int] NULL,
+	[NombreLocal] [text] NULL,
+	[NombreDpto] [text] NULL,
+	[Familia] [text] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRV_PedidosCombinadosLineas]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRV_PedidosCombinadosLineas](
+	[Pedido] [int] NULL,
+	[Linea] [int] NULL,
+	[LineaCombinado] [int] NULL,
+	[Nombre] [text] NULL,
+	[Id] [int] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRV_PedidosFavoritos]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRV_PedidosFavoritos](
+	[Nombre] [nvarchar](50) NULL,
+	[Local] [numeric](4, 0) NULL,
+	[Dpto] [numeric](4, 0) NULL,
+	[CodArticulo] [nvarchar](15) NULL,
+	[NomArticulo] [nvarchar](80) NULL,
+	[Cantidad] [numeric](7, 3) NULL,
+	[Devolver] [numeric](7, 3) NULL,
+	[Familia] [nvarchar](15) NULL,
+	[NombreLocal] [nvarchar](80) NULL,
+	[NombreDpto] [nvarchar](80) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRV_PedidosPlantilla]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRV_PedidosPlantilla](
+	[Numero] [numeric](9, 0) NULL,
+	[Fecha] [nvarchar](50) NULL,
+	[Local] [numeric](4, 0) NULL,
+	[Dpto] [numeric](4, 0) NULL,
+	[CodArticulo] [nvarchar](15) NULL,
+	[NomArticulo] [nvarchar](80) NULL,
+	[Cantidad] [numeric](7, 3) NULL,
+	[Devolver] [numeric](7, 3) NULL,
+	[Estado] [numeric](2, 0) NULL,
+	[Familia] [nvarchar](15) NULL,
+	[NombreLocal] [nvarchar](80) NULL,
+	[NombreDpto] [nvarchar](80) NULL,
+	[TipoCombinado] [numeric](2, 0) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRV_PedidosPlantillaObs]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRV_PedidosPlantillaObs](
+	[Pedido] [numeric](9, 0) NULL,
+	[Fecha] [nvarchar](50) NULL,
+	[Obs01] [nvarchar](1000) NULL,
+	[Obs02] [nvarchar](1000) NULL,
+	[Local] [numeric](2, 0) NULL,
+	[Dpto] [numeric](2, 0) NULL,
+	[NombreLocal] [nvarchar](50) NULL,
+	[NombreDpto] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRV_Referencias]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRV_Referencias](
+	[Cif] [nvarchar](20) NOT NULL,
+	[Usuario] [nvarchar](100) NOT NULL,
+	[Password] [nvarchar](50) NOT NULL,
+	[Campo] [nvarchar](100) NOT NULL,
+	[Valor] [nvarchar](100) NULL,
+	[OrdenMenu] [numeric](9, 0) NULL,
+	[Visible] [numeric](9, 0) NULL,
+ CONSTRAINT [PK_TRV_Referencias] PRIMARY KEY CLUSTERED 
+(
+	[Cif] ASC,
+	[Usuario] ASC,
+	[Password] ASC,
+	[Campo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRV_Referencias_Columbus]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRV_Referencias_Columbus](
+	[CIF] [nvarchar](9) NOT NULL,
+	[Usuario] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](50) NOT NULL,
+	[Recordar] [int] NULL,
+	[Caduca] [int] NULL,
+	[Tablet] [int] NULL,
+	[ServidorSQL] [nvarchar](50) NULL,
+	[InstanciaSQL] [nvarchar](50) NULL,
+	[UsuarioSQL] [nvarchar](50) NULL,
+	[PasswordSQL] [nvarchar](50) NULL,
+	[BaseDeDatos] [nvarchar](50) NULL,
+	[ServidorFTP] [nvarchar](50) NULL,
+	[PuertoFTP] [int] NULL,
+	[UsuarioFTP] [nvarchar](50) NULL,
+	[PasswordFTP] [nvarchar](50) NULL,
+	[DirRecibo] [nvarchar](50) NULL,
+	[DirEnvio] [nvarchar](50) NULL,
+	[Email] [nvarchar](50) NULL,
+	[EmailHost] [nvarchar](50) NULL,
+	[EmailPort] [int] NULL,
+	[EmailSPort] [int] NULL,
+	[ValorSSL] [int] NULL,
+	[EmailUser] [nvarchar](50) NULL,
+	[EmailPassword] [nvarchar](50) NULL,
+	[ContadorPedido] [int] NULL,
+	[Centro] [int] NULL,
+	[MenuPedidosCentro] [int] NULL,
+	[MenuPedidosCliente] [int] NULL,
+	[MenuPedidosRecibo] [int] NULL,
+	[Combinado] [int] NULL,
+	[MenuPedidosFavorito] [int] NULL,
+	[MenuPedidosConsulta] [int] NULL,
+	[Dpto] [int] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[USUARIOS]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[USUARIOS](
+	[USUARIO] [varchar](15) NOT NULL,
+	[DESCRIPCION] [varchar](50) NULL,
+	[PWD] [varchar](20) NULL,
+	[NIVELACCESO] [numeric](2, 0) NULL,
+	[CLAVERFID] [varchar](100) NULL,
+	[VENDEDOR] [numeric](10, 0) NULL,
+ CONSTRAINT [PK_USUARIOS_1] PRIMARY KEY CLUSTERED 
+(
+	[USUARIO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[VEHI]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[VEHI](
+	[MATRICULA] [varchar](15) NOT NULL,
+	[NCHASIS] [varchar](25) NULL,
+	[NMOTOR] [varchar](25) NULL,
+	[MARCA] [varchar](10) NULL,
+	[VERSION] [varchar](10) NULL,
+	[MODELO] [varchar](50) NULL,
+	[FECHVENTA] [date] NULL,
+	[VENDINIC] [numeric](9, 0) NULL,
+	[OBSERVACIONES1] [varchar](30) NULL,
+	[OBSERVACIONES2] [varchar](30) NULL,
+	[OBSERVACIONES3] [varchar](30) NULL,
+	[OBSERVACIONES4] [varchar](30) NULL,
+	[OBSERVACIONES5] [varchar](30) NULL,
+	[OBSERVACIONES6] [varchar](30) NULL,
+	[EMPRESA] [numeric](9, 0) NULL,
+	[CODCLI] [numeric](15, 0) NULL,
+	[MODEL] [varchar](15) NULL,
+	[COLOR] [varchar](10) NULL,
+	[COLORTAPI] [varchar](10) NULL,
+	[FECHAITV] [date] NULL,
+	[DNI] [varchar](20) NULL,
+	[NOMBRE] [varchar](70) NULL,
+	[DIRECCION] [varchar](70) NULL,
+	[POBLACION] [varchar](70) NULL,
+	[TELEFONO] [varchar](25) NULL,
+	[MOVIL] [varchar](25) NULL,
+	[FAX] [varchar](25) NULL,
+	[FECHAINI] [date] NULL,
+	[FECHAFIN] [date] NULL,
+	[CP] [numeric](9, 0) NULL,
+	[FECHANAC] [date] NULL,
+	[EMAIL] [varchar](150) NULL,
+	[TFNO2] [varchar](20) NULL,
+	[AIREACONDI] [varchar](2) NULL,
+	[REFERENCIA] [varchar](20) NULL,
+	[TORNILLO] [numeric](1, 0) NULL,
+	[PIN] [varchar](4) NULL,
+	[CODTARJETA] [varchar](15) NULL,
+	[CONTROLDEPO] [numeric](1, 0) NULL,
+	[FECHATACO] [date] NULL,
+	[POTENCIA] [varchar](15) NULL,
+	[ANIO] [varchar](4) NULL,
+	[BLOQPUBLICIDAD] [numeric](1, 0) NULL,
+ CONSTRAINT [PK_VEHI] PRIMARY KEY CLUSTERED 
+(
+	[MATRICULA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[VEHITemp]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[VEHITemp](
+	[MATRICULA] [nvarchar](15) NOT NULL,
+	[NCHASIS] [varchar](25) NULL,
+	[NMOTOR] [varchar](25) NULL,
+	[MARCA] [varchar](10) NULL,
+	[VERSION] [varchar](10) NULL,
+	[MODELO] [varchar](50) NULL,
+	[OBSERVACIONES1] [varchar](60) NULL,
+	[OBSERVACIONES2] [varchar](60) NULL,
+	[OBSERVACIONES3] [varchar](60) NULL,
+	[OBSERVACIONES4] [varchar](60) NULL,
+	[OBSERVACIONES5] [varchar](60) NULL,
+	[OBSERVACIONES6] [varchar](60) NULL,
+	[KM] [numeric](9, 0) NULL,
+	[PRESU] [numeric](1, 0) NULL,
+	[REPU] [numeric](1, 0) NULL,
+	[NOMBRE] [varchar](70) NULL,
+	[DIRECCION] [varchar](70) NULL,
+	[CP] [numeric](9, 0) NULL,
+	[POBLACION] [varchar](70) NULL,
+	[DNI] [varchar](20) NULL,
+	[MOVIL] [varchar](25) NULL,
+	[TELEFONO] [varchar](25) NULL,
+	[EMAIL] [varchar](70) NULL,
+	[TERMINADO] [numeric](1, 0) NULL,
+	[CUENTA] [numeric](15, 0) NULL,
+    [ASESOR] [numeric](5, 0) NULL,
+    [SERVICIO] [numeric](1, 0) NULL,
+    [OBSERVACIONES11] [varchar](60) NULL,
+    [OBSERVACIONES12] [varchar](60) NULL,
+    [OBSERVACIONES13] [varchar](60) NULL,
+    [OBSERVACIONES14] [varchar](60) NULL,
+    [OBSERVACIONES15] [varchar](60) NULL,
+    [OBSERVACIONES16] [varchar](60) NULL,
+ CONSTRAINT [PK_VEHITemp] PRIMARY KEY CLUSTERED 
+(
+	[MATRICULA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[VEND]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[VEND](
+	[CODIGO] [numeric](12, 0) NULL,
+	[NOMBRE] [varchar](80) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[VERSI]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[VERSI](
+	[COD] [varchar](10) NULL,
+	[DESCRIP] [varchar](80) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ZETA]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ZETA](
+	[ZETACAJA] [numeric](8, 0) NOT NULL,
+	[ZETAFECHA] [date] NOT NULL,
+	[ZETANUMERO] [numeric](15, 0) NOT NULL,
+	[ZETAFECHADIA] [date] NULL,
+	[ZETAIMPORTE] [numeric](18, 5) NULL,
+	[ZETADTO] [numeric](18, 5) NULL,
+	[ZETAIMPEFECTIVO] [numeric](18, 5) NULL,
+	[ZETAIMPTARJETAS] [numeric](18, 5) NULL,
+	[ZETAIMPGASTOS] [numeric](18, 5) NULL,
+	[ZETAHORA] [time](7) NULL,
+ CONSTRAINT [PK_ZETA] PRIMARY KEY CLUSTERED 
+(
+	[ZETACAJA] ASC,
+	[ZETAFECHA] ASC,
+	[ZETANUMERO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ZZTablaOAreasTemp]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ZZTablaOAreasTemp](
+	[ID] [numeric](18, 0) NOT NULL,
+	[AREA] [numeric](9, 0) NOT NULL,
+	[PLATO] [numeric](3, 0) NOT NULL,
+	[ARTICULO] [varchar](20) NOT NULL,
+	[COMBINADO] [varchar](100) NOT NULL,
+	[NOMBREART] [varchar](80) NULL,
+	[UNID] [numeric](15, 6) NULL,
+	[IMPORTE] [numeric](18, 5) NULL,
+ CONSTRAINT [PK_ZZTablaOAreasTemp] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC,
+	[AREA] ASC,
+	[PLATO] ASC,
+	[ARTICULO] ASC,
+	[COMBINADO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ZZTablaXZTemp]    Script Date: 12/01/2023 9:06:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ZZTablaXZTemp](
+	[NumCaja] [numeric](8, 0) NOT NULL,
+	[CodigoFamilia] [varchar](15) NOT NULL,
+	[NombreFamilia] [varchar](80) NULL,
+	[TotUnid] [numeric](15, 6) NULL,
+	[TotImpo] [numeric](15, 6) NULL,
+	[Sala] [varchar](15) NULL,
+	[TotUnidEnero] [numeric](15, 0) NULL,
+	[TotUnidFebrero] [numeric](15, 0) NULL,
+	[TotUnidMarzo] [numeric](15, 0) NULL,
+	[TotUnidAbril] [numeric](15, 0) NULL,
+	[TotUnidMayo] [numeric](15, 0) NULL,
+	[TotUnidJunio] [numeric](15, 0) NULL,
+	[TotUnidJulio] [numeric](15, 0) NULL,
+	[TotUnidAgosto] [numeric](15, 0) NULL,
+	[TotUnidSeptiembre] [numeric](15, 0) NULL,
+	[TotUnidOctubre] [numeric](15, 0) NULL,
+	[TotUnidNoviembre] [numeric](15, 0) NULL,
+	[TotUnidDiciembre] [numeric](15, 0) NULL,
+	[TotImpoEnero] [numeric](15, 0) NULL,
+	[TotImpoFebrero] [numeric](15, 0) NULL,
+	[TotImpoMarzo] [numeric](15, 0) NULL,
+	[TotImpoAbril] [numeric](15, 0) NULL,
+	[TotImpoMayo] [numeric](15, 0) NULL,
+	[TotImpoJunio] [numeric](15, 0) NULL,
+	[TotImpoJulio] [numeric](15, 0) NULL,
+	[TotImpoAgosto] [numeric](15, 0) NULL,
+	[TotImpoSeptiembre] [numeric](15, 0) NULL,
+	[TotImpoOctubre] [numeric](15, 0) NULL,
+	[TotImpoNoviembre] [numeric](15, 0) NULL,
+	[TotImpoDiciembre] [numeric](15, 0) NULL,
+ CONSTRAINT [PK_TablaXZTemp] PRIMARY KEY CLUSTERED 
+(
+	[NumCaja] ASC,
+	[CodigoFamilia] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LISC](
+	[CODIGO] [numeric](9, 0) NOT NULL,
+	[DESCRIPCION] [nvarchar](100) NULL,
+	[TARIFA] [numeric](9, 0) NULL,
+	[TARIFABASE] [numeric](9, 0) NULL,
+ CONSTRAINT [PK_LISC] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LISA](
+	[CODIGO] [numeric](9, 0) NOT NULL,
+	[NARTICULO] [nvarchar](15) NOT NULL,
+ CONSTRAINT [PK_LISA] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO] ASC,
+	[NARTICULO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EMP](
+       [Codigo] [numeric](18, 0) NOT NULL,
+       [Nombre] [nvarchar](80) NULL,
+       [Direccion1] [nvarchar](100) NULL,
+       [Direccion2] [nvarchar](100) NULL,
+       [CodPostal] [nchar](10) NULL,
+       [Localidad] [nvarchar](80) NULL,
+       [Provincia] [nvarchar](80) NULL,
+       [Telefono1] [nvarchar](10) NULL,
+       [Movil1] [nvarchar](10) NULL,
+       [Cif] [nvarchar](10) NULL,
+       [ContadorPedido] [numeric](18, 0) NULL,
+       [ContadorFactura] [numeric](18, 0) NULL,
+       [ContadorAlbaran] [numeric](18, 0) NULL,
+       [ContadorPresupuesto] [numeric](18, 0) NULL,
+       [CifUsuario] [nvarchar](50) NULL,
+       [Usuario] [nvarchar](50) NULL,
+       [Password] [nvarchar](50) NULL,
+CONSTRAINT [PK_EMP] PRIMARY KEY CLUSTERED 
+(
+       [Codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PEDL]    Script Date: 26/02/2023 12:39:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PEDL](
+	[NUM] [numeric](12, 0) NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[EMPRESA] [numeric](9, 0) NOT NULL,
+	[CLIENTE] [numeric](15, 0) NULL,
+	[FECHA] [date] NULL,
+	[ARTICULO] [nvarchar](15) NULL,
+	[FECHAENTRG] [date] NULL,
+	[ESTADO] [numeric](1, 0) NULL,
+	[FECHAREGI] [date] NULL,
+	[VENDEDOR] [numeric](12, 0) NULL,
+	[UNID] [numeric](18, 4) NULL,
+	[PRECIO] [numeric](18, 4) NULL,
+	[PVP] [numeric](3, 0) NULL,
+	[DTO] [numeric](5, 2) NULL,
+	[CAJAS] [numeric](18, 4) NULL,
+	[UNIDSERVIDAS] [numeric](18, 4) NULL,
+	[NUMFAC] [nvarchar](20) NULL,
+	[TEXT] [nvarchar](60) NULL,
+	[NOMBRE] [nvarchar](80) NULL,
+	[DIRECCION] [nvarchar](80) NULL,
+	[POBLACION] [nvarchar](80) NULL,
+	[TELEFONO] [nvarchar](20) NULL,
+	[CIF] [nvarchar](20) NULL,
+	[DP] [numeric](9, 0) NOT NULL,
+	[TIPO] [nvarchar](2) NULL,
+	[OBRA] [numeric](18, 0) NOT NULL,
+	[DTO1] [numeric](5, 2) NOT NULL,
+	[DTO2] [numeric](5, 2) NOT NULL,
+	[DTO3] [numeric](5, 2) NOT NULL,
+	[ALMA] [numeric](12, 0) NOT NULL,
+	[UNICAJ] [nvarchar](5) NULL,
+	[SEPARADAS] [numeric](18, 4) NOT NULL,
+	[TIPOSEPA] [numeric](1, 0) NOT NULL,
+	[HORA] [numeric](2, 0) NOT NULL,
+	[MIN] [numeric](2, 0) NOT NULL,
+	[PARTIDA] [numeric](20, 0) NOT NULL,
+	[FECHACADU] [date] NULL,
+	[LOTECADU] [nvarchar](20) NULL,
+	[DTON] [numeric](5, 2) NULL,
+	[PROMOCION] [nvarchar](1) NULL,
+	[TURNO] [numeric](1, 0) NULL,
+	[TARIFAFICHA] [numeric](2, 0) NULL,
+	[DTOFICHA] [numeric](5, 2) NULL,
+	[FPAGOFICHA] [numeric](5, 0) NULL,
+	[MOVIL] [nvarchar](12) NULL,
+	[PEDIDO] [nvarchar](15) NULL,
+	[PLANCHA] [numeric](4, 2) NULL,
+	[REPARTIDOR] [numeric](5, 0) NULL,
+	[MODPRE] [numeric](1, 0) NULL,
+	[VISTO] [numeric](1, 0) NULL,
+	[PENDIENTE] [numeric](1, 0) NULL,
+	[BONIFICADO] [numeric](1, 0) NULL,
+	[WAALCAPFACTU] [numeric](1, 0) NULL,
+	[TALLER] [numeric](1, 0) NULL,
+	[PDTECOMPRA] [numeric](1, 0) NULL,
+	[UBICACION] [numeric](1, 0) NULL,
+	[IGIC] [numeric](3, 2) NULL,
+	[RETENCION] [numeric](3, 2) NULL,
+	[OPERARIO] [numeric](7, 0) NULL,
+	[ECOTASA] [numeric](5, 3) NULL,
+	[CODECO] [numeric](9, 0) NULL
+ CONSTRAINT [PK_PEDL] PRIMARY KEY CLUSTERED 
+(
+	[NUM] ASC,
+	[LINEA] ASC,
+	[EMPRESA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PED2]    Script Date: 26/02/2023 12:39:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PED2](
+	[NUM] [numeric](12, 0) NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[EMPRESA] [numeric](9, 0) NOT NULL,
+	[PROVEEDOR] [numeric](12, 0) NOT NULL,
+	[FECHA] [date] NULL,
+	[FECHAENT] [date] NULL,
+	[ARTICULO] [nvarchar](15) NULL,
+	[CANTIDAD] [numeric](18, 4) NULL,
+	[PRECIOART] [numeric](18, 4) NULL,
+	[SERVIDO] [numeric](18, 4) NULL,
+	[IND] [numeric](2, 0) NULL,
+	[UNENTRADA] [numeric](18, 4) NULL,
+	[DTO] [numeric](5, 2) NULL,
+	[ALM] [numeric](12, 0) NULL,
+	[TIPOU] [numeric](2, 0) NULL,
+	[PVP1] [numeric](18, 4) NULL,
+	[PVP2] [numeric](18, 4) NULL,
+	[PVP3] [numeric](18, 4) NULL,
+	[DTO2] [numeric](5, 2) NULL,
+	[DTO3] [numeric](5, 2) NULL,
+	[BONIFI] [numeric](18, 4) NULL,
+	[BULTOS] [numeric](18, 4) NULL,
+	[UNIPALE] [numeric](18, 4) NULL,
+	[REFEPED] [nvarchar](80) NULL,
+	[BARRAS] [nvarchar](100) NULL,
+	[PARTIDA] [numeric](18, 0) NULL,
+	[FECHACADU] [date] NULL,
+	[LOTECADU] [nvarchar](20) NULL,
+	[TRASPASAR] [numeric](1, 0) NULL,
+	[RELLANO] [numeric](18, 2) NULL
+ CONSTRAINT [PK_PED2] PRIMARY KEY CLUSTERED 
+(
+	[NUM] ASC,
+	[LINEA] ASC,
+	[EMPRESA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DISPONIBLE](
+	[ALMACEN] [numeric](18, 0) NOT NULL,
+	[NARTICULO] [nvarchar](15) NOT NULL,
+	[STOCK] [numeric](18, 4) NULL,
+	[STOCKCAJA] [numeric](18, 4) NULL,
+	[PEDIDOCLI] [numeric](18, 4) NULL,
+	[PEDIDOCLICAJA] [numeric](18, 4) NULL,
+	[PEDIDOPRO] [numeric](18, 4) NULL,
+	[PEDIDOPROCAJA] [numeric](18, 4) NULL,
+ CONSTRAINT [PK_DISPONIBLE] PRIMARY KEY CLUSTERED 
+(
+	[ALMACEN] ASC,
+	[NARTICULO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[MESAP](
+       [PDA] [numeric](6, 0) NOT NULL,
+       [TIPO] [numeric](6, 0) NOT NULL,
+       [NUMCAJA] [numeric](6, 0) NULL,
+       [MESA] [nvarchar](15) NULL,
+       [ESTADO] [numeric](3, 0) NULL,
+       [REGISTROS] [numeric](6, 0) NULL,
+       [PAX] [numeric](3, 0) NULL,
+       [OBS] [nvarchar](200) NULL,
+       [VENDEDOR] [numeric](3, 0) NULL,
+       [CAMPO01] [nvarchar](50) NULL,
+       [CAMPO02] [nvarchar](50) NULL,
+       [CAMPO03] [nvarchar](50) NULL,
+       [CAMPO04] [nvarchar](50) NULL,
+       [CAMPO05] [nvarchar](50) NULL,
+CONSTRAINT [PK_MESAP] PRIMARY KEY CLUSTERED 
+(
+       [PDA] ASC,
+       [TIPO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MESATemp](
+       [PDA] [numeric](6, 0) NOT NULL,
+       [NUMCAJA] [numeric](6, 0) NOT NULL,
+       [MESA] [nvarchar](15) NOT NULL,
+       [LINEA] [numeric](6, 0) NOT NULL,
+       [ARTICULO] [nvarchar](15) NOT NULL,
+       [UNIDADES] [numeric](6, 3) NULL,
+       [DESCRIPCION] [nvarchar](50) NOT NULL,
+       [COMBI1] [nvarchar](100) NULL,
+       [COMBI2] [nvarchar](100) NULL,
+       [COMBI3] [nvarchar](100) NULL,
+       [COMBI4] [nvarchar](100) NULL,
+       [COMBI5] [nvarchar](100) NULL,
+       [COMBI6] [nvarchar](100) NULL,
+       [COMBI7] [nvarchar](100) NULL,
+       [COMBI8] [nvarchar](100) NULL,
+       [COMBI9] [nvarchar](100) NULL,
+       [COMBI10] [nvarchar](100) NULL,
+       [COMBI11] [nvarchar](100) NULL,
+       [COMBI12] [nvarchar](100) NULL,
+       [COMBI13] [nvarchar](100) NULL,
+       [COMBI14] [nvarchar](100) NULL,
+       [COMBI15] [nvarchar](100) NULL,
+       [OBS] [nvarchar](200) NULL,
+       [PLATO] [numeric](2, 0) NULL,
+       [COMBINADO] [numeric](6, 0) NULL,
+       [RACION] [numeric](2, 0) NULL,
+       [AREA] [numeric](2, 0) NULL,
+       [CAMPO01] [nvarchar](20) NULL,
+       [CAMPO02] [nvarchar](20) NULL,
+       [CAMPO03] [nvarchar](20) NULL,
+       [CAMPO04] [nvarchar](20) NULL,
+       [CAMPO05] [nvarchar](20) NULL,
+       [CAMPO06] [nvarchar](20) NULL,
+       [CAMPO07] [nvarchar](20) NULL,
+       [CAMPO08] [nvarchar](20) NULL,
+       [CAMPO09] [nvarchar](20) NULL,
+       [CAMPO10] [nvarchar](20) NULL,
+CONSTRAINT [PK_MESATemp] PRIMARY KEY CLUSTERED 
+(
+       [PDA] ASC,
+       [NUMCAJA] ASC,
+       [MESA] ASC,
+       [LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[MEME](
+       [NUMCAJA] [numeric](6, 0) NOT NULL,
+       [MESA] [nvarchar](15) NOT NULL,
+       [FACTURA] [numeric](12, 0) NULL,
+       [VENDEDOR] [numeric](12, 0) NULL,
+       [TARIFA] [numeric](3, 0) NULL,
+       [PAX] [numeric](3, 0) NULL,
+       [IMPORTE] [numeric](12, 2) NULL,
+       [NOMBRE] [nvarchar](50) NULL,
+       [HORAINICIO] [numeric](4, 0) NULL,
+       [IMPRESA] [numeric](2, 0) NULL,
+       [ORIGINA] [nvarchar](15) NULL,
+       [SALA] [nvarchar](15) NULL,
+	   [COLORFONDO] [numeric](9, 0) NULL,
+       [CAMPO01] [nvarchar](50) NULL,
+       [CAMPO02] [nvarchar](50) NULL,
+       [CAMPO03] [nvarchar](50) NULL,
+       [CAMPO04] [nvarchar](50) NULL,
+       [CAMPO05] [nvarchar](50) NULL,
+CONSTRAINT [PK_MEME] PRIMARY KEY CLUSTERED 
+(
+       [NUMCAJA] ASC,
+       [MESA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PEDTBL](
+       [EMPRESA] [numeric](3, 0) NOT NULL,
+       [PEDIDO] [numeric](18, 0) NOT NULL,
+       [LINEA] [numeric](4, 0) NOT NULL,
+       [FECHA] [date] NULL,
+       [CODCLIENTE] [numeric](15, 0) NULL,
+       [NOMCLIENTE] [nvarchar](80) NULL,
+       [CODARTICULO] [nvarchar](20) NULL,
+       [NOMARTICULO] [nvarchar](80) NULL,
+       [CODVENDEDOR] [numeric](10, 0) NULL,
+       [OBRA] [numeric](12, 0) NULL,
+       [ALMACEN] [numeric](12, 0) NULL,
+       [CAJAS] [numeric](18, 4) NULL,
+       [UNIDAD] [numeric](18, 4) NULL,
+       [HORA] [numeric](2, 0) NULL,
+       [MINUTO] [numeric](2, 0) NULL,
+       [PRECIO] [numeric](18, 4) NULL,
+       [PVP] [numeric](3, 0) NULL,
+       [DTO] [numeric](5, 2) NULL,
+       [NUMCARGA] [numeric](12, 0) NULL,
+       [HORACARGA] [numeric](2, 0) NULL,
+       [MINUTOCARGA] [numeric](2, 0) NULL,
+       [NUMFACTURA] [numeric](12, 0) NULL,
+       [HORAFACTURA] [numeric](2, 0) NULL,
+       [MINUTOFACTURA] [numeric](2, 0) NULL,
+       [CAJASFACTURA] [numeric](18, 4) NULL,
+       [UNIDADFACTURA] [numeric](18, 4) NULL,
+       [PRECIOFACTURA] [numeric](18, 4) NULL,
+       [DTOFACTURA] [numeric](5, 2) NULL,
+       [ESTADO] [numeric](2, 0) NULL,
+       [TELEFONO] [nvarchar](20) NULL,
+CONSTRAINT [PK_PEDTBL] PRIMARY KEY CLUSTERED 
+(
+       [EMPRESA] ASC,
+       [PEDIDO] ASC,
+       [LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ASESOR]    Script Date: 13/04/2023 15:29:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ASESOR](
+       [Codigo] [numeric](5, 0) NOT NULL,
+       [Nombre] [nvarchar](80) NULL,
+CONSTRAINT [PK_ASESOR] PRIMARY KEY CLUSTERED 
+(
+       [Codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ACTUALIZADO](
+       [NOMBRE] [nvarchar](50) NOT NULL,
+       [FECHA] [date] NULL,
+       [HORA] [nvarchar](5) NULL,
+       [OBS] [nvarchar](100) NULL,
+CONSTRAINT [PK_ACTUALIZADO] PRIMARY KEY CLUSTERED 
+(
+       [NOMBRE] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MESAAPAR]    Script Date: 24/04/2023 16:53:16 ******/
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[MESAAPAR](
+       [PDA] [numeric](6, 0) NOT NULL,
+       [MESA] [nchar](15) NOT NULL,
+       [VENDEDOR] [numeric](10, 0) NULL,
+       [AREA] [numeric](9, 0) NOT NULL,
+       [HORA] [nchar](5) NOT NULL,
+       [ESTADO] [numeric](3, 0) NULL,
+       [NOMBREAREA] [nchar](15) NOT NULL,
+CONSTRAINT [PK_MESAAPAR] PRIMARY KEY CLUSTERED 
+(
+       [PDA] ASC,
+       [MESA] ASC,
+       [AREA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[INVEN](
+       [TIPO] [nchar](10) NOT NULL,
+       [LINEA] [numeric](18, 0) NOT NULL,
+       [FECHA] [nchar](10) NULL,
+       [HORA] [nchar](10) NULL,
+       [CODIGO] [nchar](15) NULL,
+       [BARRA] [nchar](15) NULL,
+       [CANTIDAD] [numeric](18, 4) NULL,
+       [LOTE] [nchar](20) NULL,
+       [ESTADO] [numeric](2, 0) NULL,
+       [ALMACENENTRADA] [numeric](3, 0) NULL,
+       [ALMACENSALIDA] [numeric](3, 0) NULL,
+       [CODZONA] [numeric](3, 0) NULL,
+       [FECHADOCUMENTO] [nchar](10) NULL,
+       [DOCUMENTO] [nchar](20) NULL,
+       [CADUCIDAD] [nchar](10) NULL,
+       [BULTOS] [numeric](18, 4) NULL,
+       [TALLA] [nchar](20) NULL,
+       [COLOR] [nchar](20) NULL,
+CONSTRAINT [PK_INVEN] PRIMARY KEY CLUSTERED 
+(
+       [TIPO] ASC,
+       [LINEA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MESAHist](
+       [NUMCAJA] [numeric](8, 0) NOT NULL,
+       [FECHA] [date] NOT NULL,
+       [SALA] [varchar](15) NOT NULL,
+       [MESA] [varchar](15) NOT NULL,
+       [FACTURA] [numeric](15, 0) NOT NULL,
+       [ARTI] [varchar](20) NOT NULL,
+       [COMBINA] [varchar](100) NOT NULL,
+       [MEDIAPRECIO] [varchar](15) NOT NULL,
+       [UNID] [numeric](15, 6) NULL,
+       [IMPORTE] [numeric](18, 5) NULL,
+       [PDTO] [numeric](9, 3) NULL,
+       [IMPDTO] [numeric](15, 5) NULL,
+       [VENDEDOR] [numeric](10, 0) NULL,
+       [HORA] [time](7) NULL,
+       [COSTO] [numeric](15, 6) NULL,
+       [ALMACEN] [varchar](15) NULL,
+       [IGIC] [numeric](7, 3) NULL,
+       [NOZETA] [bit] NULL,
+       [NUMZETA] [numeric](18, 0) NULL,
+       [ORDENPLATO] [numeric](3, 0) NULL,
+       [DESCRIPCION] [varchar](100) NULL,
+       [PDA] [numeric](6, 0) NULL,
+       [PAX] [numeric](6, 0) NULL,
+       [ORDEN] [numeric](6, 0) NULL,
+CONSTRAINT [PK_MESAHist] PRIMARY KEY CLUSTERED 
+(
+       [NUMCAJA] ASC,
+       [FECHA] ASC,
+       [SALA] ASC,
+       [MESA] ASC,
+       [FACTURA] ASC,
+       [ARTI] ASC,
+       [COMBINA] ASC,
+       [MEDIAPRECIO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PETICION]    Script Date: 17/07/2023 13:07:47 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PETICION](
+       [PDA] [numeric](18, 0) NOT NULL,
+       [TIPO] [numeric](18, 0) NOT NULL,
+       [ESTADO] [numeric](18, 0) NULL,
+       [VALOR] [nvarchar](200) NULL,
+       [CAMPO01] [nvarchar](100) NULL,
+       [CAMPO02] [nvarchar](100) NULL,
+       [CAMPO03] [nvarchar](100) NULL,
+       [CAMPO04] [nvarchar](100) NULL,
+       [CAMPO05] [nvarchar](100) NULL
+) ON [PRIMARY]
+GO
+
+/****** Object:  Table [dbo].[PEDC]    Script Date: 17/07/2023 14:59:56 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PEDC](
+       [PDA] [numeric](18, 0) NOT NULL,
+       [EMPRESA] [numeric](18, 0) NOT NULL,
+       [NUM] [numeric](18, 0) NOT NULL,
+       [NOMCLIENTE] [nvarchar](80) NULL,
+       [FECHA] [date] NULL,
+       [NOMVENDEDOR] [nvarchar](80) NULL,
+       [ESTADO] [numeric](12, 0) NULL,
+CONSTRAINT [PK_PEDC] PRIMARY KEY CLUSTERED 
+(
+       [PDA] ASC,
+       [EMPRESA] ASC,
+       [NUM] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PEDLTemp]    Script Date: 20/07/2023 11:35:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PEDLTemp](
+       [PDA] [numeric](4, 0) NULL,
+       [EMPRESA] [numeric](4, 0) NULL,
+       [PEDIDO] [numeric](18, 0) NULL,
+       [LINEA] [numeric](18, 0) NULL,
+       [CODIGO] [nvarchar](15) NULL,
+       [SEPARADAS] [numeric](18, 4) NULL,
+       [FECHA] [nvarchar](10) NULL,
+       [DESCRIPCION] [nvarchar](100) NULL,
+       [NOMCLIENTE] [nvarchar](100) NULL,
+       [PEDIDAS] [numeric](18, 4) NULL,
+       [BULTOS] [numeric](18, 4) NULL,
+       [CLIENTE] [numeric](18, 0) NULL,
+       [ESTADO] [numeric](2, 0) NULL,
+       [TIPO] [numeric](2, 0) NULL,
+       [UNIINICIAL] [numeric](18, 4) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PEDLPDA]    Script Date: 20/09/2023 12:39:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PEDLPDA](
+	[NUM] [numeric](12, 0) NOT NULL,
+	[LINEA] [numeric](12, 0) NOT NULL,
+	[EMPRESA] [numeric](9, 0) NOT NULL,
+	[CLIENTE] [numeric](15, 0) NULL,
+	[FECHA] [date] NULL,
+	[ARTICULO] [nvarchar](15) NULL,
+	[FECHAENTRG] [date] NULL,
+	[ESTADO] [numeric](1, 0) NULL,
+	[FECHAREGI] [date] NULL,
+	[VENDEDOR] [numeric](12, 0) NULL,
+	[UNID] [numeric](18, 4) NULL,
+	[PRECIO] [numeric](18, 4) NULL,
+	[PVP] [numeric](3, 0) NULL,
+	[DTO] [numeric](5, 2) NULL,
+	[CAJAS] [numeric](18, 4) NULL,
+	[UNIDSERVIDAS] [numeric](18, 4) NULL,
+	[NUMFAC] [nvarchar](20) NULL,
+	[TEXT] [nvarchar](60) NULL,
+	[NOMBRE] [nvarchar](80) NULL,
+	[DIRECCION] [nvarchar](80) NULL,
+	[POBLACION] [nvarchar](80) NULL,
+	[TELEFONO] [nvarchar](20) NULL,
+	[CIF] [nvarchar](20) NULL,
+	[DP] [numeric](9, 0) NOT NULL,
+	[TIPO] [numeric](2) NULL,
+	[OBRA] [numeric](18, 0) NOT NULL,
+	[DTO1] [numeric](5, 2) NOT NULL,
+	[DTO2] [numeric](5, 2) NOT NULL,
+	[DTO3] [numeric](5, 2) NOT NULL,
+	[ALMA] [numeric](12, 0) NOT NULL,
+	[UNICAJ] [nvarchar](5) NULL,
+	[SEPARADAS] [numeric](18, 4) NOT NULL,
+	[TIPOSEPA] [numeric](1, 0) NOT NULL,
+	[HORA] [numeric](2, 0) NOT NULL,
+	[MIN] [numeric](2, 0) NOT NULL,
+	[PARTIDA] [numeric](20, 0) NOT NULL,
+	[FECHACADU] [date] NULL,
+	[LOTECADU] [nvarchar](20) NULL,
+	[DTON] [numeric](5, 2) NULL,
+	[PROMOCION] [nvarchar](1) NULL,
+	[TURNO] [numeric](1, 0) NULL,
+	[TARIFAFICHA] [numeric](2, 0) NULL,
+	[DTOFICHA] [numeric](5, 2) NULL,
+	[FPAGOFICHA] [numeric](5, 0) NULL,
+	[MOVIL] [nvarchar](12) NULL,
+	[PEDIDO] [nvarchar](15) NULL,
+	[PLANCHA] [numeric](4, 2) NULL,
+	[REPARTIDOR] [numeric](5, 0) NULL,
+	[MODPRE] [numeric](1, 0) NULL,
+	[VISTO] [numeric](1, 0) NULL,
+	[PENDIENTE] [numeric](1, 0) NULL,
+	[BONIFICADO] [numeric](1, 0) NULL,
+	[WAALCAPFACTU] [numeric](1, 0) NULL,
+	[TALLER] [numeric](1, 0) NULL,
+	[PDTECOMPRA] [numeric](1, 0) NULL,
+	[UBICACION] [numeric](1, 0) NULL,
+	[IGIC] [numeric](3, 2) NULL,
+	[RETENCION] [numeric](3, 2) NULL,
+	[OPERARIO] [numeric](7, 0) NULL,
+	[ECOTASA] [numeric](5, 3) NULL,
+	[CODECO] [numeric](9, 0) NULL
+ CONSTRAINT [PK_PEDLPDA] PRIMARY KEY CLUSTERED 
+(
+	[NUM] ASC,
+	[LINEA] ASC,
+	[EMPRESA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PEDCPDA]    Script Date: 20/09/2023 14:59:56 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PEDCPDA](
+       [PDA] [numeric](18, 0) NOT NULL,
+       [EMPRESA] [numeric](18, 0) NOT NULL,
+       [NUM] [numeric](18, 0) NOT NULL,
+       [NOMCLIENTE] [nvarchar](80) NULL,
+       [FECHA] [date] NULL,
+       [NOMVENDEDOR] [nvarchar](80) NULL,
+       [ESTADO] [numeric](12, 0) NULL,
+       [TIPO] [numeric](2, 0) NULL,
+CONSTRAINT [PK_PEDCPDA] PRIMARY KEY CLUSTERED 
+(
+       [PDA] ASC,
+       [EMPRESA] ASC,
+       [NUM] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PDA_PENDI]    Script Date: 25/09/2023 14:21:10 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PDA_PENDI](
+       [CODEMPRESA] [numeric](3, 0) NOT NULL,
+       [CODCLIENTE] [numeric](18, 0) NOT NULL,
+       [FACTURA] [nvarchar](20) NOT NULL,
+       [FECHA] [date] NULL,
+       [IMPORTE] [numeric](18, 4) NULL,
+       [COBRADO] [numeric](18, 4) NULL,
+       [TIPO] [nvarchar](10) NULL,
+       [EFECTO] [nvarchar](20) NULL,
+       [VTO] [date] NULL,
+       [RELACION] [numeric](18, 0) NULL,
+CONSTRAINT [PK_PDA_PENDI] PRIMARY KEY CLUSTERED 
+(
+       [CODEMPRESA] ASC,
+       [CODCLIENTE] ASC,
+       [FACTURA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PDA_FPAGO](
+       [CODPAGO] [numeric](18, 0) NOT NULL,
+       [NOMBRE] [nvarchar](80) NULL,
+CONSTRAINT [PK_PDA_FPAGO] PRIMARY KEY CLUSTERED 
+(
+       [CODPAGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PDA_CAF22](
+       [Grupo] [numeric](10, 0) NULL,
+       [CodArticulo] [nvarchar](15) NULL,
+       [CodEmpresa] [numeric](18, 0) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MARCAF](
+	[COD] [numeric](9, 0) NOT NULL,
+	[NOMBRE] [varchar](80) NULL,
+ CONSTRAINT [PK_MARCAF] PRIMARY KEY CLUSTERED 
+(
+	[COD] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MARW](
+       [NARTICULO] [varchar](20) NOT NULL,
+       [NOMBRE] [varchar](80) NULL,
+       [DESCRIPCION] [varchar](max) NULL,
+       [MARCA] [varchar](80) NULL,
+       [EDITORIAL] [varchar](80) NULL,
+       [AUTOR] [varchar](80) NULL,
+       [SIEMPREACTIVO] [bit] NULL,
+       [NOVEDAD] [bit] NULL,
+       [IDWORDPRESS] [varchar](80) NULL,
+       [BUSQUEDAD] [varchar](80) NULL,
+CONSTRAINT [PK_MARW] PRIMARY KEY CLUSTERED 
+(
+       [NARTICULO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DTOS](
+       [EMPRESA] [numeric](9, 0) NOT NULL,
+       [CUENTA] [numeric](18, 0) NOT NULL,
+       [PROVEEDOR] [numeric](18, 0) NOT NULL,
+       [FAMILIA] [nvarchar](15) NOT NULL,
+       [SUBFAM] [nvarchar](15) NOT NULL,
+       [CODIGO] [nvarchar](15) NOT NULL,
+       [OBRA] [numeric](9, 0) NOT NULL,
+       [NOMBRECUENTA] [nvarchar](80) NULL,
+       [DESCRIPCIONART] [nvarchar](80) NULL,
+       [DTO] [numeric](4, 2) NULL,
+       [DTO1] [numeric](4, 2) NULL,
+       [PRECIO] [numeric](9, 2) NULL,
+       [AUMENTO] [numeric](4, 2) NULL,
+       [TARIFA] [numeric](5) NULL,
+       [DESDEFECHA] [date] NULL,
+       [HASTAFECHA] [date] NULL,
+       [SIGRUPO] [bit] NULL,
+CONSTRAINT [PK_DTOS] PRIMARY KEY CLUSTERED 
+(
+       [EMPRESA] ASC, 
+       [CUENTA] ASC,
+       [PROVEEDOR] ASC,
+       [FAMILIA] ASC,
+       [SUBFAM] ASC,
+       [CODIGO] ASC,
+       [OBRA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PDA_MOVVT](
+	[CODCLIENTE] [numeric](18, 0) NULL,
+	[CANTIDAD] [numeric](18, 4) NULL,
+	[PRECIO] [numeric](18, 4) NULL,
+	[FECHAMERICANA] [numeric](18, 0) NULL,
+	[CODARTICULO] [nvarchar](15) NULL,
+	[DTO] [numeric](3, 2) NULL,
+	[DESCRIPCION] [nvarchar](80) NULL,
+	[BULTO] [numeric](18, 4) NULL,
+	[PLANCHA] [numeric](18, 4) NULL,
+	[OBSERVACIONES] [nvarchar](100) NULL,
+	[CODEMPRESA] [numeric](3, 0) NULL,
+	[CODFAMILIA] [nvarchar](15) NULL,
+	[MARGEN] [numeric](3, 2) NULL,
+	[COLOR] [numeric](2, 0) NULL,
+	[OBRA] [numeric](18, 0) NULL,
+	[UNIMENSUAL] [numeric](18, 4) NULL,
+	[UNIDTRIMESTRAL] [numeric](18, 4) NULL,
+	[ANIOANTERIOR] [numeric](18, 4) NULL,
+	[ANIOACTUAL] [numeric](18, 4) NULL,
+	[ACTUAL] [numeric](18, 4) NULL
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ZONAS](
+	[CODZONA] [numeric](18, 0) NOT NULL,
+	[NOMZONA] [nvarchar](100) NULL,
+	[CODALMACEN] [numeric](18, 0) NULL,
+  CONSTRAINT [PK_ZONAS] PRIMARY KEY CLUSTERED (
+	[CODZONA] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CAPTURATemp](
+       [PDA] [numeric](2, 0) NOT NULL,
+       [ESTADO] [numeric](2, 0) NULL,
+       [TIPO] [numeric](2, 0) NULL,
+       [LINEA] [numeric](18, 0) NOT NULL,
+       [NARTICULO] [nvarchar](20) NULL,
+       [DESCRIPCION] [nvarchar](80) NULL,
+       [CANTIDAD] [numeric](18, 4) NULL,
+       [LOTE] [nvarchar](50) NULL,
+       [CADUCA] [nvarchar](50) NULL,
+       [LECTURA] [nvarchar](150) NULL,
+       [FECHA] [date] NULL,
+       [HORA] [nvarchar](10) NULL,
+       [NOMBREAPARCADO] [nvarchar](20) NULL,
+       [PROVEEDOR] [numeric](18, 0) NULL,
+       [ALMENTRADA] [numeric](18, 0) NULL,
+       [ALMSALIDA] [numeric](18, 0) NULL,
+       [FECHAPROCESO] [date] NULL,
+       [DOCUMENTO] [nvarchar](50) NULL,
+       [BULTOS] [numeric](18, 4) NULL,
+       [UNIFAC] [numeric](18, 4) NULL,
+       [BULFAC] [numeric](18, 4) NULL,
+       [ELIMINAR] [numeric](1, 0) NULL,
+       [CAMPO01] [nvarchar](50) NULL,
+       [CAMPO02] [nvarchar](50) NULL,
+       [CAMPO03] [nvarchar](50) NULL,
+       [CAMPO04] [nvarchar](50) NULL,
+       [CAMPO05] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+
+
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PDA_DTOSC](
+       [CODCLIENTE] [numeric](18, 0) NULL,
+       [CODARTICULO] [nvarchar](15) NULL,
+       [DTO] [numeric](18, 4) NULL,
+       [PRECIO] [numeric](18, 4) NULL,
+       [DTO2] [numeric](18, 4) NULL,
+       [EMPRESA] [numeric](18, 0) NULL,
+       [SUBFAMILIA] [nvarchar](20) NULL,
+       [FAMILIA] [nvarchar](20) NULL,
+       [OBRA] [numeric](18, 0) NULL,
+       [PROVEEDOR] [numeric](18, 0) NULL
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Tareas](
+       [PDA] [numeric](2, 0) NOT NULL,
+       [EMPRESA] [numeric](2, 0) NULL,
+       [NUMERO] [numeric](18, 0) NULL,
+       [FINALIZADO] [bit] NULL,
+       [CLIENTE] [numeric](18, 0) NOT NULL,
+       [DEPAR] [numeric](18, 0) NULL,
+       [TAREAOBS] [nvarchar](300) NULL,
+       [FECHAALTA] [date] NULL,
+       [FECHAVISITA] [date] NULL,
+       [HORAALTA] [nvarchar](10) NULL,
+       [HORAVISITA] [nvarchar](10) NULL,
+       [ESTADO] [numeric](18, 0) NULL,
+       [VENDEDOR] [numeric](18, 0) NULL,
+       [REPARTIDOR] [numeric](18, 0) NULL,
+       [USUARIO] [nvarchar](50) NULL,
+       [USUARIO2] [nvarchar](50) NULL,
+       [PRESUPUESTO] [nvarchar](20) NULL,
+       [PEDIDO] [numeric](18, 0) NULL,
+       [OBS] [nvarchar](max) NULL,
+       [CAMPO01] [nvarchar](50) NULL,
+       [CAMPO02] [nvarchar](50) NULL,
+       [CAMPO03] [nvarchar](50) NULL,
+       [CAMPO04] [nvarchar](50) NULL,
+       [CAMPO05] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TAREASD](
+       [PDA] [numeric](2, 0) NOT NULL,
+       [TIPO] [numeric](9, 0) NULL,
+       [EMPRESA] [numeric](9, 0) NULL,
+       [NUMERO] [numeric](18, 0) NULL,
+       [LINEA] [numeric](18, 0) NOT NULL,
+       [NARTICULO] [nvarchar](20) NULL,
+       [DESCRIPCION] [nvarchar](300) NULL,
+       [CANTIDAD] [numeric](18, 4) NULL,
+       [PRECIO] [numeric](18, 4) NULL,
+       [DTO] [numeric](18, 4) NULL,
+       [DTO1] [numeric](18, 4) NULL,
+       [BULTOS] [numeric](18, 4) NULL,
+       [LOTE] [nvarchar](50) NULL,
+	   [FECHACADU] [date] NOT NULL,
+       [ALM] [numeric](18, 0) NULL,
+       [CAMPO01] [nvarchar](50) NULL,
+       [CAMPO02] [nvarchar](50) NULL,
+       [CAMPO03] [nvarchar](50) NULL,
+       [CAMPO04] [nvarchar](50) NULL,
+       [CAMPO05] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TareasH](
+       [PDA] [numeric](2, 0) NOT NULL,
+       [EMPRESA] [numeric](2, 0) NULL,
+       [NUMERO] [numeric](18, 0) NULL,
+       [LINEA] [numeric](18, 0) NULL,
+       [FECHA] [date] NULL,
+       [HORA] [nvarchar](10) NULL,
+       [OBS] [nvarchar](max) NULL,
+       [CAMPO01] [nvarchar](50) NULL,
+       [CAMPO02] [nvarchar](50) NULL,
+       [CAMPO03] [nvarchar](50) NULL,
+       [CAMPO04] [nvarchar](50) NULL,
+       [CAMPO05] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ESTADO](
+       [TIPO] [numeric](3, 0) NOT NULL,
+       [CODIGO] [numeric](18, 0) NULL,
+       [NOMBRE] [nvarchar](300) NULL,
+       [COLOR] [nvarchar](50) NULL,
+       [CAMPO01] [nvarchar](100) NULL,
+       [CAMPO02] [nvarchar](100) NULL,
+       [CAMPO03] [nvarchar](100) NULL,
+       [CAMPO04] [nvarchar](100) NULL,
+       [CAMPO05] [nvarchar](100) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[INVR1](
+       [PDA] [numeric](18, 0) NULL,
+       [FECHA] [date] NULL,
+       [ALMACEN] [numeric](18, 0) NULL,
+       [LINEA] [numeric](18, 0) NULL,
+       [CODIGO] [nvarchar](15) NULL,
+       [CADU] [date] NULL,
+       [LOTE] [nvarchar](20) NULL,
+       [BULTOS] [numeric](18, 4) NULL,
+       [UNI] [numeric](18, 4) NULL,
+       [PRECIOCOMPRA] [numeric](18, 4) NULL,
+       [BULTOSCIERRE] [numeric](18, 4) NULL,
+       [UNICIERRE] [numeric](18, 4) NULL,
+       [USUARIO] [nvarchar](20) NULL,
+       [CERRADO] [numeric](1, 0) NULL,
+       [CAPTURA] [numeric](18, 4) NULL,
+       [DESCRIPCION] [nvarchar](80) NULL,
+       [CAMPO01] [nvarchar](150) NULL,
+       [CAMPO02] [nvarchar](150) NULL,
+       [CAMPO03] [nvarchar](150) NULL,
+       [CAMPO04] [nvarchar](150) NULL,
+       [CAMPO05] [nvarchar](150) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[OBRA](
+       [EMPRESA] [numeric](18, 0) NULL,
+       [CODCLIENTE] [numeric](18, 0) NULL,
+       [CODOBRA] [numeric](18, 0) NULL,
+       [NOMBRE] [nvarchar](150) NULL,
+       [DENOMINACION] [nvarchar](150) NULL,
+       [DIRECCION] [nvarchar](150) NULL,
+       [POBLACION] [nvarchar](150) NULL,
+       [CODPOSTAL] [numeric](6, 0) NULL,
+       [CIF] [nvarchar](20) NULL,
+       [TELEFONO] [nvarchar](20) NULL
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[RUTAS](
+	[CODZONA] [numeric](18, 0) NOT NULL,
+	[CODRUTA] [numeric](18, 0) NOT NULL,
+	[NOMRUTA] [nvarchar](100) NULL,
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PRODU1](
+       [EMPRESA] [numeric](9, 0) NOT NULL,
+       [GRUPO] [nvarchar](20) NOT NULL,
+       [TITULO] [nvarchar](100) NOT NULL,
+       [NOMBREGRUPO] [nvarchar](100) NULL,
+       [PRODUCTOFINAL] [nvarchar](15) NULL,
+       [PRODUCTOFINAL1] [nvarchar](15) NULL,
+       [PRODUCTOFINAL2] [nvarchar](15) NULL,
+       [PRODUCTOFINAL3] [nvarchar](15) NULL,
+       [PRODUCTOFINAL4] [nvarchar](15) NULL,
+       [PRODUCTOFINAL5] [nvarchar](15) NULL,
+       [PRODUCTOFINAL6] [nvarchar](15) NULL,
+       [PRODUCTOFINAL7] [nvarchar](15) NULL,
+       [DETALLE] [numeric](2, 0) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PRODU2](
+       [EMPRESA] [numeric](9, 0) NOT NULL,
+       [GRUPO] [nvarchar](20) NOT NULL,
+       [TITULO] [nvarchar](100) NOT NULL,
+       [LINEA] [numeric](9, 0) NOT NULL,
+       [ARTICULO] [nvarchar](15) NULL,
+       [DESCRIPCION] [nvarchar](80) NULL,
+       [TIPO] [numeric](2, 0) NULL,
+       [UNID] [numeric](10, 4) NULL,
+       [TARIFA] [numeric](2, 0) NULL,
+       [OBS] [nvarchar](300) NULL,
+       [LOTE] [nvarchar](50) NULL,
+       [CADU] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PRODU2Temp](
+       [PDA] [numeric](3, 0) NOT NULL,
+       [EMPRESA] [numeric](9, 0) NOT NULL,
+       [GRUPO] [nvarchar](20) NOT NULL,
+       [TITULO] [nvarchar](100) NOT NULL,
+       [LINEA] [numeric](9, 0) NOT NULL,
+       [ARTICULO] [nvarchar](15) NULL,
+       [DESCRIPCION] [nvarchar](80) NULL,
+       [TIPO] [numeric](2, 0) NULL,
+       [UNID] [numeric](10, 4) NULL,
+       [TARIFA] [numeric](2, 0) NULL,
+       [OBS] [nvarchar](300) NULL,
+       [LOTE] [nvarchar](50) NULL,
+       [CADU] [nvarchar](50) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PROMOC](
+       [EMPRESA] [numeric](9, 0) NOT NULL,
+       [NARTICULO] [nvarchar](15) NOT NULL,
+       [ARTIPROM] [nvarchar](15) NOT NULL,
+       [PRECIO] [numeric](10, 4) NULL,
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[COCINA](
+       [MESA] [nvarchar](10) NOT NULL,
+       [AREA] [numeric](5, 0) NOT NULL,
+       [PLATO] [numeric](2, 0) NOT NULL,
+       [COMBI00] [nvarchar](300) NOT NULL,
+       [CODIGO] [nvarchar](15) NOT NULL,
+       [DESCRIPCION] [nvarchar](80) NULL,
+       [MEDIA] [numeric](1, 0) NULL,
+       [CANTIDAD] [numeric](10, 4) NULL,
+       [PAX] [numeric](5, 0) NULL,
+       [CAMARERO] [nvarchar](80) NULL,
+       [COMBI01] [nvarchar](80) NULL,
+       [COMBI02] [nvarchar](80) NULL,
+       [COMBI03] [nvarchar](80) NULL,
+       [COMBI04] [nvarchar](80) NULL,
+       [COMBI05] [nvarchar](80) NULL,
+       [COMBI06] [nvarchar](80) NULL,
+       [COMBI07] [nvarchar](80) NULL,
+       [COMBI08] [nvarchar](80) NULL,
+       [COMBI09] [nvarchar](80) NULL,
+       [COMBI10] [nvarchar](80) NULL,
+       [COMBI11] [nvarchar](80) NULL,
+       [COMBI12] [nvarchar](80) NULL,
+       [COMBI13] [nvarchar](80) NULL,
+       [COMBI14] [nvarchar](80) NULL,
+       [COMBI15] [nvarchar](80) NULL,
+       [ESTADO] [numeric](2, 0) NULL,
+       [HORA] [nvarchar](5) NULL,
+       [TERMINADO] [numeric](2, 0) NULL,
+       [MARCADO] [numeric](2, 0) NULL,
+       [FECHA] [date] NULL,
+       [FECHAENTREGA] [date] NULL,
+       [HORAENTREGA] [nvarchar](5) NULL,
+       [TELEFONO] [nvarchar](15) NULL,
+       [NOMBRE] [nvarchar](80) NULL,
+       [DIRECCION] [nvarchar](80) NULL,
+       [CODPOSTAL] [nvarchar](10) NULL,
+       [POBLACION] [nvarchar](80) NULL,
+       [CAMPO01] [nvarchar](80) NULL,
+       [CAMPO02] [nvarchar](80) NULL,
+       [CAMPO03] [nvarchar](80) NULL,
+       [CAMPO04] [nvarchar](80) NULL,
+       [CAMPO05] [nvarchar](80) NULL,
+CONSTRAINT [PK_COCINA] PRIMARY KEY CLUSTERED 
+(
+       [MESA] ASC,
+       [AREA] ASC,
+       [PLATO] ASC,
+       [COMBI00] ASC,
+       [CODIGO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[COCINAHist](
+       [MESA] [nvarchar](10) NOT NULL,
+       [AREA] [numeric](5, 0) NOT NULL,
+       [PLATO] [numeric](2, 0) NOT NULL,
+       [COMBI00] [nvarchar](300) NOT NULL,
+       [CODIGO] [nvarchar](15) NOT NULL,
+       [DESCRIPCION] [nvarchar](80) NULL,
+       [MEDIA] [numeric](1, 0) NULL,
+       [CANTIDAD] [numeric](10, 4) NULL,
+       [PAX] [numeric](5, 0) NULL,
+       [CAMARERO] [nvarchar](80) NULL,
+       [COMBI01] [nvarchar](80) NULL,
+       [COMBI02] [nvarchar](80) NULL,
+       [COMBI03] [nvarchar](80) NULL,
+       [COMBI04] [nvarchar](80) NULL,
+       [COMBI05] [nvarchar](80) NULL,
+       [COMBI06] [nvarchar](80) NULL,
+       [COMBI07] [nvarchar](80) NULL,
+       [COMBI08] [nvarchar](80) NULL,
+       [COMBI09] [nvarchar](80) NULL,
+       [COMBI10] [nvarchar](80) NULL,
+       [COMBI11] [nvarchar](80) NULL,
+       [COMBI12] [nvarchar](80) NULL,
+       [COMBI13] [nvarchar](80) NULL,
+       [COMBI14] [nvarchar](80) NULL,
+       [COMBI15] [nvarchar](80) NULL,
+       [ESTADO] [numeric](2, 0) NULL,
+       [HORA] [nvarchar](5) NULL,
+       [TERMINADO] [numeric](2, 0) NULL,
+       [MARCADO] [numeric](2, 0) NULL,
+       [HORAHISTORICO] [nvarchar](5) NULL,
+       [FECHAHISTORICO] [date] NULL,
+       [ID] [int] IDENTITY(1,1) NOT NULL,
+       [FECHA] [date] NULL,
+       [FECHAENTREGA] [date] NULL,
+       [HORAENTREGA] [nvarchar](5) NULL,
+       [TELEFONO] [nvarchar](15) NULL,
+       [NOMBRE] [nvarchar](80) NULL,
+       [DIRECCION] [nvarchar](80) NULL,
+       [CODPOSTAL] [nvarchar](10) NULL,
+       [POBLACION] [nvarchar](80) NULL,
+       [CAMPO01] [nvarchar](80) NULL,
+       [CAMPO02] [nvarchar](80) NULL,
+       [CAMPO03] [nvarchar](80) NULL,
+       [CAMPO04] [nvarchar](80) NULL,
+       [CAMPO05] [nvarchar](80) NULL,
+PRIMARY KEY CLUSTERED 
+(
+       [ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PRODUH](
+       [PDA] [numeric](3, 0) NOT NULL,
+       [EMPRESA] [numeric](9, 0) NULL,
+       [FECHA] [date] NULL,
+       [PARTE] [numeric](15, 0) NULL,
+       [GRUPO] [nvarchar](20) NULL,
+       [TITULO] [nvarchar](100) NULL,
+       [LINEA] [numeric](9, 0) NULL,
+       [NOMBREGRUPO] [nvarchar](80) NULL,
+       [ARTICULOFINAL] [nvarchar](15) NULL,
+       [DESCRIPCION] [nvarchar](80) NULL,
+       [CANTIDAD] [numeric](10, 4) NULL,
+       [PRECIOCOSTO] [numeric](10, 4) NULL,
+       [TARIFA] [numeric](2, 0) NULL,
+       [LOTE] [nvarchar](50) NULL,
+       [CADU] [nvarchar](50) NULL,
+       [PROVEEDOR] [numeric](15, 0) NULL,
+       [ALMACEN] [numeric](9, 0) NULL,
+       [BAJA] [numeric](1, 0) NULL,
+       [TIPOBAJA] [numeric](1, 0) NULL,
+       [TIPOUNI] [numeric](1, 0) NULL,
+) ON [PRIMARY]
+GO

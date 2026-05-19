@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TCONA4_Instalacion", "TCONA4_Instalacion\TCONA4_Instalacion.vdproj", "{681A99A1-CD17-4881-91E5-CC5AE55FF22D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{681A99A1-CD17-4881-91E5-CC5AE55FF22D}.Debug|Default.ActiveCfg = Release
+		{681A99A1-CD17-4881-91E5-CC5AE55FF22D}.Debug|Default.Build.0 = Release
+		{681A99A1-CD17-4881-91E5-CC5AE55FF22D}.Release|Default.ActiveCfg = Release
+		{681A99A1-CD17-4881-91E5-CC5AE55FF22D}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

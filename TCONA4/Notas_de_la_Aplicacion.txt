@@ -1,0 +1,410 @@
+=============================================================
+NOTAS GENERALES SOBRE TCONA4  ----  TRIVALLE, S. L. 2016/6102
+=============================================================
+.
+---------------------------------------------------------------------------------
+>>>>>>>> Procedimiento Main()
+---------------------------------------------------------------------------------
+La aplicacion arranca a partir del procediento Main()
+Forma parte de los procedimientos en "Module Tcona4Main".
+
+---------------------------------------------------------------------------------
+>>>>>>>> INSTANCIA PARA LA CONEXIÓN A LA BASE DE DATOS
+---------------------------------------------------------------------------------
+ Se utiliza (de manera temporal?) un archivo plano de texto
+    para especificar la instancia SQL a utilizar en la conexión a base de datos.
+ Si no existe se crea, con una instancia por defecto. 
+
+ Ubicacion y Nombre.: C:\TRIVAGES\DATOS\CONA4CFG.txt. Contenido tipico del archivo:
+
+ 1:Data Source=DESKTOP-FARI\SQLEXPRESS_2014;
+END
+'---------------------------------------------------------------------------------
+' NOTAS:
+'    Eventualmente aqui definimos la INSTANCIA para la conexión...
+' Ejemplos:
+'    1:Data Source=DESKTOP-FARI\SQLEXPRESS_2014;
+'    1:Data Source=SERVIDOR\SQLTRV;
+'
+
+---------------------------------------------------------------------------------
+>>>>>>>> NÚMERO DE CAJA
+---------------------------------------------------------------------------------
+La aplicacion esta preparada para pasarle como parámetro de línea de comandos
+el Nro. de la Caja con la que se quiere trabajar.
+Por defecto, si no se pasa parámetro alguno, siempre será=1
+
+---------------------------------------------------------------------------------
+>>>>>>>> NÚMERO DE SALAS / MESAS
+---------------------------------------------------------------------------------
+Para SALAS y MESAS, la 999 se reserva para cuando FormularioInicial = 1.
+Deben por tanto estar creadas (en WTPMESAS, Tablas: [SALA],[SALA1] ) 
+   SALA y MESA 999.
+En este sentido, de no estar creadas, la aplicación lo hará automáticamente.
+
+FormularioInicial = 0 :: 
+   - Se cargan TODAS las SALAS en TCONA401.
+   - Para Sala=999, Se muestras las posibles Mesas Separadas, Nunca la Mesa 999.
+FormularioInicial = 1 :: 
+   - La SALA=999 y MESA=999, esto no varia (Por ahora...)
+
+---------------------------------------------------------------------------------
+>>>>>>>> FORMULARIO INICIAL O PRINCIPAL
+---------------------------------------------------------------------------------
+Se contemplan DOS posibles Fomularios como FORMULARIO PRINCIPAL en la aplicacion
+   y estará determinado por un CAMPO de Ref. Generales.
+
+A su vez, si se tipifica en Ref. Gen. "Pedir Vendedor=1", la aplicación hará 
+   que SIEMPRE predomine como MODAL el Formulario de PETICION DE CREDENCIALES y 
+   SELECCION del vendedor.
+
+
+---------------------------------------------------------------------------------
+>>>>>>>> C:\TRIVAGES -> Path General de la aplicacion/es
+---------------------------------------------------------------------------------
+Directorio de trabajo en general para todo lo relacionado con el paquete TRIVAGES.
+Este directorio soporta el peso de trabajo para las aplicaciones en general 
+   y TCONA4 en particular.
+Aqui estarán alojadas las bases de datos, y toda la información relativa al desempeño
+   de las aplicaciones, asi como las mismas aplicaciones (ejecutables).
+Algunos de los subdirectorios se detallan a continuación:
+
+---------------------------------------------------------------------------------
+>>>>>>>> ICONOS // IMAGENES // LOGOS
+---------------------------------------------------------------------------------
+Algunos de los Iconos e imágenes usadas en la aplcacion, se ubicarán en 
+el direcorio: C:\TRIVAGES\iconos
+
+Para Tickets, los logos estan alojados en C:\TRIVAGES\iconos\Logos
+   - Para TICKET FACTURAS = LogoTkFactura.jpg
+
+El 'Path' a las imágenes para Botones: 
+   SALAS, MESAS, ARTICULOS
+Estan ubicadas en el propio registro de cada TABLA de la base de datos.
+
+Ej.: Cada artículo tiene un CAMPO para determinar la ubicacion de una
+imagen asociada al mismo.
+
+---------------------------------------------------------------------------------
+>>>>>>>> INFORMES COBVIEW
+---------------------------------------------------------------------------------
+Los informes utilizados para COBVIEW, se estan ubicando en:
+C:\TRIVAGES\InformesCobview, (Ej.: C:\TRIVAGES\InformesCobview\TKFACTURA.DEF)
+
+   - CONSGEN1.DEF, CONSGEN2.DEF, CONSGEN2.DEF -> Salida Informes CONSULTA GENERAL.
+   - TKFACTURA.DEF, TKFACTURAL.DEF ------------> Salida Informes TICKET FACTURA.
+   - TKZ.DEF, TKZL.DEF ------------------------> Salida Informes TICKET X y Z.
+
+---------------------------------------------------------------------------------
+>>>>>>>> ARTCHIVOS de Configuración y Otros (.TXT, .BAT, Etc.), BASES DE DATOS.
+---------------------------------------------------------------------------------
+Normalmente se alojarán en la carpeta C:\TRIVAGES\DATOS.
+Los archivos que aqui podemos en contrar son:
+
+    > Las distintas bases de datos de uso en la/s aplicaion/es.
+	  Apriori tenemos: GESTITRV.mdf, CONTATRV001.mdf, y las que sean necesarias en un futuro.
+
+    > CONA4CFG.txt          ------>     Configuracion para la aplicación. (String de conexión, etc...)
+    > CAJON.txt, CORTE.TXT  ------>     Secuencia de escape para determinadas impresoras de TICKETS.
+	  Como norma General y dependiendo del modelo de impresor a usar, la aplicacion se encargará de 
+	  crear estos archivos y escribir en ellos la secuencia escape correcta para el modelo de impresor.
+
+    > AbreCajon.bat, Cortar.bat -->     Comanos MS-DOS, para lanzar informacion a las impresoras.
+      Ej. AbreCajon.: [ PRINT /D:LPT1 C:\TRIVAGES\DATOS\CAJON.TXT ]
+      ( Desde VB.NET 'por ahora' esta es la manera mas rápida y facil de lanzar secuencias escape 
+	     a los impresores de TICKET ) 
+      Problema hallado:
+        Estos caracteres de control, si se intentan imprimir desde WINDOWS mediante Drivers Windows
+	     no son interpretados como secuencias escape, son convertidos a su representacion 
+		 como caractres.
+
+    > Existirá una subcarpeta con nombre TMP_IMPRE, donde la aplicación genera archivos temporales
+	  para su uso a la hora de imprimir documentos a los IMPRESORES, como es el caso de los
+	  TICKETS que se enviarán a las diferentes AREAS de impresion.
+	  AREAS tales como.: COCINA, BARRA, BAR, PIZZERIA, Etc...
+	  Como norma general estos archivos se BORRAN una cumplida su función, con el objetivo de
+	  no acumular demasiados archivos basura.
+	   
+---------------------------------------------------------------------------------
+>>>>>>>> COMBINADOS
+---------------------------------------------------------------------------------
+Los productos (Articulos) que llevan combinados serán detectados en la aplicación
+por el campo COMBINADO, que tendrá un Cod. de grupo asignado, si debe tratarse 
+como tal.
+
+---------------------------------------------------------------------------------
+>>>>>>>> FAMILIAS VARIOS, PRODUCTOS Cuyo PVP es 0 (Cero)
+---------------------------------------------------------------------------------
+Los productos (Articulos) que pertenezcan a algunas de las FAMILIAS VARIOS
+(Se contemplan 3 Familias tipificadas en Ref. Generales), seran cargados
+aun cuando llevan PRECIO=0, por tanto se pedirá introducción de PRECIO 
+al elegirlos en la botonera de PRODUCTOS.
+
+---------------------------------------------------------------------------------
+>>>>>>>> RACIONES / (1/2) RACIONES
+---------------------------------------------------------------------------------
+Se pedirá RACIONES, (por ahora cuando el PVP4 del PRODUCTO > 0).
+(Nota.: Para cuando se permitan tarifas desde PVP1 a PVP9,
+        Las tarifas 3 y 4 se reservan para estos fines...)
+
+---------------------------------------------------------------------------------
+>>>>>>>> Referencias Generales Tabla [TCONA4]
+---------------------------------------------------------------------------------
+En esta tabla se mantienne TODOS los campos relativos a tipificaciones
+   y configuración general de la aplicacion.
+Se mantiene un registro por cada Numero de CAJA.
+
+Se contempla lo relativo al apecto de la propia aplicacion, como COLORES
+   para la interfaz: Colores FONDO de controles, Colores Letra de controles, 
+   Etc.
+
+Lo relativo a la gestión e impresion de TICKET(s).
+
+Contadores como FACTURA, X, Z, etc.
+
+Familias especiales como VARIAS, etc.
+
+Orden de carga ( CODIGO/NOMBRE ) para las botoneras de control:
+- ............... SALAS ( ??? ) -> Pdte.
+- ............... MESAS ( ??? ) -> Pdte. 
+- ............ FAMILIAS (Tipificado en Ref. Gen.)
+- ARTICULOS (PRODUCTOS) (Tipificado en Ref. Gen.)
+- .......... COMBINADOS ( ??? ) -> Pdte.
+
+---------------------------------------------------------------------------------
+>>>>>>>> REFERENCIA a Formularios de la aplicación
+---------------------------------------------------------------------------------
+    Public MyFrm1 As New TCONA401  ' MESAS.
+    Public MyFrm2 As New TCONA402  ' PRODUCTOS.
+    Public MyFrm3 As New TCONA403  ' Vista Ampliada Lista Productos (Zoom).
+    Public MyFrm4 As New TCONA404  ' Cambio / Cobros
+    Public MyFrm5 As New TCONA405  ' Z, X, Ref. Gen, Etc.
+    Public MyFrm6 As New TCONA406  ' Referencias Generales.
+    Public MyFrm7 As New TCONA407  ' Mantenimiento de COMBINADOS.
+    Public MyFrm8 As New TCONA408  ' Pantalla COMBINADOS.
+    Public MyFrm9 As New TCONA409  ' Pantalla Pedir VENDEDOR.
+    Public MyFrm10 As New TCONA410 ' Mantenimientos Varios (Menu.)
+    Public MyFrm11 As New TCONA411 ' Consulta Movimientos MESAS
+    Public MyFrm12 As New TCONA412 ' Cambio de Mesa
+    Public MyFrm13 As New TCONA413 ' Separar Cuenta ...
+    Public MyFrm14 As New TCONA414 ' Mesas Ocupadas x Salas
+    Public MyFrm15 As New TCONA415 ' Tecclados "Alf./ Num."
+    Public MyFrm16 As New TCONA416 ' Botón Enviar ( Visualiza Datos a Areas )
+    Public MyFrm17 As New TCONA417 ' Mant. de MODELOS de impresora
+    Public MyFrm18 As New TCONA418 ' Mensajes a AREAS (COCINA, Etc.)
+    Public MyFrm19 As New TCONA419 ' Eleccion del Nro. Caja para el TPV.
+    Public MyFrm20 As New TCONA420 ' Mant. de Claves.
+    Public MyFrm21 As New TCONA421 ' Pedidos a Domicilio.
+    Public MyFrm22 As New TCONA422 ' Clientes Contado/Crédito (Factura A4).
+
+---------------------------------------------------------------------------------
+>>>>>>>> REFERENCIA a COLUMNAS del GRID1 y GRIDZOOM - MyFrm2, MyFrm3, Myfrm12
+---------------------------------------------------------------------------------
+Esta referencia es importante para conocer el ORDEN de las columnas en ambos GRID.
+Como norma General si se amplian columnas en GRID1, se debería hacelo en GRIDZOOM.
+
+Prácticamente TODA la operativa de la aplicacion 'gira' en TORNO a estos GRIDs, 
+   por lo que un control exhaustivo de los mismos es necesario!!!
+
+Todos los procedimientos que por alguna razón "TRABAJEN" con las columnas de 
+   estos GRIDs, deben ser revisados para evitar problemas, si se añaden columnas.
+
+Algunos de los procedimientos que habitualmente iré ajustando por estas razones:
+
+ Importancia Media.: "Guarda Relacion"
+ - CalculaTotalGRID1 ----> Calcula TOTAL general. 
+ - ColoreaGRID1 ---------> Difencia Líneas Nuevas de Existentes.
+ - ImprimeTicketFactura -> Imprime el Contenido de GRID1.
+
+ Importancia Alta.:
+ - GRID1_a_GRIDZOOM -----> Se DEBE modificar ...
+ - CargaListaMESAs ------> Se DEBE modificar ...
+ - GrabaRegistroMESA ----> MUY IMPORTANTE!!!, Actualiza lo datos de MESA.
+ - LocalizarArtGRID1 ----> MUY IMPORTANTE!!!, Suma en Nuevas, Existentes, etc.
+ 
+Como norma general si se añaden columnas nuevas, lo adecuado es introducirlas
+al final de la ultima columna y no insertar, para que dichos procedimientos
+tengan mas probabilidad de seguir funcionando sin que arrojen errores, en el
+tratamiento de las columnas del/los GRID(s)...
+
+        ' GRID1
+        '   0 Cod. Art           (No Visible)
+        '   1 Unid. Existentes
+        '   2 Descripcion
+        '   3 Unid. Nuevas
+        '   4 Importe
+        '   5 Tipo E/N           (No visible)
+        '   6 Cod. Combinados    (No Visible)
+        '   7 Raciones           (No Visible)
+        '   8 Nro. Plato         (No Visible)
+
+Para mostrar todas la colunmas de una linea seleccionada, del GRID1 
+con su contenido, tenemos este procediemiento con fines de dupuración.
+		Public Sub DatosLineaMyfrm2GRID1()
+
+---------------------------------------------------------------------------------
+>>>>>>>> Notas sobre la Función pública "LocalizarArtGRID1"
+---------------------------------------------------------------------------------
+Esta Función es una de las CRITICAS o IMPORTANTES en la aplicación,
+   dado que la carga de Líneas en la lista de productos (GRID1),
+   se esta gestionando en un 50% desde la misma
+   (CUANDO LOS PRODCUTOS ESTAN YA EN LA LISTA). Por esta razón he creido 
+   importante encapsularla como Función publica en un módulo general.
+
+De esta manera el control del código se centra en una única zona 
+   del código fuente.
+
+Como norma general, la ENTRADA de PRODUCTOS a la lista (GRID1) se
+   dispara a partir de la pulsación de uno de los botones
+   de productos o artículos.
+A partir de ahí, tendremos en cuenta DOS posibles entradas de DATOS sobre
+   las líneas del GRID1, y queda como sigue:
+
+Un 50% de la carga se realizará desde diferentes puntos de la aplicacion, 
+   SOLO cuando SON LINEAS NUEVAS (Entran por primera vez).
+Se gestiona por tanto en la ZONA de código que corresponda:
+   "COMBINADOS", "ARTICULOS CUYO PVP=0", "RACIONES", Etc.
+Esto ocurrirá desde diferentes FORMULARIOS, o desde varios puntos 
+   de uno de ellos.
+
+NOTA: 
+Desde un punto de vista práctico, resultará interesante encapsular
+de igual manera esta parte del código y publicarlo para evitar 
+el replicado multiple, y facilitar el mantenimiento de entrada 
+de lineas NUEVAS. (Pdte. de realizar...)
+ 
+El 50% de la carga restante, se realizará desde LocalizarArtGRID1, 
+   y ocurre SOLO cuando SON LINEAS EXISTENTES en el GRID1.
+En esta Función se GESTIONA, la adicion de UNIDADES y Cálculo
+   del IMPORTE correcto, para CADA PRODUCTO de la lista, siempre que 
+   YA ESTE FICHADO (Exista En la lista).
+Es aqui donde NORMALMENTE se ha de controlar aspectos COMO que, para
+   "COMBINADOS", "ARTICULOS CUYO PVP=0", "RACIONES", Etc, se realicen
+   correctamente las ADICIONES correspondientes.
+
+ Por esta razón considero LocalizarArtGRID1 como "ZONA CRITICA" 
+    del código fuente en general.
+ 
+---------------------------------------------------------------------------------
+>>>>>>>> Mesas Separadas
+---------------------------------------------------------------------------------
+Como norma General las MESAS O CUENTAS separadas se crean en la SALA 999
+   y son creadas por la aplicación en tiempo real al separar la CUENTA.
+Las MESAS Separadas se APARCAN, o SE COBRAN DIRECTAMENTE.
+Al COBRO, las MESAS SEPARADAS se borrarán de la Tabla [SALA1].
+
+Las Mesas o Cuentas Separadas, se gestionan en TCONA413 (MyFrm13).
+Se ha creado un módulo aparte (TCONA4CuentasSep.vb) para diferenciar
+   las Funciones y/o Procedimientos que controlan este proceso.
+Algunas Funciones y Procedimientos de Tcona4Main.vb se adaptaron para
+   gestionar parte de este proceso.
+El nro. de Mesa como Normal general en este caso es Alfanumerico con
+   formato NM+"-"+3dNF, donde:
+    NM = Numero de Mesa Origen.
+	"-"  Signo Guión.
+	3dNF = Ultimos 3 digitos del Número de Factura asignado a la mesa separada.
+
+Por tanto al separar una cuenta de la MESA=1, queda
+	1-NF, ej: 1-600
+
+Para las mesas separadas se deben evitar comparaciones o conversiones de 
+   tipo INTEGER, o arrojarán un error de conversion.
+Esto afecta a la misma sentencia SQL si se intenta usar CAST ... INTEGER
+   en este tipo de mesas.
+
+-------------------------------------------------------------------------------------
+>>>>>>>> ASPECTOS SOBRE LAS IMPRESORAS de TICKET / las AREAS e IMPRESION en GENERAL.
+-------------------------------------------------------------------------------------
+Con respecto a la impresion del TICKET FACTURA, asi como TICKETs X y Z, como norma
+   general se lanzaran a traves de la impresora predeterminada en windows.
+En este sentido la propia aplicacion, en un apartado de REF. Generales, proporciona
+   una lista de impresoras instaladas en WINDOWS y a su vez permite PREDETERMINAR 
+   la que se desee.
+Se utiliza el generador de informes COBVIEW, como recurso rápido para gestionar 
+   los informes.
+Por tanto para este tipo de impresiones, se lanza DIRECTO a IMPRESORA, sin 
+   PREVISUALIZACIÓN previa.
+
+No obstante habrá algunas consideraciones para la impresión del TICKET FACTURA, a saber:
+   1 Debemos poder Imprimir factura S/N, si ponemos N pues no imprime nunca factura. 
+   2 debemos poner en referencias Importe Mínimo para factura que siempre está a 0 con lo cual 
+     imprime todo incluido los importe a 0.
+     Si aquí hay 5 pues solo imprime facturas = > a importe.
+   3 Luego está Por Nro. de MESA [SALA1], poner S/N imprime factura, esto es por la mesa 999, 
+     ( barra ), que también se puede dar.
+     La jerarquía será:
+     - 1 Si tengo "NO imprime factura" -> NO pregunto por la mesa, NI por importe mínimo, NI por s/n en mesa.
+     - 2 Importe mínimo.
+     - 3 indicados S/N MESA.
+
+Para la impresion sobre determinadas AREAS de impresion, como COCINA, PIZZERIA, 
+   BARRA(s), etc, se gestiona desde el MANTENIMIENTO de AREAS, en el que se especifica
+   el NOMBRE del IMPRESOR y Su Puerto de salida, entre otros aspectos.
+
+   Ej.: Nombre asignado al impresor Puerto de Conexión
+        =========================== ==================
+        COCINA,                     COM1:
+        PIZZERIA,                   COM2:
+        BAR,                        LPT1:
+
+Por tanto a la hora de APARCAR una MESA, todos los PRODUCTOS que se hayan fichado nuevos,
+   se imprimiran automaticamente en las AREAS que previamente se le haya establecido 
+   a cada PRODUCTO, pudiendo el mismo estar implicado en varias AREAS al mismo tiempo.
+
+El campo que determina esto en el producto es [MAR].[AREA] y con respecto al mismo cabe destacar:
+
+*** Si el campo AREA es NULL, o si es=CERO (0), pero el area CERO no existe o bien
+    si AREA > 0 y de igual manera el AREA no esta creada, se ignora a la hora de imprimir TICKET. ***
+
+-------------------------------------------------------------------------------------
+>>>>>>>> CLAVES / NIVELES DE ACCESO
+-------------------------------------------------------------------------------------
+Los NIVELES de ACCESO como norma General estan comprendidos entre 0 y 5.
+Si NO estan creados, la aplicación lo hará al iniciarse con Valores 
+   por defecto para cada NIVEL 0 a 5. Cada Nivel tiene su propia Clave.
+Los Registros de NIVELES creados automaticamente, se genran como 
+   se muestra a continuación:
+
+[NIVELACCESO] [DESCRIPCION] [CLAVE] [ACCESOX] [ACCESOZ] [ACCESOAPPS] [ACCESOREFGEN] [BOTONMENOS] [BOTONPRECIO] [BOTONTARIFA]
+0             USR0          00      False     False     False        NADA           False        False         True
+1             USR1          01      False     False     False        NADA           False        False         True
+2             USR2          02      False     False     False        NADA           False        False         True
+3             ENCARGADO     03      True      True      False        0/1            True         True          True
+4             EL JEFE       04      True      True      True         0/1            True         True          True
+5             SUPER         05      True      True      True         TODAS          True         True          True
+
+El usuario podrá crear NUEVOS NIVELES si se necesitan.
+Los NIVELES creados por el USUARIO, serán siempre SUPERIOR a 5
+   y son personalizables en relación a acceso permitido/denegado 
+   a ciertas operaciones.
+   Ej.: BOTONMENOS, determina si esta permitido o NO 
+        restar en las UNIDADES de productos en una MESA.
+========================================================================
+Los niveles 0 a 5, quedan definidos de esta manera por defecto, 
+   y se pueden personalizar accesos a determinadas operaciones:
+
+   0 a 2  -> USRn,        NIVEL Bajo.
+       3  -> ENCARGADO    NIVEL Medio.
+       4  -> EL JEFE      NIVEL Alto.
+       5  -> SUPER,       NIVEL SUPERIOR, 
+	                      similar a claves de programadores.
+	   >5 -> Creados por el USUARIO, NIVEL personalizable.
+
+Cada NIVEL permite personalizar estas operaciones:
+
+	[ACCESOX]      [bit]          -> Crear X, S/N
+	[ACCESOZ]      [bit]          -> Crear Z, S/N
+	[ACCESOAPPS]   [bit]          -> Acceso a determinadas Aplicaciones.
+	[ACCESOREFGEN] [varchar](100) -> (Tabs. en Ref. Generales Accesibles)
+	[BOTONMENOS]   [bit]          -> Restar UNIDADES en productos.
+	[BOTONPRECIO]  [bit]          -> Modificar PVP.
+	[BOTONTARIFA]  [bit]          -> Modificar la Tarifa aplicada.
+
+Procedimientos / Funciones relacionados en la aplicación:
+  ActualizaClave       -> Desde Ref. Generales. (TCONA406)
+  CargaListaClaves
+  CreaClave
+  LeeClaves
+  LocalizaClave
+  MantenimientoClaves  -> Mant. de Claves. (TCONA420)
+  

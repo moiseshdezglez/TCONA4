@@ -1,0 +1,191 @@
+
+El proyecto se llamará TCONA4 y los formularios serán TCONA401, TCONA02, ETC...
+   WSAMESAS => TCONA401, CONA5 => TCONA402
+
+La cuestión es esta:
+   Para Cafeterías debería entrar directamente al "Form" de artículos y venta y desde aquí con un Botton - MESAS - 
+      poder acceder al form de las Mesas.
+   Y Para Restaurantes entrar siempre al Form de las mesas y en cuanto pongas una mesa ya accede a de venta.
+
+TCONA402 se compone de estos módulos:
+   1) Botones de familias
+   2) Botones de Productos
+   3) Calculadora
+   4) Pantalla donde se va reflejando la cuenta ( Que podría ser un Grid )
+   5) Botones de acciones y Cajas de Texto.
+================================================================================================================================
+
+   [ -- ] PERSONAS       *** -> Pdte.
+   [ -- ] DIVIDIR CUENTA *** -> Pdte.
+   [ OK ] CAMBIO MESAS
+
+   *** CONSULTA (sobre Tabla MESA/MESAH) ***
+
+       Pedir:
+          D./H. FECHA,  Nro Mesa (0=TODAS),  Nro Sala (0=TODAS), Artículo (0=TODOS), Vendedor (0=TODOS)
+
+       Opciones de salida:
+          x SALAS, x VENDEDOR,  x ARTICULO,  x FAMILIAS,  x Nro Z
+
+       Detalle: (GRID1)                                                         **= (Importe/Unid)
+          Fecha - HH/MM - Mesa - Factura - Arti. - Nombre Arti. - Unid. - Precio** - Importe - Sala
+
+       Detalle Resumen: (GRID2)        **= (Importe/Unid)
+          Cod - Nombre - Unid. - Precio** - Importe - Sala
+
+       X MESES: (GRID3) **( Opción Salida.: 0=Unid, 1=Importe, 2=Ambos )
+        ( 2 líneas )    **
+          [Unid]    :: Cod - Nombre - Enero ... Diciembre - TOTAL 
+          [Importe] :: Cod - Nombre - Enero ... Diciembre - TOTAL 
+
+   ***  Z  ***
+
+       [ OK ] Crear una tabla nueva [ZETA] con Las - Z - ( Histórico Zs ).
+       [ OK ] Y por Otro debemos grabar en el Histórico de Mesas en las dos tablas (MESACH/MESAH) este Numero de Z.
+       [ OK ] Cuando imprimes la Z, generas el Histórico (Tabla ZETA).
+       Tabla [ZETA], campos:
+           -ZETAKEY-
+               ZETACAJA       PIC 9(6)       COMP-3.
+               ZETAFECHA      PIC 9(8)       COMP-3.
+               ZETANUMERO     PIC 9(12)      COMP-3.
+           ZETAFECHADIA       PIC 9(8)       COMP-3.
+           ZETAIMPORTE        PIC S9(9)V9999 COMP-3.
+           ZETADTO            PIC S9(9)V9999 COMP-3.
+           ZETAIMPEFECTIVO    PIC S9(9)V9999 COMP-3.
+           ZETAIMPTARJETAS    PIC S9(9)V9999 COMP-3.
+           ZETAIMPGASTOS      PIC S9(9)V9999 COMP-3.
+           ZETAMINU           PIC 99.
+           ZETAHORA           PIC 99.
+
+
+[ OK ] OJO!!! En La KEY MESAC y MESA, Deberia estar COD de SALA, por si se repite un Cod. de MESA. !!!
+
+   *** COMBINADOS ***
+
+[ !! ] Area == MAR.AREA, Plato == Pendiente... (No van en Fabo)
+
+[ OK ] Integrar el Mant. de GRUPOS/COMBINADOS en TCONA4, Similar a WAMCOMBI. ( El campo Tipo ya NO se usará )
+[ OK ] En el Grid de TCONA402, Cuando el Articulo lleva COMBINADOS, en la descripcion mostrar
+       [ NOMBRE ARTICULO + 10 DIGITOS DEL NOMBRE DEL PRIMER COMBINADO ]
+[ OK ] Tener en cuenta Cuando es COMBINADOS + RACIONES ( PVP4 > 0 ).
+
+   *** TICKETS ***
+
+[ !! ] Poder conocer estado de la IMPRESORA.
+       (Controlar si esta ON/OFF o ver la posibilidad de Si Tiene Trabajos Pendientes)
+
+[ OK ] Impresion TICKET FACTURA
+
+[ -- ] Impresion COCINA
+       [ !! ] Se usa MAR.AREA, para definir las AREAS donde se deba imprimir TK Cocina.
+       [ OK ] Hacer un Mant. de Areas. (Segun mant. en CONA4), se debe integrar en Pantalla de Ref. Generales.
+       [ OK ] Crear una TABLA NUEVA para este mant.
+              [ !! ] Notas: 0=PIZZERIA, 1=BARRA, 4=COCINA
+
+   *** OTROS ***
+
+[ OK ] Las TABLAS Temporales y similares empiezan siempre con ZZ, 
+       [ZZ]Nombretabla, (TablaXZTemp = ZZTablaXZTemp)
+
+[ ?? ] Crear un Campo en REFERENCIAS para el orden de los combinados, tal como está en FAM. y Articulos. (Pendiente, Preguntar a Suso.)
+
+[ OK ] En TCONA4 revisar que si el campo imagen es ESPACIOS, no de error al no poder cargar una imagen.
+       (En principio para ARTICULOS, Revisar otros posibles casos=[OK])
+[ OK ] Grabar en MESAC %IGIC, IMPORTE IGIC.
+
+[ OK ] Terminar el Mant. de Familias/Grupos.
+[ OK ] Terminar el Mant. de Ref. Generales. Falta: 
+       [ OK ] - Teclas Arr/Abaj en Lineas TICKET.
+       [ OK ] - Terminar la Seleccion de colores en el GRID COLORES.
+       [ OK ] - Ya se graban TODOS los datos que se piden el el FORM.
+
+[ OK ] Botón NUEVO [ APLICACIONES ] en Form X,Z,Ref.Gen.
+[ OK ] Llamar a Otro FORM Tipo Menu de aplicaciones para Mant. Varios (SALAS/MESAS, Mant. COMBINADOS, VEND., ART., FAM., Etc.)
+
+[ OK ] Al COBRAR si el TICKET no ha sido impreso, lanzar a impresora.
+[ OK ] Para esto debe haber una MARCA de TK Impreso en MESAC.TKFACIMPRESO (Bit) 0/1.
+
+
+   *** VENDEDORES, PEDIR VENDEDOR ***
+
+[ OK ]    Un Campo En Ref. "Pide Vendedor" S/N.-> [OK]
+          N=Siempre Vendedor 1. 
+          [ OK ] En caso de Si que sea Form Principal o Modal y quitar los actuales Botones de vendedor.
+          [ OK ] Pedir Una Clave DE VENDEDOR. -> Se contrasta Contra un Campo en TABLA VENDEDORES.
+          [ OK ] *** OJO!!!! Controlar para Cuando los FORMULARIOS PRINCIPALES CAMBIEN *** 
+          [ OK ] Campo NUEVO en SALA1.VENDEDOR
+          [ OK ] Restringir el Acceso a Mesas solo al vendedor que la ha abierto.
+
+   *** PRODUCTOS VARIOS ***
+
+[ OK ] Al cargar Articulos en general, los PVP1 = 0 No salen.
+[ OK ] Tiene que haber 3 familias para VARIOS, y van en Ref. Gen. -> [OK]
+       ( Los art. de estas familias, SI se cargan cuando PVP1 = 0   )
+[ OK ] Al pedir Precio Cuando es VARIOS, al fichar el producto TOMA MAL PRECIO/UNIDADES, Corregir.
+
+
+[ OK ] X y Z, Sacar ticket: X= Resumen Ventas Agrupado x Familias. ( En. Ref. Gen CONTADORES para Z Y X )
+                               En la cabecera poner X: zzzzz9  en Grande.
+                               Detalle:
+                                   Nombre Familia  Cant. Tot Importe   Cant y Tot Imp=(Acum. x Fam.)
+                                   ============== ====== ===========    
+                            [OK] Z=X, Pero BORRA MESAC, MESA (- Pasar a HISTORICO -) 
+                                 En la cabecera poner Z: zzzzz9  en Grande.
+
+[ OK ] Para Z: 
+       [ OK ] Al hacer la Z, Si hay MESAS OCUPADAS (ABIERTAS).
+              [ OK ] Crear Campo CheckBox en Ref. Gen. para Permitir Z con mesas Abiertas S/N.
+              [ OK ] Implementar Perrmitir Z con mesas Abiertas S/N? Depende de dciho campo, 
+                     si Ref. Gen.=NO, mensaje en pantalla """"NO SE HACE Z""""
+       [ OK ] Impresion TK, Logo S/N.
+              [ OK ] Crear Campo Check en TCONA4, como en TICKETs Fras.
+       [ OK ] Impresion TK, Pie: TOTAL MESAS ABIERTAS, SACAR IGIC.
+       [ OK ] Fecha Dia(Sesion) y Fecha Z. Crear estos Campos en Ref. Gen. TCONA4.
+       [ OK ] Crear Campos en Ref. Gen. TCONA4.
+       [ OK ] Al hacer la Z, "Fecha Dia" pasa a  ==>>>> "Fecha Z".
+       [ OK ] Al iniciar la aplicación si MESAS esta vacío, En Ref. Gen. FECHA DIA == Fecha Dia Actual.
+       [ OK ] Ojo! al hacer Z, FACTURA=0, VENDEDOR=0 (SALA1).
+
+ 
+[ OK ] **Cuando cargo las mesas, Ojo ver ORDEN mesas al ser alfanumerico.   ORDER CAST( ... ... )
+         (Mirar en SALA1 que sea numerico...) - Para esto hay dos campos, uno ALFABETICO y Otro NUMERICO.
+
+   *** MEDIAS RACIONES ***
+
+[ OK ] Si El producto tiene tarifa 4 = PVP4 > 0, mostrar un FORM mas pequeño, centrado Con Teclado Y botones:  
+                          Botones.: [ 1 RACION ]  [ 1/2 RACION ]  [ PRECIO ]
+                                        PVP1            PVP4        PRECIO MANUAL
+[ OK ] En MESAC campo MEDIAPRECIO. -> Poner como Varchar (15). Mejor para concatenar Los Precios.
+[ OK ] Poner en Ref. Gen Campo "Separa Medias Raciones S/N" -> [OK]
+[ OK ] S=GRABAR EN MEDIAPRECIO DOS LINEAS / N= Una Sola Línea y MEDIAPRECIO = " " (Espacio).
+       * Si Separa Medias Raciones, Graba precio. (Al igual que en combinados, esto es clave y determina que son dos lineas.)
+
+[ OK ] OJO!!! Columna nueva para MEDIAPRECIO en GRID1 y GRIDZOOM.
+
+[ OK ] En Referencias CAMPO NUEVO, Tarifa Por Defecto PVP1 a PVP9. (Excepto PVP3 y 4)
+       En funcion de dicho CAMPO Aplicar tarifa como PRECIO estandar de la aplicación TPV.
+
+[ OK ] Error detectado: Botones <<< y >>> Para 
+       [ OK ] Articulos 
+       [ OK ] Familias 
+       Ojo con ORDEN Por (Codigo o Descripcion). Ahora por derecto SOLO esta por DESCRIP, 
+          y debe ordenar en Funcion del campo de Ref. Generales.
+
+
+==========   NOTAS SUSO:   ===================================================================================================================
+
+ GRID "01"  parte alta izquierda.
+   Código y Nombre del combinado Fichero FD TG.
+
+   Luego si pico DENTRO en este GRID01 en una línea determinada cargo el GRID "02"
+   Parte baja Izquierda con los productos que lo componen FDFABO1.
+
+   Y me sitúo en las cajas de texto del GRID02 para pedir/modificar/anular los artículos.
+   Facilitamos la entrada de datos con los GRIDS de la derecha. En la parte alta GRID "03"  
+      cargamos las familias y si picamos dentro de una línea de este GRID03 Cargamos los artículos que 
+      componen dicha familia en el GRID "04" parte baja derecha.
+    
+   Ahora la entrada de datos al GRID02 ( FDFABO1 ) puede ser mediante la caja de texto del  código o picando en el interior 
+      del  GRID04 que son los productos de una determinada familia.
+   Por lo que veo es así como lo tienes Montado………………..   
+   Te falta los 3 … con la lupa en la caja de texto del código de artículo para la consulta, ponla

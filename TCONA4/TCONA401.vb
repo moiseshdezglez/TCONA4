@@ -1,0 +1,1263 @@
+﻿'
+'   TPVS :: TCONA401 (WSAMESAS)
+'
+Imports System.Data.SqlClient
+Imports System.IO
+
+Public Class TCONA401
+    Private Sub TCONA401_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        '
+        Select Case e.KeyCode
+            Case Keys.Escape
+                AbandonaAplicacion()
+        End Select
+        e = Nothing
+        '
+    End Sub
+
+    Private Sub TCONA401_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        '
+        ' Carga del Formulario
+        '
+        LimpiaCajasTexto()
+        '
+        IniciaBotonesSalas()
+        IniciaBotonesMesas()
+        CargaSalas()
+        If HaySalas Then
+            CargaMesas(wCodSala)
+        End If
+        '
+        ' Pedir Vendedor?,  Depende de Ref. Generales
+        '
+        LeeTCONA4Cfg("General")
+        '
+        LabelNombreCaja.Text = wrLeeTCONA4.Tcona4_NOMBRECAJA
+        '
+        If wrLeeTCONA4.Tcona4_PIDEVENDEDOR.Trim = "False" Then
+            TextBoxOPC1.Text = "1"
+        Else
+            If FormularioInicial = 0 Then
+                PedirVendedor()
+            End If
+        End If
+        '
+    End Sub
+
+    Private Sub LimpiaCajasTexto()
+        '
+        TextBoxOPC1.Text = ""
+        TextBoxOPC2.Text = ""
+        TextBoxOPC3.Text = ""
+        VisorTeclado.Text = ""
+        '
+    End Sub
+
+    Private Sub EstableceBotonVendedores(IndiceVENDE As Integer, CodVENDE As String, NomVENDE As String)
+        '
+        '   Se Activan aqui los botones para los VENDEDORES.
+        '
+        For Each wControl In Me.Controls
+            If TypeOf wControl Is Button Then
+                NombreBoton = CType(wControl, Button).Name
+                If Mid$(NombreBoton, 1, 11) = "ButtonVende" AndAlso Mid$(NombreBoton, 12, 2) = IndiceVENDE.ToString Then
+                    With wControl
+                        .Text = NomVENDE
+                        .Tag = CodVENDE
+                        .Enabled = True
+                        .BackColor = WcolBtnVendedoresB
+                        .ForeColor = WcolBtnVendedoresF
+                    End With
+                End If
+            End If
+        Next
+        '
+    End Sub
+    Private Sub IniciaBotonesSalas()
+        '
+        '   Manejamos la coleccion de Controles "Botones Salas"...
+        '
+        For Each wControl In Me.Controls
+            If TypeOf wControl Is Button Then
+                NombreBoton = CType(wControl, Button).Name
+                If Mid$(NombreBoton, 1, 10) = "ButtonSala" Then
+                    With wControl
+                        .Text = ""
+                        .Enabled = False
+                        .BackgroundImage = Nothing
+                        .BackColor = WcolDefFondo
+                    End With
+                End If
+            End If
+        Next
+        '
+    End Sub
+
+    Private Sub IniciaBotonesMesas()
+        '
+        '   Manejamos la coleccion de Controles "Botones Mesas"...
+        '
+        For Each wControl In Me.Controls
+            If TypeOf wControl Is Button Then
+                NombreBoton = CType(wControl, Button).Name
+                If Mid$(NombreBoton, 1, 10) = "ButtonMesa" Then
+                    With wControl
+                        .Text = ""
+                        .Enabled = False
+                        .BackgroundImage = Nothing
+                        .BackColor = WcolDefFondo
+                    End With
+                End If
+            End If
+        Next
+        '
+    End Sub
+
+    Private Sub CargaSalas()
+        '
+        '   Botones para las SALAS...
+        '   wCaja es GLOBAL y se define su valor en Tcona4Main
+        '
+        Dim conexion As New SqlConnection
+        conexion.ConnectionString = SQL_CadenaConexion
+        conexion.Open()
+        '
+        Dim NumBTnSALAS As Integer = 6 : Dim IndBTnSALAS As Integer = 0
+        HaySalas = False : wCodSala = ""
+        '
+        ' Cargar TODAS las SALAS, Incluida la 999 que se usará para MESAS SEPARADAS....
+        '
+        Dim queryString As String = "SELECT * FROM [SALA] WHERE "
+        queryString = queryString & "[SALA].[CAJA]=" & wCaja
+        'queryString = queryString & " AND [SALA].[CODIGO] <> 999 "
+        queryString = queryString & " ORDER BY CAST([SALA].[CODIGO] AS INTEGER) ASC"
+        '
+        Dim dt As DataSet = New DataSet
+        Dim MiFileExist As Boolean
+        '
+        Try
+            TblTPVS = New SqlDataAdapter(queryString, conexion)
+            TblTPVS.Fill(dt, "SALA")
+            '
+            '   Hasta SEIS Salas
+            '
+            If dt.Tables("SALA").Rows.Count > 0 Then
+                Dim pRow As DataRow
+                For Each pRow In dt.Tables("SALA").Rows
+                    IndBTnSALAS += 1
+                    If IndBTnSALAS > NumBTnSALAS Then
+                        Exit For
+                    End If
+                    Select Case IndBTnSALAS
+                        Case 1
+                            ButtonSala1.Tag = pRow("CODIGO").ToString()
+                            ButtonSala1.Text = pRow("NOMBRE").ToString()
+                            wCodSala = pRow("CODIGO").ToString()
+                            LabelNombreSala.Text = ButtonSala1.Text.ToString.Trim
+                            ButtonSala1.BackColor = Color.FromArgb(CInt(pRow("COLORFONDO")))
+                            ButtonSala1.ForeColor = Color.FromArgb(CInt(pRow("COLORTEXTO")))
+                            If Len(pRow("LOGO").ToString().Trim) > 0 Then
+                                MiFileExist = My.Computer.FileSystem.FileExists(pRow("LOGO").ToString().Trim)
+                                If MiFileExist = True Then
+                                    ButtonSala1.Image = Image.FromFile(pRow("LOGO").ToString().Trim)
+                                    ButtonSala1.TextAlign = ContentAlignment.BottomCenter
+                                Else
+                                    ButtonSala1.Image = Nothing
+                                    ButtonSala1.TextAlign = ContentAlignment.MiddleCenter
+                                End If
+                            Else
+                                ButtonSala1.Image = Nothing
+                                ButtonSala1.TextAlign = ContentAlignment.MiddleCenter
+                            End If
+                            ButtonSala1.Enabled = True
+                            HaySalas = True
+                        Case 2
+                            ButtonSala2.Tag = pRow("CODIGO").ToString()
+                            ButtonSala2.Text = pRow("NOMBRE").ToString()
+                            ButtonSala2.BackColor = Color.FromArgb(CInt(pRow("COLORFONDO")))
+                            ButtonSala2.ForeColor = Color.FromArgb(CInt(pRow("COLORTEXTO")))
+                            If Len(pRow("LOGO").ToString().Trim) > 0 Then
+                                MiFileExist = My.Computer.FileSystem.FileExists(pRow("LOGO").ToString().Trim)
+                                If MiFileExist = True Then
+                                    ButtonSala2.Image = Image.FromFile(pRow("LOGO").ToString().Trim)
+                                    ButtonSala2.TextAlign = ContentAlignment.BottomCenter
+                                Else
+                                    ButtonSala2.Image = Nothing
+                                    ButtonSala2.TextAlign = ContentAlignment.MiddleCenter
+                                End If
+                            Else
+                                ButtonSala2.Image = Nothing
+                                ButtonSala2.TextAlign = ContentAlignment.MiddleCenter
+                            End If
+                            ButtonSala2.Enabled = True
+                        Case 3
+                            ButtonSala3.Tag = pRow("CODIGO").ToString()
+                            ButtonSala3.Text = pRow("NOMBRE").ToString()
+                            ButtonSala3.BackColor = Color.FromArgb(CInt(pRow("COLORFONDO")))
+                            ButtonSala3.ForeColor = Color.FromArgb(CInt(pRow("COLORTEXTO")))
+                            If Len(pRow("LOGO").ToString().Trim) > 0 Then
+                                MiFileExist = My.Computer.FileSystem.FileExists(pRow("LOGO").ToString().Trim)
+                                If MiFileExist = True Then
+                                    ButtonSala3.Image = Image.FromFile(pRow("LOGO").ToString().Trim)
+                                    ButtonSala3.TextAlign = ContentAlignment.BottomCenter
+                                Else
+                                    ButtonSala3.Image = Nothing
+                                    ButtonSala3.TextAlign = ContentAlignment.MiddleCenter
+                                End If
+                            Else
+                                ButtonSala3.Image = Nothing
+                                ButtonSala3.TextAlign = ContentAlignment.MiddleCenter
+                            End If
+                            ButtonSala3.Enabled = True
+                        Case 4
+                            ButtonSala4.Tag = pRow("CODIGO").ToString()
+                            ButtonSala4.Text = pRow("NOMBRE").ToString()
+                            ButtonSala4.BackColor = Color.FromArgb(CInt(pRow("COLORFONDO")))
+                            ButtonSala4.ForeColor = Color.FromArgb(CInt(pRow("COLORTEXTO")))
+                            If Len(pRow("LOGO").ToString().Trim) > 0 Then
+                                MiFileExist = My.Computer.FileSystem.FileExists(pRow("LOGO").ToString().Trim)
+                                If MiFileExist = True Then
+                                    ButtonSala4.Image = Image.FromFile(pRow("LOGO").ToString().Trim)
+                                    ButtonSala4.TextAlign = ContentAlignment.BottomCenter
+                                Else
+                                    ButtonSala4.Image = Nothing
+                                    ButtonSala4.TextAlign = ContentAlignment.MiddleCenter
+                                End If
+                            Else
+                                ButtonSala4.Image = Nothing
+                                ButtonSala4.TextAlign = ContentAlignment.MiddleCenter
+                            End If
+                            ButtonSala4.Enabled = True
+                        Case 5
+                            ButtonSala5.Tag = pRow("CODIGO").ToString()
+                            ButtonSala5.Text = pRow("NOMBRE").ToString()
+                            ButtonSala5.BackColor = Color.FromArgb(CInt(pRow("COLORFONDO")))
+                            ButtonSala5.ForeColor = Color.FromArgb(CInt(pRow("COLORTEXTO")))
+                            If Len(pRow("LOGO").ToString().Trim) > 0 Then
+                                MiFileExist = My.Computer.FileSystem.FileExists(pRow("LOGO").ToString().Trim)
+                                If MiFileExist = True Then
+                                    ButtonSala5.Image = Image.FromFile(pRow("LOGO").ToString().Trim)
+                                    ButtonSala5.TextAlign = ContentAlignment.BottomCenter
+                                Else
+                                    ButtonSala5.Image = Nothing
+                                    ButtonSala5.TextAlign = ContentAlignment.MiddleCenter
+                                End If
+                            Else
+                                ButtonSala5.Image = Nothing
+                                ButtonSala5.TextAlign = ContentAlignment.MiddleCenter
+                            End If
+                            ButtonSala5.Enabled = True
+                        Case 6
+                            ButtonSala6.Tag = pRow("CODIGO").ToString()
+                            ButtonSala6.Text = pRow("NOMBRE").ToString()
+                            ButtonSala6.BackColor = Color.FromArgb(CInt(pRow("COLORFONDO")))
+                            ButtonSala6.ForeColor = Color.FromArgb(CInt(pRow("COLORTEXTO")))
+                            If Len(pRow("LOGO").ToString().Trim) > 0 Then
+                                MiFileExist = My.Computer.FileSystem.FileExists(pRow("LOGO").ToString().Trim)
+                                If MiFileExist = True Then
+                                    ButtonSala6.Image = Image.FromFile(pRow("LOGO").ToString().Trim)
+                                    ButtonSala6.TextAlign = ContentAlignment.BottomCenter
+                                Else
+                                    ButtonSala6.Image = Nothing
+                                    ButtonSala6.TextAlign = ContentAlignment.MiddleCenter
+                                End If
+                            Else
+                                ButtonSala6.Image = Nothing
+                                ButtonSala6.TextAlign = ContentAlignment.MiddleCenter
+                            End If
+                            ButtonSala6.Enabled = True
+                    End Select
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox("ERROR: " & ex.Source & vbCrLf & ex.Message,
+                                MsgBoxStyle.Exclamation Or
+                                MsgBoxStyle.OkOnly,
+                                "Comprobar tabla [SALA]")
+        End Try
+        conexion.Close()
+        dt.Dispose()
+        conexion.Dispose()
+        '
+    End Sub
+
+    Private Sub CargaMesas(wCrgCodSala As String)
+        '
+        Dim conexion As New SqlConnection
+        conexion.ConnectionString = SQL_CadenaConexion
+        conexion.Open()
+        '
+        Dim NumBTnMESAS As Integer = 42 : Dim IndBTnMESAS As Integer = 0
+        Dim Wnfac As Integer = 0
+        '
+        ' Si Mesas de la SALA=999 (Separadas), evitar MESA=999
+        ' Las Mesas Separadas pueden llevar Guión "-", en ese caso evitar
+        ' conversiones y compraraciones INTEGER
+        '
+        Dim queryString As String = ""
+        If wCrgCodSala.Trim = "999" Then
+            queryString = "SELECT * FROM [SALA1] WHERE "
+            queryString = queryString & "[SALA1].[CAJA]=" & wCaja & " AND "
+            queryString = queryString & "[SALA1].[CODIGO]='" & wCrgCodSala & "' AND "
+            queryString = queryString & "[SALA1].[MESA] <> '999' "
+            queryString = queryString & "ORDER BY [SALA1].[MESA] "
+        Else
+            queryString = "SELECT * FROM [SALA1] WHERE "
+            queryString = queryString & "[SALA1].[CAJA]=" & wCaja & " AND "
+            queryString = queryString & "[SALA1].[CODIGO]='" & wCrgCodSala & "' AND "
+            queryString = queryString & "[SALA1].[MESA] <> '999' "
+            queryString = queryString & "ORDER BY CAST([SALA1].[MESA] AS INTEGER) ASC"
+        End If
+        '
+        Dim dt As DataSet = New DataSet
+        Try
+            TblTPVS = New SqlDataAdapter(queryString, conexion)
+            TblTPVS.Fill(dt, "SALA1")
+            '
+            If dt.Tables("SALA1").Rows.Count > 0 Then
+                Dim pRow As DataRow
+                For Each pRow In dt.Tables("SALA1").Rows
+                    '
+                    ' Num. Factura :
+                    '   -NULL-, 0 :: LIBRE
+                    '   > 0      :: OCUPADA
+                    '
+                    If IsDBNull(pRow("FACTURA")) Then
+                        Wnfac = 0
+                    Else
+                        Wnfac = CInt(pRow("FACTURA"))
+                    End If
+                    '
+                    ' Para SALA=999 (Mesas Separadas)
+                    ' Mostramos Solo las MESAS OCUPADAS: FACTURA > 0
+                    '
+                    If pRow("CODIGO").ToString() = "999" Then
+                        If Wnfac > 0 Then
+                            IndBTnMESAS += 1
+                            EstableceBotonMesa(IndBTnMESAS,
+                                       pRow("MESA").ToString(),
+                                       pRow("LOGO").ToString(),
+                                       Wnfac)
+                        End If
+                    Else
+                        IndBTnMESAS += 1
+                        EstableceBotonMesa(IndBTnMESAS,
+                                       pRow("MESA").ToString(),
+                                       pRow("LOGO").ToString(),
+                                       Wnfac)
+                    End If
+                    If IndBTnMESAS > NumBTnMESAS Then
+                        Exit For
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox("ERROR: " & ex.Source & vbCrLf & ex.Message,
+                                MsgBoxStyle.Exclamation Or
+                                MsgBoxStyle.OkOnly,
+                                "Comprobar tabla [SALA1]")
+        End Try
+        conexion.Close()
+        dt.Dispose()
+        conexion.Dispose()
+        '
+    End Sub
+    Private Sub EstableceBotonMesa(IndiceMesa As Integer, CodMesa As String,
+                                   LogoMesa As String, NumFac As Integer)
+        '
+        '   Se Activan aqui los botones para las mesas existentes de una SALA determinada.
+        '
+        Dim wImpo As Double
+        For Each wControl In Me.Controls
+            If TypeOf wControl Is Button Then
+                NombreBoton = CType(wControl, Button).Name
+                If Mid$(NombreBoton, 1, 10) = "ButtonMesa" AndAlso Mid$(NombreBoton, 11, 2) = IndiceMesa.ToString Then
+                    With wControl
+                        '
+                        ' Texto a reflejar en la MESA.
+                        '  LIBRES   = Cod. MESA  
+                        '  OCUPADAS = Cod. MESA / IMPORTE Actual...
+                        '
+                        .Text = CodMesa
+                        '
+                        ' ... IMPORTE ...
+                        If NumFac > 0 Then
+                            wFacturaN = CInt(NumFac)
+                            If ExisteRegistroMESAC(CodMesa, 1) Then
+                                wImpo = CDbl(wrLeeMESAC.Mesac_IMPORTE)
+                                .Text += vbCrLf & wImpo.ToString(fmtUnid).Replace(",", ".")
+                                '
+                                ' Experimental Nombre Vendedor en
+                                ' Botón MESA, (Primeros 5 Caracteres)
+                                ' SOLO para OCUPADAS !!!
+                                '
+                                If LeeVendedor(wrLeeMESAC.Mesac_VENDEDOR) = True Then
+                                    .Text += vbCrLf & Mid(wrLeeCODNOM.NOMBRE.Trim, 1, 7)
+                                End If
+                            End If
+                        End If
+                        '
+                        .Enabled = True
+                        If Len(LogoMesa.Trim) > 0 Then
+                            Dim MiFileExist As Boolean
+                            MiFileExist = My.Computer.FileSystem.FileExists(LogoMesa.Trim)
+                            If MiFileExist = True Then
+                                .BackgroundImage = Image.FromFile(LogoMesa.Trim)
+                                .BackgroundImageLayout = ImageLayout.Stretch
+                                CType(wControl, Button).TextAlign = ContentAlignment.BottomCenter
+                            Else
+                                .BackgroundImage = Nothing
+                                CType(wControl, Button).TextAlign = ContentAlignment.MiddleCenter
+                            End If
+                        Else
+                            .BackgroundImage = Nothing
+                            CType(wControl, Button).TextAlign = ContentAlignment.MiddleCenter
+                        End If
+                    End With
+                End If
+            End If
+        Next
+        '
+    End Sub
+    Private Sub ColorFondoForm()
+        '
+        '   Seleccion de colores
+        '
+        With ColorDialog1
+            .Color = Color.White
+            If (ColorDialog1.ShowDialog() = DialogResult.OK) Then
+                Me.BackColor = .Color
+            End If
+        End With
+        '
+    End Sub
+
+    Private Sub ButtonColSel_Click(sender As Object, e As EventArgs) Handles ButtonColSel.Click
+        ColorFondoForm()
+    End Sub
+
+    Private Sub ButtonCol1_Click(sender As Object, e As EventArgs) Handles ButtonCol1.Click
+        Me.BackColor = ButtonCol1.BackColor
+    End Sub
+
+    Private Sub ButtonCol2_Click(sender As Object, e As EventArgs) Handles ButtonCol2.Click
+        Me.BackColor = ButtonCol2.BackColor
+    End Sub
+
+    Private Sub ButtonCol3_Click(sender As Object, e As EventArgs) Handles ButtonCol3.Click
+        Me.BackColor = ButtonCol3.BackColor
+    End Sub
+
+    Private Sub ButtonCol4_Click(sender As Object, e As EventArgs) Handles ButtonCol4.Click
+        Me.BackColor = ButtonCol4.BackColor
+    End Sub
+
+    Private Sub ButtonCol5_Click(sender As Object, e As EventArgs) Handles ButtonCol5.Click
+        Me.BackColor = ButtonCol5.BackColor
+    End Sub
+
+    Private Sub TextBoxClaveModi_TextChanged(sender As Object, e As EventArgs) Handles TextBoxClaveModi.TextChanged
+        '
+        '   Clave para modificaciones
+        '
+        ClaveModificar = TextBoxClaveModi.Text
+        If ClaveModificar = PassTRIVALLE(0) Or ClaveModificar = PassTRIVALLE(1) Then
+            ButtonCol1.Enabled = True
+            ButtonCol2.Enabled = True
+            ButtonCol3.Enabled = True
+            ButtonCol4.Enabled = True
+            ButtonCol5.Enabled = True
+            ButtonColSel.Enabled = True
+            ButtonCabecera.Enabled = True
+            Label1.Text = "Modo Modificación.: -ON-"
+        Else
+            ButtonCol1.Enabled = False
+            ButtonCol2.Enabled = False
+            ButtonCol3.Enabled = False
+            ButtonCol4.Enabled = False
+            ButtonCol5.Enabled = False
+            ButtonColSel.Enabled = False
+            ButtonCabecera.Enabled = False
+            Label1.Text = "Modo Modificación.: -off-"
+        End If
+        '
+    End Sub
+
+    Private Sub ButtonClsCM_Click(sender As Object, e As EventArgs) Handles ButtonClsCM.Click
+        TextBoxClaveModi.Text = ""
+    End Sub
+
+    Private Sub ButtonClr_Click(sender As Object, e As EventArgs) Handles ButtonClr.Click
+        SwFoco_401 = 0
+        TextoCalculadora = ""
+        VisorTeclado.Text = TextoCalculadora
+        TextBoxClaveModi.Text = TextoCalculadora
+    End Sub
+
+    Private Sub ButtonSala1_Click(sender As Object, e As EventArgs) Handles ButtonSala1.Click
+        '
+        IniciaBotonesMesas()
+        wCodSala = ButtonSala1.Tag.ToString.Trim
+        LabelNombreSala.Text = ButtonSala1.Text.ToString.Trim
+        CargaMesas(wCodSala)
+        '
+    End Sub
+    Private Sub ButtonSala2_Click(sender As Object, e As EventArgs) Handles ButtonSala2.Click
+        '
+        IniciaBotonesMesas()
+        wCodSala = ButtonSala2.Tag.ToString.Trim
+        LabelNombreSala.Text = ButtonSala2.Text.ToString.Trim
+        CargaMesas(wCodSala)
+        '
+    End Sub
+    Private Sub ButtonSala3_Click(sender As Object, e As EventArgs) Handles ButtonSala3.Click
+        '
+        IniciaBotonesMesas()
+        wCodSala = ButtonSala3.Tag.ToString.Trim
+        LabelNombreSala.Text = ButtonSala3.Text.ToString.Trim
+        CargaMesas(wCodSala)
+        '
+    End Sub
+
+    Private Sub ButtonSala4_Click(sender As Object, e As EventArgs) Handles ButtonSala4.Click
+        '
+        IniciaBotonesMesas()
+        wCodSala = ButtonSala4.Tag.ToString.Trim
+        LabelNombreSala.Text = ButtonSala4.Text.ToString.Trim
+        CargaMesas(wCodSala)
+        '
+    End Sub
+
+    Private Sub ButtonSala5_Click(sender As Object, e As EventArgs) Handles ButtonSala5.Click
+        '
+        IniciaBotonesMesas()
+        wCodSala = ButtonSala5.Tag.ToString.Trim
+        LabelNombreSala.Text = ButtonSala5.Text.ToString.Trim
+        CargaMesas(wCodSala)
+        '
+    End Sub
+    Private Sub ButtonSala6_Click(sender As Object, e As EventArgs) Handles ButtonSala6.Click
+        '
+        IniciaBotonesMesas()
+        wCodSala = ButtonSala6.Tag.ToString.Trim
+        LabelNombreSala.Text = ButtonSala6.Text.ToString.Trim
+        CargaMesas(wCodSala)
+        '
+    End Sub
+
+    Private Sub ButtonMesa1_Click(sender As Object, e As EventArgs) _
+        Handles ButtonMesa1.Click, ButtonMesa9.Click, ButtonMesa8.Click,
+        ButtonMesa7.Click, ButtonMesa6.Click, ButtonMesa5.Click,
+        ButtonMesa42.Click, ButtonMesa41.Click, ButtonMesa40.Click,
+        ButtonMesa4.Click, ButtonMesa39.Click, ButtonMesa38.Click,
+        ButtonMesa37.Click, ButtonMesa36.Click, ButtonMesa35.Click,
+        ButtonMesa34.Click, ButtonMesa33.Click, ButtonMesa32.Click,
+        ButtonMesa31.Click, ButtonMesa30.Click, ButtonMesa3.Click,
+        ButtonMesa29.Click, ButtonMesa28.Click, ButtonMesa27.Click,
+        ButtonMesa26.Click, ButtonMesa25.Click, ButtonMesa24.Click,
+        ButtonMesa23.Click, ButtonMesa22.Click, ButtonMesa21.Click,
+        ButtonMesa20.Click, ButtonMesa2.Click, ButtonMesa19.Click,
+        ButtonMesa18.Click, ButtonMesa17.Click, ButtonMesa16.Click,
+        ButtonMesa15.Click, ButtonMesa14.Click, ButtonMesa13.Click,
+        ButtonMesa12.Click, ButtonMesa11.Click, ButtonMesa10.Click
+        '
+        '   Evento CLICK en Botones MESAS
+        '
+        HazClicMesas(CType(sender, Button))
+        '
+    End Sub
+
+    Private Sub HazClicMesas(wMibotonMesa As Button)
+        '
+        '   Acciones del Evento CLICK para los Botones MESAS
+        '   Lee datos de la mesa, Comprueba Nro. FACTURA
+        '     Si es=0 o -NULL-, Tiramos del Contador de factura del Referencias
+        '
+        Select Case FormularioInicial
+            Case 0
+                If Me.TextBoxOPC1.Text.ToString.Trim.Length = 0 Then
+                    msg = "SELECCIONE CAMARERO."
+                    style = MsgBoxStyle.Information Or
+                    MsgBoxStyle.OkOnly
+                    title = "Indique un código de camarero."
+                    MsgBox(msg, style, title)
+                    Me.TextBoxOPC1.Focus()
+                    Exit Sub
+                End If
+            Case 1
+                Me.TextBoxOPC1.Text = "1"
+        End Select
+        '
+        Dim SplitMesa() As String
+        SplitMesa = wMibotonMesa.Text.ToString.Split(ControlChars.CrLf.ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+        If LeeMesa_SALA1(wCodSala, SplitMesa(0).Trim, 0) = True Then
+            '
+            ' Comprobar el vendedor de apertura de mesa...
+            '
+            If wVendedorApertura > 0 Then
+                If CInt(Me.TextBoxOPC1.Text.Trim) <> wVendedorApertura Then
+                    msg = "Mesa asignada a otro camarero."
+                    style = MsgBoxStyle.Information Or
+                MsgBoxStyle.OkOnly
+                    title = "SELECCIONE CAMARERO."
+                    MsgBox(msg, style, title)
+                    Exit Sub
+                End If
+            End If
+            '
+            Me.Hide()
+            SwAparca = True
+            SwEntraMesa = True
+            With MyFrm2
+                .Visible = False
+                wCodMesa = SplitMesa(0).Trim
+                .TextBoxNumMesa.Text = SplitMesa(0).Trim
+                .TextBoxFactura.Text = wFacturaN.ToString
+                .TextBoxCamarero.Text = Me.TextBoxOPC1.Text
+                '
+                ' Fecha / Hora Apartura
+                '
+                If wrLeeSALA1.Sala1_HORAAPAERTURA.Trim.Length = 0 Then
+                    wrLeeSALA1.Sala1_HORAAPAERTURA = Format(Date.Now.ToShortTimeString, "HH:MM:SS")
+                End If
+                If wrLeeSALA1.Sala1_FECAPERTURA.Trim.Length > 0 Then
+                    .LabelFecAper.Text = "Aper.: " & Format(CDate(wrLeeSALA1.Sala1_FECAPERTURA.Trim), "dd/MM/yy")
+                    Dim dtTime As DateTime = Convert.ToDateTime(wrLeeSALA1.Sala1_HORAAPAERTURA.Trim)
+                    .LabelFecAper.Text &= " " & Format(dtTime, "HH:mm")
+                Else
+                    .LabelFecAper.Text = "Aper.: " & Format(Date.Now.ToShortDateString, "dd/MM/yy")
+                    .LabelFecAper.Text &= " " & Format(Date.Now.ToShortTimeString, "HH:MM:SS")
+                End If
+                '
+                ' Pax
+                '
+                .TextBoxPax.Text = wrLeeSALA1.Sala1_PAX.ToString.Trim
+                '
+                ' Recogemos determiandos datos de la CEABECERA [MESAC].
+                ' Imprescindible iniciar a valores por defecto.
+                '
+                With MyFrm2
+                    .LblDatosPedidoDomi.Text = "" : .LabelNomCliente.Text = ""
+                    .ButtonFACTUA4.Enabled = False
+                End With
+                '
+                wrLeeMESAC.Mesac_TLFPEDIDOS = "" : WMesacTlfPed = ""
+                wrLeeMESAC.Mesac_NIFCIF = "" : WMesacNIFCIF = ""
+                wrLeeMESAC.Mesac_CLIENTE = 430000000 : wCliente = 430000000
+                '
+                If ExisteRegistroMESAC(SplitMesa(0).Trim, 1) = True Then
+                    '
+                    ' Datos de un Pedido a Domicilio si la mesa lo tiene asignado.
+                    '
+                    If Not IsDBNull(wrLeeMESAC.Mesac_TLFPEDIDOS) Then
+                        If wrLeeMESAC.Mesac_TLFPEDIDOS.Trim.Length > 0 Then
+                            If LeePEDCLIE(wrLeeMESAC.Mesac_TLFPEDIDOS.Trim) = True Then
+                                With MyFrm2
+                                    .LblDatosPedidoDomi.Text = wrLeeMESAC.Mesac_TLFPEDIDOS & " - " & wrLeePEDCLIE.NOMBRE
+                                    .LblDatosPedidoDomi.ForeColor = Color.Yellow
+                                End With
+                                WMesacTlfPed = wrLeeMESAC.Mesac_TLFPEDIDOS.Trim
+                            End If
+                        End If
+                    End If
+                    '
+                    ' Datos de un Cliente Contado si la mesa lo tiene asignado.
+                    '
+                    If Not IsDBNull(wrLeeMESAC.Mesac_NIFCIF) Then
+                        If wrLeeMESAC.Mesac_NIFCIF.Trim.Length > 0 Then
+                            If LeeClienteCONTA(wrLeeMESAC.Mesac_NIFCIF.Trim) = True Then
+                                With MyFrm2
+                                    .LabelNomCliente.Text = wrLeeCLIEMCO.NOMBRE
+                                    .LabelNomCliente.ForeColor = Color.Yellow
+                                    .ButtonFACTUA4.Enabled = True
+                                End With
+                                WMesacNIFCIF = wrLeeMESAC.Mesac_NIFCIF.Trim
+                                wCliente = 430000000
+                            End If
+                        End If
+                    End If
+                End If
+                '
+                ' Datos de un Cliente Crédito si la mesa lo tiene asignado.
+                '
+                If Not IsDBNull(wrLeeMESAC.Mesac_CLIENTE) Then
+                    If wrLeeMESAC.Mesac_CLIENTE > 0 And
+                       wrLeeMESAC.Mesac_CLIENTE <> 430000000 Then
+                        '
+                        If LeeClienteMCO(wrLeeMESAC.Mesac_CLIENTE) = True Then
+                            With MyFrm2
+                                .LabelNomCliente.Text = wrLeeCLIEMCO.NOMBRE
+                                .LabelNomCliente.ForeColor = Color.Cyan
+                                .ButtonFACTUA4.Enabled = True
+                            End With
+                            wCliente = wrLeeMESAC.Mesac_CLIENTE
+                            WMesacNIFCIF = ""
+                        End If
+                    End If
+                End If
+                '
+                .Show()
+                CargaListaMESAs(SplitMesa(0).Trim)
+                .Visible = True
+            End With
+        End If
+        '
+    End Sub
+
+    Private Sub TCONA401_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        '
+        ' Al Activar el formulario, en funcion de si estamos APARCANDO / COBRANDO
+        '  se refresca la INFORMACION en los BOTONES MESAS...
+        '
+        ' Si estamos en FORM MESAS OCUPADAS, y abrimos una MESA, evitamos
+        '  este procedimiento.
+        '
+        ' BARRA 1 / BARRA 2
+        ' Al inicicialzar la TARIFA de barras a CERO
+        '  se indica que no trabajaremos en BARRAS 1 / 2 
+        '
+        wTarifaBarra = 0
+        '
+        If FormOcuON Then
+            FormOcuON = False
+            Exit Sub
+        End If
+        '
+        SwFoco_401 = 0
+        VisorTeclado.Text = ""
+        VisorTeclado.Focus()
+        '
+        ' Regresamos depues de Aparcar.
+        '
+        If SwAparca = True Then
+            SwAparca = False ' <---- Muy IMPOTANTE !!!
+            IniciaBotonesMesas()
+            If HaySalas Then
+                CargaMesas(wCodSala)
+                '
+                ' Resaltamos el Boton de la Sala Actual...
+                '
+                With ButtonSala1
+                    If .Enabled = True Then
+                        If .Tag.ToString = wCodSala Then
+                            .Select()
+                        End If
+                    End If
+                End With
+                With ButtonSala1
+                    If .Enabled = True Then
+                        If .Tag.ToString = wCodSala Then
+                            .Select()
+                        End If
+                    End If
+                End With
+                With ButtonSala2
+                    If .Enabled = True Then
+                        If .Tag.ToString = wCodSala Then
+                            .Select()
+                        End If
+                    End If
+                End With
+                With ButtonSala3
+                    If .Enabled = True Then
+                        If .Tag.ToString = wCodSala Then
+                            .Select()
+                        End If
+                    End If
+                End With
+                With ButtonSala4
+                    If .Enabled = True Then
+                        If .Tag.ToString = wCodSala Then
+                            .Select()
+                        End If
+                    End If
+                End With
+                With ButtonSala5
+                    If .Enabled = True Then
+                        If .Tag.ToString = wCodSala Then
+                            .Select()
+                        End If
+                    End If
+                End With
+                With ButtonSala6
+                    If .Enabled = True Then
+                        If .Tag.ToString = wCodSala Then
+                            .Select()
+                        End If
+                    End If
+                End With
+            End If
+            '
+            ' Pedir Vendedor?,  Depende de Ref. Generales
+            '
+            LeeTCONA4Cfg("General")
+            If wrLeeTCONA4.Tcona4_PIDEVENDEDOR.Trim = "False" Then
+                TextBoxOPC1.Text = "1"
+                If LeeVendedor(CInt(TextBoxOPC1.Text.Trim)) = True Then
+                    TextBoxNomCamarero.Text = wrLeeCODNOM.NOMBRE
+                Else
+                    TextBoxNomCamarero.Text = " No leido!"
+                End If
+                '
+                ' Comprobamos Claves a NIVEL Vendedores.
+                ' Tabla [CLAVES]
+                '
+                If LeeVendedor(1) = True Then
+                    LeeClaves(wrLeeCODNOM.NIVELACCESO)
+                Else
+                    wrLeeCODNOM.NIVELACCESO = 0
+                End If
+                '
+                ' > Encargado
+                '
+                If wrLeeCODNOM.NIVELACCESO > 4 Then
+                    ButtonCabecera.Enabled = True
+                Else
+                    ButtonCabecera.Enabled = False
+                End If
+            Else
+                '
+                ' Si este es el Formulario Inicial
+                '
+                If FormularioInicial = 0 Then
+                    PedirVendedor()
+                End If
+            End If
+            '
+        End If
+        '
+        ' Regresamos depues de hacer un COBRO
+        '
+        If SwCobrando = True Then
+            SwCobrando = False ' <---- Muy IMPOTANTE !!!
+            IniciaBotonesMesas()
+            If HaySalas Then
+                CargaMesas(wCodSala)
+            End If
+        End If
+        '
+        ' Regresamos Cuando se Hace la Z.
+        ' No interesa refrescar Botonera Salas.
+        '
+        If SwZeta = True Then
+            SwZeta = False ' <---- Muy IMPOTANTE !!!
+            IniciaBotonesMesas()
+            If HaySalas Then
+                CargaMesas(wCodSala)
+            End If
+        End If
+        '
+        ' Regresamos Cuando se Accede a WTPMESAS.
+        '    Por si se han modificados colores de SALAS o MESAS
+        '    refrescar las botoneras SALAS y MESAS.
+        '
+        If SwModSala = True Then
+            SwModSala = False ' <---- Muy IMPOTANTE !!!
+            CargaSalas()
+            IniciaBotonesMesas()
+            If HaySalas Then
+                CargaMesas(wCodSala)
+            End If
+        End If
+        '
+    End Sub
+
+    Private Sub HazClicVendedor(wMibotonVENDE As Button)
+        '
+        '   Acciones del Evento CLICK para los Botones VENDEDORES (CAMAREROS)
+        '
+        Me.TextBoxOPC1.Text = wMibotonVENDE.Tag.ToString
+        '
+    End Sub
+
+    Private Sub ButtonVende1_Click(sender As Object, e As EventArgs) _
+
+        '
+        HazClicVendedor(CType(sender, Button))
+        '
+    End Sub
+
+    Private Sub MiraFoco(wBtnCal As Button)
+        '
+        ' Determinamos el Control que esta recibiendo el FOCO de forma
+        '    PREDETRMINADA...
+        '
+        TextoCalculadora &= wBtnCal.Text
+        Select Case SwFoco_401
+            Case 0
+                VisorTeclado.Text = TextoCalculadora
+            Case 1
+                TextBoxClaveModi.Text = TextoCalculadora
+        End Select
+        '
+    End Sub
+
+    Private Sub ButtonCal0_Click(sender As Object, e As EventArgs) _
+        Handles ButtonCal0.Click, ButtonCal9.Click, ButtonCal8.Click, ButtonCal7.Click,
+        ButtonCal6.Click, ButtonCal5.Click, ButtonCal4.Click, ButtonCal3.Click, ButtonCal2.Click,
+        ButtonCal1.Click, ButtonCal_B.Click, ButtonCal_A.Click
+        '
+        MiraFoco(CType(sender, Button))
+        '
+    End Sub
+
+    Private Sub TextBoxClaveModi_GotFocus(sender As Object, e As EventArgs) Handles TextBoxClaveModi.GotFocus
+        SwFoco_401 = 1
+    End Sub
+
+    Private Sub ButtonCabecera_Click(sender As Object, e As EventArgs) Handles ButtonCabecera.Click
+        '
+        TCONA405_Started = False
+        MyFrm5.ShowDialog(Me)
+        '
+    End Sub
+
+    Private Sub ButtonSalir_Click(sender As Object, e As EventArgs) Handles ButtonSalir.Click
+        '
+        '   Salir de la Aplicacion
+        '
+        AbandonaAplicacion()
+        '
+    End Sub
+
+    Private Sub ButtonCamarero_Click(sender As Object, e As EventArgs) Handles ButtonCamarero.Click
+        '
+        ' Si se desea poder elegir otro vendedor...
+        '
+        PedirVendedor()
+        '
+    End Sub
+
+    Private Sub ButtonM_Click(sender As Object, e As EventArgs) Handles ButtonM.Click
+        '
+        ' Mesas Ocupadas
+        '
+        FormOcuIni = False
+        MyFrm14.ShowDialog(Me)
+        '
+    End Sub
+
+    Private Sub ButtonCaja_Click(sender As Object, e As EventArgs) Handles ButtonCaja.Click
+        '
+        ' Apertura Cajón. :: 0=Abrir Cajón.
+        ' Ej.: 
+        '     AbreCajon(0, "", "DOS") -> No se necesita Puerto, lo determina .BAT externo.
+        '     AbreCajon(0, "LPT1:", "WINDOWS")
+        '
+
+        Try
+            AbreCajon_Corte(0, wrLeeTCONA4.Tcona4_TKFACPUERTO.Trim, "WINDOWS")
+        Catch ex As Exception
+            MsgBox("ERROR: " & ex.Source & vbCrLf & ex.Message,
+                                MsgBoxStyle.Exclamation Or
+                                MsgBoxStyle.OkOnly,
+                                " *** Error de Comados a Impresora. *** ")
+        End Try
+        '
+    End Sub
+
+    Private Sub ButtonCambioCaja_Click(sender As Object, e As EventArgs) Handles ButtonCambioCaja.Click
+        '
+        ' Se desea cambiar la CAJA de trabajo para el TPV.
+        ' La manera más eficaz es reiniciar y pedir nueva Caja.
+        '
+        Application.ExitThread()
+        Application.Restart()
+        '
+        ' Este Valor hay que guardarlo en algun lugar fuera del
+        '   ambito de la aplicación.
+        ' Opto por guardarlo en el Reg. de Windows.
+        '
+        Dim BD2RegKkeys(0) As String
+        BD2RegKkeys(0) = "HKEY_CURRENT_USER\TCONA4\Cajas"
+        Try
+            If My.Computer.Registry.GetValue(BD2RegKkeys(0), "PideCaja", Nothing) Is Nothing Then
+                My.Computer.Registry.SetValue(BD2RegKkeys(0), "PideCaja", "1")
+            Else
+                My.Computer.Registry.SetValue(BD2RegKkeys(0), "PideCaja", "1")
+            End If
+        Catch ex As Exception
+            MsgBox("ERROR: " & ex.Source & vbCrLf & ex.Message,
+                                MsgBoxStyle.Exclamation Or
+                                MsgBoxStyle.OkOnly,
+                                " Error al actualizar Registro de Windows.")
+        End Try
+        '
+    End Sub
+
+    Private Sub ButtonBarra_Click(sender As Object, e As EventArgs) Handles ButtonBarra.Click
+        '
+        ' SALA 999, MESA 999, Tarifa1 (PVP1)
+        '
+        Select Case FormularioInicial
+            Case 0
+                If Me.TextBoxOPC1.Text.ToString.Trim.Length = 0 Then
+                    msg = "SELECCIONE CAMARERO."
+                    style = MsgBoxStyle.Information Or
+                    MsgBoxStyle.OkOnly
+                    title = "Indique un código de camarero."
+                    MsgBox(msg, style, title)
+                    Me.TextBoxOPC1.Focus()
+                    Exit Sub
+                End If
+            Case 1
+                Me.TextBoxOPC1.Text = "1"
+        End Select
+        '
+        Dim SplitMesa As String = "999"
+        wCodSala = "999"
+        '
+        If LeeMesa_SALA1(wCodSala, SplitMesa.Trim, 0) = True Then
+            '
+            ' Comprobar el vendedor de apertura de mesa...
+            '
+            If wVendedorApertura > 0 Then
+                If CInt(Me.TextBoxOPC1.Text.Trim) <> wVendedorApertura Then
+                    msg = "Mesa asignada a otro camarero."
+                    style = MsgBoxStyle.Information Or
+                    MsgBoxStyle.OkOnly
+                    title = "SELECCIONE CAMARERO."
+                    MsgBox(msg, style, title)
+                    Exit Sub
+                End If
+            End If
+            '
+            Me.Hide()
+            SwAparca = True
+            SwEntraMesa = True
+            With MyFrm2
+                .Visible = False
+                '
+                ' Tarifa 1
+                '
+                wTarifaBarra = 1
+                '
+                wCodMesa = SplitMesa.Trim
+                .TextBoxNumMesa.Text = SplitMesa.Trim
+                .TextBoxFactura.Text = wFacturaN.ToString
+                .TextBoxCamarero.Text = Me.TextBoxOPC1.Text
+                '
+                ' Fecha / Hora Apartura
+                '
+                If wrLeeSALA1.Sala1_HORAAPAERTURA.Trim.Length = 0 Then
+                    wrLeeSALA1.Sala1_HORAAPAERTURA = Format(Date.Now.ToShortTimeString, "HH:MM:SS")
+                End If
+                If wrLeeSALA1.Sala1_FECAPERTURA.Trim.Length > 0 Then
+                    .LabelFecAper.Text = "Aper.: " & Format(CDate(wrLeeSALA1.Sala1_FECAPERTURA.Trim), "dd/MM/yy")
+                    Dim dtTime As DateTime = Convert.ToDateTime(wrLeeSALA1.Sala1_HORAAPAERTURA.Trim)
+                    .LabelFecAper.Text &= " " & Format(dtTime, "HH:mm")
+                Else
+                    .LabelFecAper.Text = "Aper.: " & Format(Date.Now.ToShortDateString, "dd/MM/yy")
+                    .LabelFecAper.Text &= " " & Format(Date.Now.ToShortTimeString, "HH:MM:SS")
+                End If
+                '
+                ' Pax
+                '
+                .TextBoxPax.Text = wrLeeSALA1.Sala1_PAX.ToString.Trim
+                '
+                With MyFrm2
+                    .LblDatosPedidoDomi.Text = "" : .LabelNomCliente.Text = ""
+                    .ButtonFACTUA4.Enabled = False
+                End With
+                '
+                wrLeeMESAC.Mesac_TLFPEDIDOS = "" : WMesacTlfPed = ""
+                wrLeeMESAC.Mesac_NIFCIF = "" : WMesacNIFCIF = ""
+                wrLeeMESAC.Mesac_CLIENTE = 430000000 : wCliente = 430000000
+                '
+                If ExisteRegistroMESAC(SplitMesa.Trim, 1) = True Then
+                    '
+                    ' Datos de un Pedido a Domicilio si la mesa lo tiene asignado.
+                    '
+                    If Not IsDBNull(wrLeeMESAC.Mesac_TLFPEDIDOS) Then
+                        If wrLeeMESAC.Mesac_TLFPEDIDOS.Trim.Length > 0 Then
+                            If LeePEDCLIE(wrLeeMESAC.Mesac_TLFPEDIDOS.Trim) = True Then
+                                With MyFrm2
+                                    .LblDatosPedidoDomi.Text = wrLeeMESAC.Mesac_TLFPEDIDOS & " - " & wrLeePEDCLIE.NOMBRE
+                                    .LblDatosPedidoDomi.ForeColor = Color.Yellow
+                                End With
+                                WMesacTlfPed = wrLeeMESAC.Mesac_TLFPEDIDOS.Trim
+                            End If
+                        End If
+                    End If
+                    '
+                    ' Datos de un Cliente Contado si la mesa lo tiene asignado.
+                    '
+                    If Not IsDBNull(wrLeeMESAC.Mesac_NIFCIF) Then
+                        If wrLeeMESAC.Mesac_NIFCIF.Trim.Length > 0 Then
+                            If LeeClienteCONTA(wrLeeMESAC.Mesac_NIFCIF.Trim) = True Then
+                                With MyFrm2
+                                    .LabelNomCliente.Text = wrLeeCLIEMCO.NOMBRE
+                                    .LabelNomCliente.ForeColor = Color.Yellow
+                                    .ButtonFACTUA4.Enabled = True
+                                End With
+                                WMesacNIFCIF = wrLeeMESAC.Mesac_NIFCIF.Trim
+                                wCliente = 430000000
+                            End If
+                        End If
+                    End If
+                End If
+                '
+                ' Datos de un Cliente Crédito si la mesa lo tiene asignado.
+                '
+                If Not IsDBNull(wrLeeMESAC.Mesac_CLIENTE) Then
+                    If wrLeeMESAC.Mesac_CLIENTE > 0 And
+                       wrLeeMESAC.Mesac_CLIENTE <> 430000000 Then
+                        '
+                        If LeeClienteMCO(wrLeeMESAC.Mesac_CLIENTE) = True Then
+                            With MyFrm2
+                                .LabelNomCliente.Text = wrLeeCLIEMCO.NOMBRE
+                                .LabelNomCliente.ForeColor = Color.Cyan
+                                .ButtonFACTUA4.Enabled = True
+                            End With
+                            wCliente = wrLeeMESAC.Mesac_CLIENTE
+                            WMesacNIFCIF = ""
+                        End If
+                    End If
+                End If
+                '
+                .Show()
+                CargaListaMESAs(SplitMesa.Trim)
+                .Visible = True
+            End With
+        End If
+        '
+    End Sub
+
+    Private Sub ButtonBarra2_Click(sender As Object, e As EventArgs) Handles ButtonBarra2.Click
+        '
+        ' SALA 999, MESA 999, Tarifa2 (PVP2)
+        '
+        Select Case FormularioInicial
+            Case 0
+                If Me.TextBoxOPC1.Text.ToString.Trim.Length = 0 Then
+                    msg = "SELECCIONE CAMARERO."
+                    style = MsgBoxStyle.Information Or
+                    MsgBoxStyle.OkOnly
+                    title = "Indique un código de camarero."
+                    MsgBox(msg, style, title)
+                    Me.TextBoxOPC1.Focus()
+                    Exit Sub
+                End If
+            Case 1
+                Me.TextBoxOPC1.Text = "1"
+        End Select
+        '
+        Dim SplitMesa As String = "999"
+        wCodSala = "999"
+        '
+        If LeeMesa_SALA1(wCodSala, SplitMesa.Trim, 0) = True Then
+            '
+            ' Comprobar el vendedor de apertura de mesa...
+            '
+            If wVendedorApertura > 0 Then
+                If CInt(Me.TextBoxOPC1.Text.Trim) <> wVendedorApertura Then
+                    msg = "Mesa asignada a otro camarero."
+                    style = MsgBoxStyle.Information Or
+                    MsgBoxStyle.OkOnly
+                    title = "SELECCIONE CAMARERO."
+                    MsgBox(msg, style, title)
+                    Exit Sub
+                End If
+            End If
+            '
+            Me.Hide()
+            SwAparca = True
+            SwEntraMesa = True
+            With MyFrm2
+                .Visible = False
+                '
+                ' Tarifa 2
+                '
+                wTarifaBarra = 2
+                '
+                wCodMesa = SplitMesa.Trim
+                .TextBoxNumMesa.Text = SplitMesa.Trim
+                .TextBoxFactura.Text = wFacturaN.ToString
+                .TextBoxCamarero.Text = Me.TextBoxOPC1.Text
+                '
+                ' Fecha / Hora Apartura
+                '
+                If wrLeeSALA1.Sala1_HORAAPAERTURA.Trim.Length = 0 Then
+                    wrLeeSALA1.Sala1_HORAAPAERTURA = Format(Date.Now.ToShortTimeString, "HH:MM:SS")
+                End If
+                If wrLeeSALA1.Sala1_FECAPERTURA.Trim.Length > 0 Then
+                    .LabelFecAper.Text = "Aper.: " & Format(CDate(wrLeeSALA1.Sala1_FECAPERTURA.Trim), "dd/MM/yy")
+                    Dim dtTime As DateTime = Convert.ToDateTime(wrLeeSALA1.Sala1_HORAAPAERTURA.Trim)
+                    .LabelFecAper.Text &= " " & Format(dtTime, "HH:mm")
+                Else
+                    .LabelFecAper.Text = "Aper.: " & Format(Date.Now.ToShortDateString, "dd/MM/yy")
+                    .LabelFecAper.Text &= " " & Format(Date.Now.ToShortTimeString, "HH:MM:SS")
+                End If
+                '
+                ' Pax
+                '
+                .TextBoxPax.Text = wrLeeSALA1.Sala1_PAX.ToString.Trim
+                '
+                With MyFrm2
+                    .LblDatosPedidoDomi.Text = "" : .LabelNomCliente.Text = ""
+                    .ButtonFACTUA4.Enabled = False
+                End With
+                '
+                wrLeeMESAC.Mesac_TLFPEDIDOS = "" : WMesacTlfPed = ""
+                wrLeeMESAC.Mesac_NIFCIF = "" : WMesacNIFCIF = ""
+                wrLeeMESAC.Mesac_CLIENTE = 430000000 : wCliente = 430000000
+                '
+                If ExisteRegistroMESAC(SplitMesa.Trim, 1) = True Then
+                    '
+                    ' Datos de un Pedido a Domicilio si la mesa lo tiene asignado.
+                    '
+                    If Not IsDBNull(wrLeeMESAC.Mesac_TLFPEDIDOS) Then
+                        If wrLeeMESAC.Mesac_TLFPEDIDOS.Trim.Length > 0 Then
+                            If LeePEDCLIE(wrLeeMESAC.Mesac_TLFPEDIDOS.Trim) = True Then
+                                With MyFrm2
+                                    .LblDatosPedidoDomi.Text = wrLeeMESAC.Mesac_TLFPEDIDOS & " - " & wrLeePEDCLIE.NOMBRE
+                                    .LblDatosPedidoDomi.ForeColor = Color.Yellow
+                                End With
+                                WMesacTlfPed = wrLeeMESAC.Mesac_TLFPEDIDOS.Trim
+                            End If
+                        End If
+                    End If
+                    '
+                    ' Datos de un Cliente Contado si la mesa lo tiene asignado.
+                    '
+                    If Not IsDBNull(wrLeeMESAC.Mesac_NIFCIF) Then
+                        If wrLeeMESAC.Mesac_NIFCIF.Trim.Length > 0 Then
+                            If LeeClienteCONTA(wrLeeMESAC.Mesac_NIFCIF.Trim) = True Then
+                                With MyFrm2
+                                    .LabelNomCliente.Text = wrLeeCLIEMCO.NOMBRE
+                                    .LabelNomCliente.ForeColor = Color.Yellow
+                                    .ButtonFACTUA4.Enabled = True
+                                End With
+                                WMesacNIFCIF = wrLeeMESAC.Mesac_NIFCIF.Trim
+                                wCliente = 430000000
+                            End If
+                        End If
+                    End If
+                End If
+                '
+                ' Datos de un Cliente Crédito si la mesa lo tiene asignado.
+                '
+                If Not IsDBNull(wrLeeMESAC.Mesac_CLIENTE) Then
+                    If wrLeeMESAC.Mesac_CLIENTE > 0 And
+                       wrLeeMESAC.Mesac_CLIENTE <> 430000000 Then
+                        '
+                        If LeeClienteMCO(wrLeeMESAC.Mesac_CLIENTE) = True Then
+                            With MyFrm2
+                                .LabelNomCliente.Text = wrLeeCLIEMCO.NOMBRE
+                                .LabelNomCliente.ForeColor = Color.Cyan
+                                .ButtonFACTUA4.Enabled = True
+                            End With
+                            wCliente = wrLeeMESAC.Mesac_CLIENTE
+                            WMesacNIFCIF = ""
+                        End If
+                    End If
+                End If
+                '
+                .Show()
+                CargaListaMESAs(SplitMesa.Trim)
+                .Visible = True
+            End With
+        End If
+        '
+    End Sub
+End Class

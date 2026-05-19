@@ -1,0 +1,345 @@
+
+
+ COSITAS NUEVAS VISTAS CON SUSO:
+
+  [--] Tanto Impresión TICKET FACTURA, como IMPRESION TICKETs a AREAS y similares:
+        Windows = Cobview. // Directa = Al Puerto de captura.
+       [--] FACTURA: Campo Ref. Gen. Impresion WINDOWS / DIRECTA.
+       [--] AREAS..: Tener en cuenta Campo Impresion WINDOWS / DIRECTA en tabla [AREAS].
+
+  [OK] El Boton Orden del Plato, Meterlo en el GRID1, pero, ¿¿¿ es necesario grabarlo ???**.
+       El primer plato no se indica NADA, para 2º Y 3º imprime un indicativo, ver en 
+           "TCONA4 : TEMA IMPRESORAS FACTURA / COCINA" SUSO lo COMENTA.
+       [OK] Al entrar a TCONA402, ese boton siempre establecido en 1er Plato.
+       [OK] **NOTA: Ojo!!! Es posible que SI se deba grabar en [MESA], para no perder ORDEN PLATO 
+            en caso de "SEPARAR" y "A otra MESA".
+
+  [OK] Tabla Temporal para impresion AREAS, primer campo de la KEY [ID]= 3 Ult. Dig Factura + Hora HH:MM:SS:ss. (Milisegundos importante....)
+
+  [OK] EN AREAS nuevo CAMPO MODELO de IMPRESORA.
+       [OK] Comprobar Primero si MODEDELO existe en tabla [IMPRESORAS].
+       [OK] Al imprimir en AREAS ver el MODELO de impresora CORRECTO segun dicho CAMPO.
+
+  [OK] A la hora de IMPRIMIR a AREAS, tener en cuenta "SUB-AREAS".
+       Ej: AREA 0, imprimirá tambien en AREAS 1 y 4.
+       [OK] NOTA: Tener en cuenta que si estos campos valen 0 (CERO), el AREA 0 (CERO) existe...
+            Por tanto hay que diferenciar los que no deben imprimir en otras AREAS con otro valor numérico. Ej.: 999
+
+  [--] Comprobar Estado de Impresora antes de Imprimir ....:
+       - Funcion para saber si esta ON-LINE, cuando se imprime en la impresora por defecto y es COBVIEW y en WINDOWS.
+         [OK] TICKET FACTURA.
+         [OK] TICKETs X y Z.
+       - Se deben poder COMPROBAR directamente los Puertos o en su caso, tal vez ¿trabajos pendientes? ... ... ...
+         [--] TICKETs En las distintas Areas º
+         ( Ojo!, aqui entran en juego varios MODELOS de impresora, por tanto varios Puertos ... ).
+
+ SEPARAR MESAS:
+
+  [OK] Algo pasa ahora cuando separas y cobras. Haz esto y lo pruebas. ( Confirmar Suso. )
+       1  Das de alta una mesa. 
+       2  Fichas 4 o 5 cosas Diferentes
+       3  Luego separas las línea 1 y 3 por ejemplo a otra mesa. Das a cobrar y separar.
+   Hasta aquí todo perfect..  
+
+       Pero cuando vuelves al formulario de SERPARAR y habiendo cobrado, No limpia el Grid de la DERECHA.
+       Ojo hace todo bien, descuenta productos de la mesa y demás, solo que no limpia GRID Derecha, 
+          claro si doy a la fecha de volver pues me lo devuelve al grid de la IZQ. Aunque no lo vuelve 
+          a sumar en la mesa.
+       Solo te falta limpiar GRID de la izquierda al cobrar. 
+       Si imprime ticket debe limpiar grid derecho y si doy cancelar en cobrar debe volver a como estaba 
+          incluso puedes limpiar grid de la derecha y dejar como estaba al principio si quieres…
+       Pruébalo y me dices.
+
+  GENERALES:
+
+  [OK] Si abrimos una mesa y fichamos, posibilidad de imprimir factura sin necesidad de aparcar.
+       Hacer lo mismo que cuando cobras, en este caso solo imprimes.
+
+  [OK] Donde pones la fecha de apertura de la mesa, poner también hora apertura y guardar en la tabla. 
+       [OK] Tabla  [SALA1] campo nuevo HORAAPAERTURA. [OK] Grabar este campo cuando se actualiza FECFECAPERTURA.
+       [OK] Tablas [MESAC] [MESACH] campo nuevo HORAAPAERTURA. [OK] Grabar este campo.
+       NOTA: [MESA].[HORA] -> Registra la hora actual por 'línea' al fichar cada producto.
+       [OK] También guardar fecha y hora de cobro.
+       [OK] Tablas [MESAC] [MESACH] campos nuevos 
+            [OK] FECHACOBRO date	
+            [OK] HORACOBRO  time(7)	
+
+  [OK] Cuando pongo una mesa vacía y me pide las personas, debajo del campo Fecha apertura: se queda un texto:
+       Digite número de personas..... Bajarlo una línea, pues queda debajo del nuevo mensaje que has puesto con la fecha.
+
+  COMBINADOS:
+
+  [OK] En el formulario *COMBINADOS*, Solo me deja elegir hasta la fila 6:  
+       Ejemplo para verlo en el servidor:
+       Si eliges FAMILIA: SANDWICH y MIXTO TOMATE como producto, se te abre COMBINADOS, 
+                          pues si intentas poner de SIN JAMON ( Fila 6) para abajo, verás que no te deja.
+  
+  IMPRESORAS DE COCINA Y BARRA:
+
+  [OK] FUNCION DEL BOTON 2DO PLATO, 3ER PLATO, .... :
+       Este boton se usa para la comida, en cuanto pulsemos este boton debe cambiar, como hace ahora y 
+          debemos guardar en el registro el plato pulsado, a la hora de enviar a la cocina o bar debe ordenar en este 
+          sentido 1, 2, 3 plato, y cuando cambie de plato en la impresión de cocina.
+		    debe poner una ------- 2DO PLATO -----------  o    ----------- 3ER. PLATO --------------
+
+  [--] BOTON ENVIAR. Nos debe abrir un formulario en el cual veremos que va a cada impresora de cocina / barra / etc.
+       Nos debe salir algo así ( En un Grid por ejemplo ).
+
+		UNID  DESCRIPCION
+                ====  ==============================
+		BAR:
+		   2 COCA COLA 
+		   1 AGUA
+		     SIN HIELO
+	        COCINA:
+		   1  SOPA POLLO
+		    ------------- 2 PLATO -----------
+		   1  SOLOMILLO PIMIENTA
+		       CON SALSA BARBACOA
+               SIN ENSALADA
+                   1  ENTRECOT A LA MILANESA
+               PAPAS GUISADAS.		   
+         
+		     Y ABAJO DOS BOTONES UNO --- VOLVER --    Y ONTRO ENVIAR ( Que hará lo mismo que el BOTON: APARCAR....)		 
+			  
+  MENSAJES A COCINA: 
+  [--] Boton TERMINA MESA ( Ver Suso ).
+  [--] Un formulario nuevo en el cual nos debe salir en la parte alta las IMPRESORAS DE AREAS.
+       Una caja de texto con tope de 40 caracteres a la izquierda y varias lineas.
+       Y un boton ENVIAR y otro SALIR.
+       Lo QUE ESCRIBAMOS EN LA CAJAS DE TEXTO QUE LO ENVIE A COCINA O A LA IMPRESORA QUE QUERAMOS.
+	
+       NOTA : Habra que poner un teclado de pantalla, quizas localizar uno con una OCX 
+              ( porque nos hará falta luego para domicilio ).
+			  
+  
+  [--] En el formulario ampliar Vista, con un boton ( Ver Combinados ), que me de el detalle de los combinados 
+          por articulos si los tengo.
+  
+
+  IMPRESION DEL TICKET FACTURA:
+
+  [ OK ] Cuando se imprima Ticket con factura 2 posibibilidades ( Segun indicador en Referencias: Imprime detalle combinados (0/1).
+         opción 0 - Como está Imprime el primero.
+	 opción 1 - Imprimir el detalle de todos los cominados hacia abajo.
+   
+  [--] A la hora de imprimir poroductos Posibilidad de ordenar por familias en el ticket.
+       En referencias Generales poner orden impresion factura ( 0 Normal como está / 1 Por familias ).
+       Ver posibilidad de hacer lo mismo en el Grid de la pantalla de la factura ?????? - No es necesario, si no es mucho lío. -
+
+  DISEÑO PANTALLA y BOTONES:
+
+  [--] FORMULARIOS DE MESAS, BOTONES PARTE DE ABAJO:
+       [OK] MESAS OCUPADAS, PERFECT.
+       [OK] CAMARERO, OK.
+       [OK] TARIFA. [OK] Esto debe abrirnos un pequenño Form o inventar algo como en el numero de mesas,
+                         que al picar nos permita cambiar la tarifa.
+		    [OK] Puedes poner tarifa 1, 2, 5, 6, 7, 8, 9. Quizas mejor un pequeño form. pues luego lo usaremos en PRODUCTOS.
+                    [OK] Lo que se fiche ahora debe ser a esta tarifa hasta que se salga y vuelva a entrar.
+                    [OK] Hay que leer una tabla, con los nombre de las tarifas para cambiar PVP1 por NORMAL -   PVP2 por FINAÑO ó así.
+
+
+       [--] CAMBIO DE CAJA: Cuando se ejecuta la aplicación estamos trabajando con la caja nro. 1 o la que hayamos iniciado, 
+            Pués debe dejarnos cambiar a la caja dos, tres o las que tengamos. Vamos leer tabla TCONA4 y cargar un formulario y 
+              poder Elejir una u otra.
+            Tambien debemos dejar la posibilidad que se nos muestre siempre antes de cargar en mesas, un formulario pequeño de cajas(TCONA4),
+              con una opcion en referencias: Cargar siempre Numeros de cajas (0 NO / 1 SI).
+					
+       [OK] CAJA: Boton Usado para la Apertura del Cajon.
+
+       [OK] CABECERA: OK.
+
+       [--] BARRA: Este boton debemos entrar directamente a la MESA 999 a tarifa 1.
+       [--] BARRA: Este boton debemos entrar directamente a la MESA 999 a tarifa 2.
+
+       [--] COBROS:  ??? -> Pdte. hablar con Suso
+		
+  PANTALLA DE ARTICULOS:
+  
+  [OK]  En el Grid de la cuenta, poner flechas para arriba y abajo PARA SUBIR Y BAJAR LINEA, 
+          lo he probado con teclado y va, pero en el tactil no hay.
+  [!!]  Las rayas del GRID estan demasido tenues, mira si las puedes acentuar un poco como está pero que no sea la tipica raya negra, 
+           que quedaría fatal en este caso.
+        ( Poder configurar desde Ref. Generales, en Colores.... )
+    
+  [OK]  BOTON TARIFAS:  Que se pueda cambiar la tarifa aqui tambien. 
+  [--]  BOTON MENSAJE:  YA lo vimos en impresoras cocinas.
+  [OK]  BOTON MENSA/1:  QUITAR.
+  [OK]  C.COMI:         QUITAR, ES COMIDAS.
+  [OK]  C.BEBI:         QUITAR, ES BEBIDAS.
+  [--]  DOMICILIO: ES EL FORMULARIO DE CLIENTES. EN COMIDAS PARA LLEVAR. LO VEMOS LUEGO.
+        BASICAMENTE PEDIR TELEFONO Y A PARTIR DE AQUI LOS DATOS DEL CLIENTE. VER FORM. EN CONA4.
+        SE UTILIZARA LA TABLA DE CUENTAS (dbo.MCO ) EN LA BASE DE DATOS CONTATRV001. VAMOS LA DEL PAQUETE.
+
+  FORMULARIO COBRAR:
+  
+  [--]  VER CUANDO PAGA EN EFECTIVO Y TARJETA. Y QUE CUANDO ENTRE QUE CARGUE YA EN EFECTIVO.
+   
+  NOS QUEDA:
+
+  [--]  VER formulario, AMPLIAR VISTA, QUE PODEMOS HACER AQUI.
+  [--]  GESTION DE CLAVES PARA ANULAR Y DEMAS.
+  [--]  DESCUENTOS EN % EN LA FACTURA.
+
+
+
+
+
+ *** TEMA IMPRESORAS ***
+
+ [ OK ] Impresion FACTURAS: Cajón + Impresora.
+        [ OK ] Se crea una Impresora en Windows con el nombre FACTURA ( Impresora Por defecto ).
+               Se imprime la Factura sobre esta impresora y a su vez se envia señal de apertura al cajón.
+        [ OK ] Temas Pdtes: Ticket Reducido / Impresión FACTURA a 80 Caracteres.
+        [ OK ] Gestionar CORTE de TICKET // Apertura CAJÓN.
+
+NOTAS Suso:
+   Basicamente hay q ampliar campos del detalle y centrar y poner una columna mas q sea precio.
+
+   Pero.
+ Hay q pedir los datos del cliente. 
+   Esto es unas 5 lineas  de cajas de texto de 50 caracteres y q salga en la parte alta/derecha de la factura como 
+   datos del clientes.
+La idea seria q en la primera pantalla donde estan las mesas. 
+   Al lado derecho un boton facturas A4 y q pida numero de factura y las 5lin. 
+   De texto y luego imprimes.
+Con repecto a la x y la z se puede quedar como esta.
+
+
+ [ OK ] Impresion COCINA:
+       [ !! ] Pueden Existir varias impresoras en determinadas Areas.
+       [ !! ] Se usa MAR.AREA, para definir las AREAS donde se deba imprimir TK Cocina.
+
+       [ OK ] Como norma general se envia la salida a fichero de texto plano, que luego se redirecciona al/los impresor/es. 
+              NOTA.: Se ha conseguido impresion directa al PUERTO que corresponda, sin generar .TXT.
+       [ OK ] Hacer un Mant. de Areas. (Segun mant. en CONA4), se debe integrar en Pantalla de Ref. Generales.
+       [ OK ] Campo NUEVO en Mant. AREAS, MODELO IMPRESORA.
+       [ OK ] Crear una TABLA NUEVA para este mant.
+              [ !! ] Notas: 0=PIZZERIA, 1=BARRA, 4=COCINA
+       [ OK ] Si MAR.REA es -NULL- o MAR.AREA=0 y AREA Cero NO EXISTE, no se imprimirá NADA. 
+       [ OK ] Al aparcar una mesa, SOLO los productos NUEVOS, se imprimen en funcion del campo AREA del PRODUCTO, 
+              a la(s) impresoras / Area(s) que se hayan especificado, segun mant. de AREAS.
+       [ OK ] Tikcets Areas:
+              Nro. MESA.: 999 Camarero.: 999
+              Fecha.: 99/99/99 Hora.: 99:99
+              Detalle 
+                Unid  Nombre Producto
+                   Nombre Combinado (Si lleva)
+              Salto N Lineas
+              .
+              .
+       [ OK ] Definir Salto N Lineas por defecto = 6 en Ref. Generales.
+
+============================================================================================================================================================
+
+    TEMA RELATIVO A:   "<SET PRINTDIRECT='NO'>"    
+       [ OK ] Meterlo en Ref. Generales, como algo así: "Cobview.: Impresión directa / Pre visualizar  (0/1)" 
+              y en este caso es válido PARA TICKET FACTURA, TICKET X y X.
+              Y lo gestionamos desde la aplicación, sin tener que tocar los .DEF de ser necesario modificarlos.
+
+  NOTAS SUSO:
+
+  [ OK ] 1 Impresión de factura, el botón FACTURA que va dirigido a la Impresora de ticket y se produce al pulsar botón FACTURA 
+           o al cobrar si no ha sido impreso:
+           Debe imprimir ticket directamente siempre, no es necesario cuadro de dialogo impresoras. 
+           Ahora bien hay salvedades, como siempre, TE LAS INDICO:
+                     
+       Ojo, esto es SOLO para impresión de ticket FACTURA, NO para X, Z.
+
+         1 Debemos poner también Imprimir factura S/N si ponemos N pues no imprime nunca factura. 
+         2 debemos poner en referencias Importe Mínimo para factura que siempre está  a 0 con lo cual imprime todo incluido los importe a 0 , 
+           y si aquí hay 5 pues solo imprime facturas = ó superior a ese importe.
+         3 Luego está el otro tema y es por nro de mesa (SALA1), poner S/N imprime factura, esto es por la mesa 999, ya sabes barra, 
+           que también se puede dar.
+           Creo que lo mejor es hacerlo con todo ahora  y así, cubrimos todas las posibilidades porque ya sabes cada local es un especial 
+            y si añadimos el punto 3 Cubrimos todo, ya sabes en la barra no quiero ticket y en las mesas que están al lado tampoco, 
+            pero en el comedor SI…..
+
+           La jerarquía será:
+             - [ OK ] Si tengo no imprime factura pues, no pregunto por la mesa, ni por importe mínimo ni por s/n en mesa, 
+             - [ OK ] 2 paso importe mínimo y 
+             - [ OK ] Tercero la mesa.
+
+============================================================================================================================================================
+  FACTURA A4
+
+  [ -- ] Poner Botón FACTURA A4. Que nos pide nro. de factura y 5 LINEAS DE TEXTO e imprime factura en FOLIO. 
+         Esto lo dejamos para luego, porque es un formulario para gestionar las facturas. 
+         Porque pondremos una consulta de facturas del día y pedimos nro. y elegimos Imprimir en A4 o ticket
+           Poder cambiar la forma de cobro y demás...
+
+
+
+
+
+
+
+   Nota sobre los BOTONES Parte de abajo en TCONA401:
+   [ OK ] M ------> Nos dará un formulario con las mesas abiertas.
+   [ -- ] Caja ---> Para poder cambiar la caja.
+   [ -- ] Tarifa -> Para poder cambiar la tarifa de venta, pasar de pvp-1 a pvp-2.
+   [ -- ] Barra --> Accede directamente a la Mesa 999. Barra. Con PVP-1
+   [ -- ] Barra2 -> Accede directamente a la Mesa 999. Barra. Con PVP-2
+
+[ OK ] OJO!!! -> Al mover una MESA a OTRA SALA/MESA, si la fecha no es la del dia, 
+                 porque la mesa se abrió en una fecha anterior, no se traspasa correctamente...
+
+[ -- ] UNIR CUENTAS (MESAS)  *** Pdte.
+
+[ OK ] DIVIDIR CUENTA
+       [ OK ] OJO! En el proceso separar mesas me suma FACTURA dos veces y se pierde una nro. de factura. !!! !!!
+
+       [ OK ] Debe existir SALA 999 = Mesas Separadas:
+              [ OK ] Comprobar si existe SALA 999, si no está creada Crear Una, Ojo! con colores que se vea bien.
+              [ OK ] Comprobar si existe MESA 999, SALA 999, si no está creada Crear Una.
+       [ OK ] Cada división de cuenta se creará en la sala 999 como MESA NUEVA Nro. de MESA = formato NM+"-"+3dNF, donde:
+              NM = Numero de Mesa Origen.
+	      "-"  Signo Guión.
+              3dNF = Últimos 3 dígitos del Número de Factura asignado a la mesa separada.
+       [ OK ] Activar Botón Para la Sala 999 (TCONA401). ( Evitar botón MESA=999 )
+       [ OK ] Paso (1)
+              [ OK ] Crear NUEVA MESA [SALA1] y asignar número de FACTURA.
+              [ OK ] Aumentar Contador Factura en Ref. Generales.
+       [ OK ] Paso (2)
+              [ OK ] Grabar DATOS separados en MESAC (NUEVA MESA Cabecera).
+              [ OK ] Grabar DATOS separados en MESA  (NUEVA MESA Líneas).
+       [ OK ] Paso (3)
+              [ OK ] Actualizar DATOS en MESAC (MESA ORIGEN Cabecera).
+              [ OK ] Refrescar GRID1 y Total Comanda.
+              [ OK ] Actualizar DATOS en MESA  (MESA ORIGEN Líneas).
+       [ OK ] COBRAR -> Para COBRAR vale con solo efectivo. (Form de COBRO Existente, Solo Efectivo.)
+       [ OK ] Al COBRAR una MESA Separada, eliminar de SALA1. OJO !!!!
+              [ OK ] Al COBRAR desde FORM Separada.
+              [ OK ] Al COBRAR desde TCONA402.
+              [ OK ] Al Hacer la Z, cuando se permite Con Mesas Ocupadas.
+                     Aquí tal vez se puedan BORRAR todas las separadas existentes en cascada, MENOS LA MESA 999 !!!
+       [ OK ] Si tenemos SALA=MESAS SEPARADAS (999) SELECCIONADA EN TCONA401, Tras hacer una Z
+              Las MESAS de esta SALA no se refrescan como DESOCUPADAS.
+              ( Para resto de SALAS SI, comprobar no obstante. )
+              NOTA: Al hacer la Z hay que borrar las SEPARADAS y se evita este problema.
+
+[ OK ] Errores a corregir:
+       [ OK ] En combinados al regresar a pant. PRODUCTOS Colores en Botones 
+              FAMILIAS, ARTICULOS que tome los de Ref. Generales.
+       [ OK ] Al pedir PRECIO=0, hay un desplazamiento ( .left ) en las cajas UNID, PRECIO, que hay que evitar.
+
+[ OK ] PERSONAS (PAX) -> Pedir Personas, similar a PRECIO=0
+       [ OK ] Si la MESA esta Libre pedir PAX.
+       [ OK ] Ref. Generales-> Campo Nuevo [TCONA4].[PIDEPAX] bit: (0/1) [Pide PAX ]**
+              ** Este es imperativo para pedir PAX o no en mesas, si esta activado, entonces MIRAR PIDEPAX de [SALA1]
+       [ OK ] Guardar [PAX] en SALA1. Cuando se libere la MESA o al hacer Z, poner este CAMPO=0.
+       [ OK ] Modificar en el mantenimiento de MESAS en SALA el texto "Pide PAX?" Por "No Pide PAX?"
+              Si esta marcado "no pide PAX" en una mesa en concreto, no lo pedirá, de resto según este en Ref. Generales.
+       [ OK ] Pide PAX SOLO cuando abrimos la mesa, esto es, cuando esta libre.
+              Y luego podemos modificarlo pulsando PAX que veo que es como lo tienes y que quedo del 10 ocultando botones. 
+
+[ OK ] Mant. Áreas (Ref. Generales).: 
+      [ OK ] [AREAS].[TIPOIMPRESION] -> Campo Nuevo bit: (0/1) [ Impresión Directa / Impresión Windows ]
+      [ OK ] Modificar el Mant. Áreas, para CRUD del campo nuevo.
+
+       *** NOTA Campo [T]=REPLICAR en Mant. de Áreas. (impresoras) ***
+       La marca T en mantenimiento de impresoras; al enviar una comanda, y lleva solomillo y pizzas, sale en la impresora de cocina 
+         y en la de pizzas y si solo lleva pizzas solo sale en la impresora de pizzas.  
+       Razón: para que salga la comida junta, porque hay una zona de pizzas y otra de carnes y demás. 
+       En el área de Pizzas en la "T" que llamaremos "REPLICAR" ponemos el cód. Área de cocina, entonces al imprimir en pizzas 
+         si hay algún producto de cocina pues también sale aquí. En resumen: un grupo de productos puede tener 2 aéreas.

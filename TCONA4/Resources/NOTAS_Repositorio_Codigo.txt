@@ -1,0 +1,35 @@
+      BAR - CAFE - LOUNGE      
+            CHILLOUT           
+RESTAURANTE PIZZERIA DON CAMILO
+      RESTAURANTE ITALIANO     
+Calle del Sol, N.7 - La Matanza
+Tlf: 922578010 / Cif. Y0733890K
+
+
+
+
+
+
+
+                        ' Aqui tendemos en cuenta para PRECIO, cuando sean
+                        '    Raciones y 1/2 Raciones.
+                        '
+                        Dim CalCPVP As Double = 0
+                        Select Case SwRacion
+                            Case 0
+                                CalCPVP = CDbl(UbiPrecio.ToString.Trim.Replace(".", ","))
+                                wImporteN = wTmpUnid * CalCPVP
+                                'Case 1
+                                'CalCPVP = CDbl(UbiPrecio.ToString.Trim.Replace(".", ","))
+                                'wImporteN = wTmpUnidNN * CalCPVP
+                            Case 1, 2
+                                CalCPVP =
+                                    CDbl(wrLeeMAR.Mar_PREPVP1.Trim.Replace(".", ",")) _
+                                    + CDbl(wrLeeMAR.Mar_PREPVP4.Trim.Replace(".", ","))
+                                wImporteN = wTmpUnidNN * CalCPVP
+                        End Select
+
+                        MsgBox("LocalizarArtGRID1.: " & CalCPVP.ToString & " " & SwRacion.ToString)
+
+                        SwRacion = 0
+                        '

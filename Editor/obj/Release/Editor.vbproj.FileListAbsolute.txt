@@ -1,0 +1,14 @@
+D:\Varios\Proyectos Visual Studio 2015\Ejemplos\Editor\bin\Editor.exe
+D:\Varios\Proyectos Visual Studio 2015\Ejemplos\Editor\bin\Editor.xml
+D:\Varios\Proyectos Visual Studio 2015\Ejemplos\Editor\obj\Release\Editor.Acercade.resources
+D:\Varios\Proyectos Visual Studio 2015\Ejemplos\Editor\obj\Release\Editor.EditorPrinc.resources
+D:\Varios\Proyectos Visual Studio 2015\Ejemplos\Editor\obj\Release\Editor.vbproj.GenerateResource.Cache
+D:\Varios\Proyectos Visual Studio 2015\Ejemplos\Editor\obj\Release\Editor.exe
+D:\Varios\Proyectos Visual Studio 2015\Ejemplos\Editor\obj\Release\Editor.xml
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Editor\obj\Release\Editor.exe
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Editor\obj\Release\Editor.xml
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Editor\bin\Editor.exe
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Editor\bin\Editor.xml
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Editor\obj\Release\Editor.Acercade.resources
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Editor\obj\Release\Editor.EditorPrinc.resources
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\Editor\obj\Release\Editor.vbproj.GenerateResource.Cache

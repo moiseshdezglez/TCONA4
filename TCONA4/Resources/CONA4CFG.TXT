@@ -1,0 +1,10 @@
+1:Data Source=PT_FARI\SQLEXPRESS_2014;
+END
+'----------------------------------------------------------------------------------------------------------------------------------
+' NOTAS:
+'    Eventualmente aqui definimos la INSTANCIA para la conexión...
+' Ejemplos:
+'    1:Data Source=PT_FARI\SQLEXPRESS_2014;
+'    1:Data Source=DESKTOP-FARI\SQLEXPRESS_2014;
+'    1:Data Source=SERVIDOR\SQLTRV;
+'

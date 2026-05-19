@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Sub Main</StartupObject>
+    <RootNamespace>TCONA4</RootNamespace>
+    <AssemblyName>TCONA4</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publicar\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>TCONA4.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>TCONA4.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>TCONA4.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TCONA419.Designer.vb">
+      <DependentUpon>TCONA419.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA419.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA420.Designer.vb">
+      <DependentUpon>TCONA420.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA420.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA421.Designer.vb">
+      <DependentUpon>TCONA421.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA421.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA422.Designer.vb">
+      <DependentUpon>TCONA422.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA422.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tcona4VarsVIP.vb" />
+    <Compile Include="SplashTCONA4.Designer.vb">
+      <DependentUpon>SplashTCONA4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashTCONA4.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA406.Designer.vb">
+      <DependentUpon>TCONA406.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA406.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA403.Designer.vb">
+      <DependentUpon>TCONA403.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA403.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA401.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA401.Designer.vb">
+      <DependentUpon>TCONA401.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TCONA402.Designer.vb">
+      <DependentUpon>TCONA402.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA402.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA404.Designer.vb">
+      <DependentUpon>TCONA404.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA404.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA405.Designer.vb">
+      <DependentUpon>TCONA405.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA405.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA407.Designer.vb">
+      <DependentUpon>TCONA407.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA407.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA408.Designer.vb">
+      <DependentUpon>TCONA408.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA408.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA409.Designer.vb">
+      <DependentUpon>TCONA409.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA409.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA410.Designer.vb">
+      <DependentUpon>TCONA410.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA410.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA411.Designer.vb">
+      <DependentUpon>TCONA411.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA411.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA412.Designer.vb">
+      <DependentUpon>TCONA412.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA412.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA413.Designer.vb">
+      <DependentUpon>TCONA413.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA413.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA414.Designer.vb">
+      <DependentUpon>TCONA414.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA414.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA415.Designer.vb">
+      <DependentUpon>TCONA415.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA415.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA416.Designer.vb">
+      <DependentUpon>TCONA416.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA416.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA417.Designer.vb">
+      <DependentUpon>TCONA417.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA417.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA418.Designer.vb">
+      <DependentUpon>TCONA418.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TCONA418.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TCONA4CuentasSep.vb" />
+    <Compile Include="Tcona4Main.vb" />
+    <Compile Include="Tcona4Varios.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SplashTCONA4.resx">
+      <DependentUpon>SplashTCONA4.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA403.resx">
+      <DependentUpon>TCONA403.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA401.resx">
+      <DependentUpon>TCONA401.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA402.resx">
+      <DependentUpon>TCONA402.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA404.resx">
+      <DependentUpon>TCONA404.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA405.resx">
+      <DependentUpon>TCONA405.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA406.resx">
+      <DependentUpon>TCONA406.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA407.resx">
+      <DependentUpon>TCONA407.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA408.resx">
+      <DependentUpon>TCONA408.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA409.resx">
+      <DependentUpon>TCONA409.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA410.resx">
+      <DependentUpon>TCONA410.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA411.resx">
+      <DependentUpon>TCONA411.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA412.resx">
+      <DependentUpon>TCONA412.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA413.resx">
+      <DependentUpon>TCONA413.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA414.resx">
+      <DependentUpon>TCONA414.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA415.resx">
+      <DependentUpon>TCONA415.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA416.resx">
+      <DependentUpon>TCONA416.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA417.resx">
+      <DependentUpon>TCONA417.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA418.resx">
+      <DependentUpon>TCONA418.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA419.resx">
+      <DependentUpon>TCONA419.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA420.resx">
+      <DependentUpon>TCONA420.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA421.resx">
+      <DependentUpon>TCONA421.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TCONA422.resx">
+      <DependentUpon>TCONA422.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Notas_de_la_Aplicacion.txt" />
+    <Content Include="NOTAS_Repositorio_Codigo.txt" />
+    <Content Include="TCONA4.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

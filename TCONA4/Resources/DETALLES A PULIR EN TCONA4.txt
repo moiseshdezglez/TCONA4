@@ -1,0 +1,167 @@
+
+GENERALES:
+
+  - Si abrimos una mesa y fichamos, posibilidad de imprimir factura sin necesidad de aparcar, 
+       veo que se puede cobrar y entonces imprime factura y deja cobrar, si doy imnprimir que imprima la factura y le ponga la marca impresa.
+	         aunque se salga para atras como un aparcar. porque imagino que debes aparcar primero por si hay algo pendiente, 
+			 vamos hacer lo mismo que cuando cobras, que supongo que grabas lo pendiente y luego imprimes si no esta impresa y luego cobras,
+			 en este caso solo imprimes...
+	   
+  - Donde pones la fecha de apertura de la mesa, poner tambien hora apertura y guardar en la tabla. Tambien guardar fecha y hora de cobro.
+    
+  - Cuando pongo una mesa vacia y me pide las personas, debajo del campo Fecha aper.: se queda un texto:
+        Digite numero de personas.....   Bajarlo una linea, pues queda debajo del nuevo mensaje que has puesto con la fecha.
+		
+	   ------------------------------------------------------------------------------------------------------------
+  
+IMPRESORAS DE COCINA Y BARRA:
+
+   --> FUNCION DEL BOTON 2DO PLATO, 3ER PLATO, .... :
+   
+       Este boton se usa para la comida, en cuanto pulsemos este boton debe cambiar, como hace ahora y debemos guardar en el registro
+	        el plato pulsado, a la hora de enviar a la cocina o bar debe ordenar en este sentido 1, 2 3 plato, y cuando cambie de plato
+			en la impresión de cocina.
+		    debe poner una ------- 2DO PLATO -----------  o    ----------- 3ER. PLATO --------------
+			
+
+  - BOTON ENVIAR. que nos debe abrir un formulario en el cual veremos que va a cada impresora de cocina/barra/etc.
+  
+    Nos debe salir algo así ( En un Grid por ejemplo ).
+	
+		UNID  DESCRIPCION
+		BAR:
+		   2 COCA COLA 
+		   1 AGUA
+		     SIN HIELO
+		 
+	    COCINA:
+		
+		   1  SOPA POLLO
+		    ------------- 2 PLATO -----------
+		   1  SOLOMILLO PIMIENTA
+		       CON SALSA BARBACOA
+               SIN ENSALADA
+		   1  ENTRECOT A LA MILANESA
+              PAPAS GUISADAS.		   
+         
+		     Y ABAJO DOS BOTONES UNO --- VOLVER --    Y ONTRO ENVIAR ( Que hará lo mismo que el BOTON: APARCAR....)		 
+ 
+
+
+			  
+	   MENSAJES A COCINA: 
+	   
+          Un formulario nuevo en el cual nos debe salir en la parte alta las IMPRESORAS DE AREAS.
+          Una caja de texto con tope de 40 caracteres a la izquierda y varias lineas.
+        	    y un boton ENVIAR y otro SALIR.
+     
+          lO QUE ESCRIBAMOS EN LA CAJAS DE TETO QUE LO ENVIE A COCINA O A LA IMPRESORA QUE QUERAMOS.
+	
+		   Habra que poner un teclado de pantalla, quizas localizar uno con una OCX ( porque nos hará falta luego para domicilio).
+		 
+		--------------------------------------------------------------------------------------------------------- 
+			  
+COMBINADOS:
+
+   - En el formulario  * COMBINADOS *, Solo me deja elegir hasta la fila 6:  
+   
+        Ejemplo para verlo en el servidor:
+            Si en el servidor ejiges FAMILIA: SANDWICH y MIXTO TOMATE como producto, se te abre COMBINADOS, pues si intentas poner de SIN JAMON ( Fila 6)
+			   Para abajo, verás que no te deja.
+			   
+  
+  - En el formulario ampliar Vista, con un boton (Ver Combinados) Que me de el detalle de los combinados por articulos si los tengo.
+  
+  - Cuando se imprima Ticket con factura 2 posibibilidades ( Segun indicador en Referencias: Imprime detalle combinados (0/1).
+     opción 0 - Como está Imprime el primero
+	 opción 1 - Imprimir el detalle de todos los cominados hacia abajo.
+	 
+	 
+  IMPRESION DEL TICKET FACTURA:
+   
+       - A la hora de imprimir poroductos Posibilidad de ordenar por familias en el ticket.
+	      En referencias Generales poner orden impresion factura ( 0 Normal como está / 1 Por familias ).
+		  Ver posibilidad de hacer lo mismo en el Grid de la pantalla de la factura ?????? - No es necesario, si no es mucho lío. -     
+
+
+
+DISEÑO PANTALLA y BOTONES:
+	 
+	  FORMULARIOS DE MESAS:
+	    
+		BOTONES PARTE DE ABAJO:
+		
+		MESAS OCUPADAS, PERFECT.
+		CAMARERO, OK.
+		TARIFA.   Esto debe abrirnos un pequenño Form o inventar algo como en el numero de mesas q al picar nos permita cambiar la tarifa.
+		                Puedes poner tarifa 1, 2, 5, 6, 7, 8, 9. Quizas mejor un pequeño form. pues luego lo usaremos en PRODUCTOS.
+			      Lo que se fiche ahora debe ser a esta tarifa hasta que se salga y vuelva a entrar.
+				  
+		CAMBIO DE CAJA: Cuando se ejecuta la aplicación estamos trabajando con la caja nro. 1 o la que hayamos iniciado, 
+		                pués debe dejarnos cambiar a la caja dos, tres o las que tengamos. Vamos leer tabla TCONA4 y cargar un formulario y 
+						poder Elejir una u otra.
+                        Tambien debemos dejar la posibilidad que se nos muestre siempre antes de cargar en mesas, un formulario pequeño de cajas(TCONA4),
+						con una opcion en referencias:
+                        Cargar siempre Numeros de cajas (0 NO / 1 SI).
+					
+		CAJA:  Apertura del Cajon.
+
+        CABECERA: OK.
+
+         BARRA:   Este boton debemos entrar directamente a la MESA 999  a tarifa 1.
+		 
+         BARRA:   Este boton debemos entrar directamente a la MESA 999  a tarifa 2.
+		 
+		 COBROS:  ???
+						
+				  
+		
+  PANTALLA DE ARTICULOS:
+  
+    En el Grid de la cuenta, poner flechas para arriba y abajo PARA SUBIR Y BAJAR LINEA, lo he probado con teclado y va, pero en el tactil no hay.
+	   Las rayas del GRID estan demasido tenues, mira si las puedes acentuar un poco como está pero que no sea la tipica raya negra, que quedaría
+	         fatal en este caso.
+   
+    
+   BOTON TARIFAS:   Que se pueda cambiar la tarifa aqui tambien. 
+   BOTON MENSAJE:   YA lo vimos en impresoras cocinas.
+   
+   BOTON MENSA/1:  QUITAR.
+   C.COMI:         QUITAR, ES COMIDAS.
+   C.BEBI:         QUITAR, ES BEBIDAS.
+   
+   
+   DOMICILIO:    ES EL FORMULARIO DE CLIENTES. EN COMIDAS PARA LLEVAR.
+                 LO VEMOS LUEGO.
+				 BASICAMENTE PEDIR TELEFONO Y A PARTIR DE AQUI LOS DATOS DEL CLIENTE. VER FORM. EN CONA4.
+				 SE UTILIZARA LA TABLA DE CUENTAS (dbo.MCO ) EN LA BASE DE DATOS CONTATRV001. VAMOS LA DEL PAQUETE.
+
+    _____________________________________________________________________________________________________________
+
+
+  FORMULARIO COBRAR:
+  
+       VER CUANDO PAGA EN EFECTIVO Y TARJETA. 
+	    
+		 ¿¿¿¿¿¿ Y QUE CUANDO ENTRE QUE CARGUE YA EN EFECTIVO ??????????????????
+  
+                 
+   
+  NOS QUEDA:
+
+     VER formulario, AMPLIAR VISTA, QUE PODEMOS HACER AQUI.
+	 
+
+	- GESTION DE CLAVES PARA ANULAR Y DEMAS.
+	
+	- DESCUENTOS EN % EN LA FACTURA.
+
+   	
+	
+	  -----------------------------------------------------------------------------------------------------------------------
+	  
+  
+  
+  
+  
+  

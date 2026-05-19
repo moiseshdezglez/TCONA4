@@ -1,0 +1,22 @@
+C:\Users\Fariña\AppData\Local\Temporary Projects\TrvModInsta\bin\Debug\TrvModInsta.exe.config
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\bin\Debug\TrvModInsta.exe.config
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\bin\Debug\TrvModInsta.exe
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\bin\Debug\TrvModInsta.pdb
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\bin\Debug\TrvModInsta.xml
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.Form1.resources
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.Resources.resources
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.vbproj.GenerateResource.Cache
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.exe
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.xml
+D:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.pdb
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\bin\Debug\TrvModInsta.exe.config
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.exe
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.xml
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.pdb
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\bin\Debug\TrvModInsta.exe
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\bin\Debug\TrvModInsta.pdb
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\bin\Debug\TrvModInsta.xml
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.Form1.resources
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.Resources.resources
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.vbproj.GenerateResource.Cache
+G:\Trabajos\TRIVALLE\PROYECTOS_VS2015\TCONA4\TrvModInsta\obj\Debug\TrvModInsta.vbprojResolveAssemblyReference.cache
