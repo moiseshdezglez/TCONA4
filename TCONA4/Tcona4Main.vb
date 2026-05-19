@@ -3348,7 +3348,7 @@ Module Tcona4Main
                                     .Mesac_CHEQUES = pRow("CHEQUES").ToString()
                                     .Mesac_OTROS = pRow("OTROS").ToString()
                                     .Mesac_TLFPEDIDOS = pRow("TLFPEDIDOS").ToString() & ""
-                                    .Mesac_NIFCIF = pRow("NIFCIF").ToString() & ""
+                                    .Mesac_NIFCIF = ""
                                     '
                                     ' Ticket Fra. Impreso?
                                     '

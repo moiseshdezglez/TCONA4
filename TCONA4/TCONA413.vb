@@ -671,8 +671,7 @@ Public Class TCONA413
         queryString = queryString & "[MESAC].[OTROS],"
         queryString = queryString & "[MESAC].[EFECTIVO],"
         queryString = queryString & "[MESAC].[IMPIGIC],"
-        queryString = queryString & "[MESAC].[TLFPEDIDOS],"
-        queryString = queryString & "[MESAC].[NIFCIF]"
+        queryString = queryString & "[MESAC].[TLFPEDIDOS]"
         queryString = queryString & ") Values ("
         queryString = queryString & wCaja & ", "
         queryString = queryString & "'" & MiFecAper & "', "
@@ -693,8 +692,7 @@ Public Class TCONA413
         queryString = queryString & "'" & wrMESAC.Mesac_OTROS & "', "
         queryString = queryString & "'" & wrMESAC.Mesac_EFECTIVO & "', "
         queryString = queryString & "'" & wrMESAC.Mesac_IMPIGIC & "', "
-        queryString = queryString & "'" & wrMESAC.Mesac_TLFPEDIDOS & "', "
-        queryString = queryString & "'" & wrMESAC.Mesac_NIFCIF & "' "
+        queryString = queryString & "'" & wrMESAC.Mesac_TLFPEDIDOS & "' "
         queryString = queryString & ")"
         '
         Dim conexion As New SqlConnection

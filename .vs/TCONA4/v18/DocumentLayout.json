@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "D:\\ProyectosVB\\TCONA4\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|D:\\ProyectosVB\\TCONA4\\tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|solutionrelative:tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|d:\\proyectosvb\\tcona4\\tcona4\\tcona412.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|solutionrelative:tcona4\\tcona412.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|d:\\proyectosvb\\tcona4\\tcona4\\tcona414.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|solutionrelative:tcona4\\tcona414.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|d:\\proyectosvb\\tcona4\\tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|solutionrelative:tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|d:\\proyectosvb\\tcona4\\tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|solutionrelative:tcona4\\tcona401.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+      "AbsoluteMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|d:\\proyectosvb\\tcona4\\tcona4\\tcona413.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|solutionrelative:tcona4\\tcona413.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|d:\\proyectosvb\\tcona4\\tcona4\\tcona4main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{B6DD4BAF-F072-46EB-BA8E-7447E2363E5B}|TCONA4\\TCONA4.vbproj|solutionrelative:tcona4\\tcona4main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,29 +34,81 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "Tcona4Main.vb",
+              "DocumentMoniker": "D:\\ProyectosVB\\TCONA4\\TCONA4\\Tcona4Main.vb",
+              "RelativeDocumentMoniker": "TCONA4\\Tcona4Main.vb",
+              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\Tcona4Main.vb",
+              "RelativeToolTip": "TCONA4\\Tcona4Main.vb",
+              "ViewState": "AgIAABYNAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-19T18:32:17.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TCONA413.vb",
+              "DocumentMoniker": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA413.vb",
+              "RelativeDocumentMoniker": "TCONA4\\TCONA413.vb",
+              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA413.vb",
+              "RelativeToolTip": "TCONA4\\TCONA413.vb",
+              "ViewState": "AgIAAKACAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-19T18:32:08.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "TCONA401.vb",
               "DocumentMoniker": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb",
               "RelativeDocumentMoniker": "TCONA4\\TCONA401.vb",
-              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb*",
-              "RelativeToolTip": "TCONA4\\TCONA401.vb*",
-              "ViewState": "AgIAANcEAAAAAAAAAIAwwPAEAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb",
+              "RelativeToolTip": "TCONA4\\TCONA401.vb",
+              "ViewState": "AgIAAIIAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-18T15:49:22.134Z",
+              "WhenOpened": "2026-05-19T18:24:02.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TCONA414.vb",
+              "DocumentMoniker": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA414.vb",
+              "RelativeDocumentMoniker": "TCONA4\\TCONA414.vb",
+              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA414.vb",
+              "RelativeToolTip": "TCONA4\\TCONA414.vb",
+              "ViewState": "AgIAAGgAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-19T18:24:01.919Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "TCONA412.vb",
+              "DocumentMoniker": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA412.vb",
+              "RelativeDocumentMoniker": "TCONA4\\TCONA412.vb",
+              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA412.vb",
+              "RelativeToolTip": "TCONA4\\TCONA412.vb",
+              "ViewState": "AgIAAGgAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-19T18:24:01.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "TCONA401.vb [Dise\u00F1o]",
               "DocumentMoniker": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb",
               "RelativeDocumentMoniker": "TCONA4\\TCONA401.vb",
-              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb [Dise\u00F1o]*",
-              "RelativeToolTip": "TCONA4\\TCONA401.vb [Dise\u00F1o]*",
+              "ToolTip": "D:\\ProyectosVB\\TCONA4\\TCONA4\\TCONA401.vb [Dise\u00F1o]",
+              "RelativeToolTip": "TCONA4\\TCONA401.vb [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-05-18T15:09:23.386Z",
               "EditorCaption": " [Dise\u00F1o]"

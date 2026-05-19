@@ -104,7 +104,7 @@ Public Class TCONA412
         Dim queryString As String = "SELECT * FROM [SALA] WHERE "
         queryString = queryString & "[SALA].[CAJA]=" & wCaja
         queryString = queryString & " AND [SALA].[CODIGO] <> 999 "
-        queryString = queryString & " ORDER BY CAST([SALA].[CODIGO] AS INTEGER) ASC"
+        queryString = queryString & " ORDER BY CASE WHEN ISNUMERIC([SALA].[CODIGO]) = 1 THEN CAST([SALA].[CODIGO] AS INTEGER) ELSE 9999 END, [SALA].[CODIGO] ASC"
         '
         Dim dt As DataSet = New DataSet
         '
@@ -266,7 +266,7 @@ Public Class TCONA412
         Dim queryString As String = "SELECT * FROM [SALA1] WHERE "
         queryString = queryString & "[SALA1].[CAJA]=" & wCaja & " AND "
         queryString = queryString & "[SALA1].[CODIGO]='" & wCrgCodSala & "' "
-        queryString = queryString & "ORDER BY CAST([SALA1].[MESA] AS INTEGER) ASC"
+        queryString = queryString & "ORDER BY CASE WHEN ISNUMERIC([SALA1].[MESA]) = 1 THEN CAST([SALA1].[MESA] AS INTEGER) ELSE 9999 END, [SALA1].[MESA] ASC"
         '
         Dim dt As DataSet = New DataSet
         Try
